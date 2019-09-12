@@ -59,6 +59,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Agente.cs" />
+    <Compile Include="Models\Cargo.cs" />
+    <Compile Include="Models\ItemPedido.cs" />
+    <Compile Include="Models\Orcamento.cs" />
+    <Compile Include="Models\Pedido.cs" />
+    <Compile Include="Models\Produto.cs" />
+    <Compile Include="Models\Setor.cs" />
+    <Compile Include="Views\frmAdmin.xaml.cs">
+      <DependentUpon>frmAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmCadastroAgente.xaml.cs">
+      <DependentUpon>frmCadastroAgente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmCadastroCargoSetor.xaml.cs">
+      <DependentUpon>frmCadastroCargoSetor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmLogin.xaml.cs">
       <DependentUpon>frmLogin.xaml</DependentUpon>
     </Compile>
@@ -90,6 +106,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\frmAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmCadastroAgente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmCadastroCargoSetor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\frmLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

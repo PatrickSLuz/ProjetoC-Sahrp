@@ -14,6 +14,7 @@ namespace ProjetoControleCompras.Models
         }
 
         public int IdAgente { get; set; }
+        public string NomeAgente { get; set; }
         public Setor Setor { get; set; }
         public Cargo Cargo { get; set; }
         public string Login { get; set; }

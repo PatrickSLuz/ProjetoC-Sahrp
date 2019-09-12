@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="Login" Height="290" Width="277" WindowStartupLocation="CenterScreen" MinHeight="290" MaxHeight="290" MaxWidth="270" MinWidth="270">
     <Grid>
-        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Height="22" Margin="54,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-        <Button x:Name="button" Content="Entrar" HorizontalAlignment="Left" Margin="140,198,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click"/>
+        <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Height="22" Margin="54,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" TabIndex="1"/>
+        <Button x:Name="button" Content="Entrar" HorizontalAlignment="Left" Margin="140,198,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" TabIndex="3"/>
         <Label x:Name="label" Content="Login:" HorizontalAlignment="Left" Margin="54,46,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_Copy" Content="Senha:" HorizontalAlignment="Left" Margin="54,116,0,0" VerticalAlignment="Top"/>
-        <PasswordBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="54,142,0,0" VerticalAlignment="Top" Width="162" Height="22"/>
+        <PasswordBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="54,142,0,0" VerticalAlignment="Top" Width="162" Height="22" TabIndex="2"/>
 
     </Grid>
 </Window>

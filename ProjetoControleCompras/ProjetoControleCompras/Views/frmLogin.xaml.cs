@@ -22,6 +22,7 @@ namespace ProjetoControleCompras.Views
         public frmLogin()
         {
             InitializeComponent();
+            txtLogin.Focus(); // Setando o Foco para o Field do Login qnd a tela for aberta
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -31,6 +32,10 @@ namespace ProjetoControleCompras.Views
                 if (txtLogin.Text.Equals("admin") && txtSenha.Password.Equals("admin"))
                 {
                     Console.WriteLine("ADMIN Logado");
+                    frmAdmin telaAdmin = new frmAdmin();
+                    // Para fechar a Janela atual.
+                    this.Close();
+                    telaAdmin.Show();
                 }
                 else
                 {

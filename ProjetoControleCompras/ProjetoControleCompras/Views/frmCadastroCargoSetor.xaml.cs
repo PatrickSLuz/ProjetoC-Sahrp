@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjetoControleCompras.DAL;
+using ProjetoControleCompras.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,11 +29,37 @@ namespace ProjetoControleCompras.Views
         private void BtnCadSetor_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Clicou no Botão Cad Setor");
+
+            Setor setor = new Setor();
+
+            if (!string.IsNullOrEmpty(txtNome.Text))
+            {
+                setor.NomeSetor = txtNome.Text;
+                CargoSetorDAO.CadastrarSetor(setor);
+            }
+            else
+            {
+                MessageBox.Show("Por Favor, Insira o Nome do Setor!", "Cadastro de Setor", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtNome.Clear();
+            }
         }
 
         private void BtnCadCargo_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Clicou no Botão Cad Cargo");
+
+            Cargo cargo = new Cargo();
+
+            if (!string.IsNullOrEmpty(txtNome.Text))
+            {
+                cargo.NomeCargo = txtNome.Text;
+                CargoSetorDAO.CadastrarCargo(cargo);
+            }
+            else
+            {
+                MessageBox.Show("Por Favor, Insira o Nome do Cargo!", "Cadastro de Cargo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtNome.Clear();
+            }
         }
     }
 }

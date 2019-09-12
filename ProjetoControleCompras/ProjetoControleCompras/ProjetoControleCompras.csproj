@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,8 +60,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\CargoSetorDAO.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agente.cs" />
     <Compile Include="Models\Cargo.cs" />
+    <Compile Include="Models\Context.cs" />
     <Compile Include="Models\ItemPedido.cs" />
     <Compile Include="Models\Orcamento.cs" />
     <Compile Include="Models\Pedido.cs" />

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjetoControleCompras.Models
 {
+    [Table("Agentes")]
     class Agente
     {
         public Agente()
@@ -13,6 +16,7 @@ namespace ProjetoControleCompras.Models
             DtCriacao = DateTime.Now;
         }
 
+        [Key]
         public int IdAgente { get; set; }
         public string NomeAgente { get; set; }
         public Setor Setor { get; set; }

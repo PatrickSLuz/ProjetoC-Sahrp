@@ -61,6 +61,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DAL\CargoSetorDAO.cs" />
+    <Compile Include="DAL\SingletonContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agente.cs" />
     <Compile Include="Models\Cargo.cs" />

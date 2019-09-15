@@ -11,14 +11,45 @@ namespace ProjetoControleCompras.DAL
     {
         private CargoSetorDAO() { }
 
-        public static void CadastrarSetor(Setor setor)
+        private static Context ctx = SingletonContext.GetInstance();
+
+        public static bool CadastrarSetor(Setor setor)
         {
-            Console.WriteLine("CargoSetorDAO.CadastrarSetor(Setor setor) - NomeSetor: " + setor.NomeSetor);
+            if (BuscarSetorPorNome(setor) == null)
+            {
+                ctx.Setores.Add(setor);
+                ctx.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public static void CadastrarCargo(Cargo cargo)
+        public static Setor BuscarSetorPorNome(Setor setor)
         {
-            Console.WriteLine("CargoSetorDAO.CadastrarCargo(Cargo cargo) - NomeCargo: " + cargo.NomeCargo);
+            return ctx.Setores.FirstOrDefault(x => x.NomeSetor.Equals(setor.NomeSetor));
+        }
+
+        public static Cargo BuscarCargoPorNome(Cargo cargo)
+        {
+            return ctx.Cargos.FirstOrDefault(x => x.NomeCargo.Equals(cargo.NomeCargo));
+        }
+
+        public static bool CadastrarCargo(Cargo cargo)
+        {
+            if (BuscarCargoPorNome(cargo) == null)
+            {
+                ctx.Cargos.Add(cargo);
+                ctx.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

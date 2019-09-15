@@ -35,7 +35,15 @@ namespace ProjetoControleCompras.Views
             if (!string.IsNullOrEmpty(txtNome.Text))
             {
                 setor.NomeSetor = txtNome.Text;
-                CargoSetorDAO.CadastrarSetor(setor);
+                if (CargoSetorDAO.CadastrarSetor(setor))
+                {
+                    MessageBox.Show("Setor Cadastrado com Sucesso!", "Cadastro de Setor", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Este Setor já esta Cadastrado!", "Cadastro de Setor", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                txtNome.Clear();
             }
             else
             {
@@ -53,7 +61,15 @@ namespace ProjetoControleCompras.Views
             if (!string.IsNullOrEmpty(txtNome.Text))
             {
                 cargo.NomeCargo = txtNome.Text;
-                CargoSetorDAO.CadastrarCargo(cargo);
+                if (CargoSetorDAO.CadastrarCargo(cargo))
+                {
+                    MessageBox.Show("Cargo Cadastrado com Sucesso!", "Cadastro de Cargo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Este Cargo já esta Cadastrado!", "Cadastro de Cargo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                txtNome.Clear();
             }
             else
             {

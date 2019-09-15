@@ -37,6 +37,10 @@ namespace ProjetoControleCompras.DAL
             return ctx.Cargos.FirstOrDefault(x => x.NomeCargo.Equals(cargo.NomeCargo));
         }
 
+        public static List<Cargo> ListarCargos() => ctx.Cargos.ToList();
+
+        public static List<Setor> ListarSetores() => ctx.Setores.ToList();
+
         public static bool CadastrarCargo(Cargo cargo)
         {
             if (BuscarCargoPorNome(cargo) == null)

@@ -20,5 +20,10 @@ namespace ProjetoControleCompras.Models
         public int IdCargo { get; set; }
         public string NomeCargo { get; set; }
         public DateTime DtCriacao { get; set; }
+
+        public override string ToString()
+        {
+            return this.NomeCargo;
+        }
     }
 }

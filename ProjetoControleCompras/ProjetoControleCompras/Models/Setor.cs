@@ -20,5 +20,10 @@ namespace ProjetoControleCompras.Models
         public int IdSetor { get; set; }
         public string NomeSetor { get; set; }
         public DateTime DtCriacao { get; set; }
+
+        public override string ToString()
+        {
+            return this.NomeSetor;
+        }
     }
 }

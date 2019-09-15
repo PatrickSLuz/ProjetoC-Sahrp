@@ -60,6 +60,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\AgenteDAO.cs" />
     <Compile Include="DAL\CargoSetorDAO.cs" />
     <Compile Include="DAL\SingletonContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />

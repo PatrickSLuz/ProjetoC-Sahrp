@@ -62,7 +62,11 @@ namespace ProjetoControleCompras.Views
                 agente.Setor = setor;
 
                 agente.Login = txtLogin.Text;
-                agente.Senha = "123";
+
+                string nome_sem_espaco = txtNomeAgente.Text.Replace(" ", "");
+                nome_sem_espaco = char.ToUpper(nome_sem_espaco[0]) + nome_sem_espaco.Substring(1).ToLower();
+
+                agente.Senha = nome_sem_espaco + "@" + agente.Cargo;
 
                 if (AgenteDAO.CadastrarAgente(agente))
                 {

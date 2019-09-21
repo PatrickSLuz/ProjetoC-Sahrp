@@ -15,7 +15,7 @@ namespace ProjetoControleCompras.DAL
 
         public static bool CadastrarAgente(Agente agente)
         {
-            if (BuscarAgentePorNome(agente) == null)
+            if (BuscarAgentePorLogin(agente) == null)
             {
                 ctx.Agentes.Add(agente);
                 ctx.SaveChanges();
@@ -27,9 +27,9 @@ namespace ProjetoControleCompras.DAL
             }
         }
 
-        public static Agente BuscarAgentePorNome(Agente agente)
+        public static Agente BuscarAgentePorLogin(Agente agente)
         {
-            return ctx.Agentes.FirstOrDefault(x => x.Login.Equals(agente.Login));
+            return ctx.Agentes.Include("Cargo").Include("Setor").FirstOrDefault(x => x.Login.Equals(agente.Login));
         }
     }
 }

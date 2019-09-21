@@ -1,6 +1,9 @@
 namespace ProjetoControleCompras.Migrations
 {
+    using ProjetoControleCompras.DAL;
+    using ProjetoControleCompras.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -18,6 +21,29 @@ namespace ProjetoControleCompras.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
+
+            List<Cargo> listaCargos = new List<Cargo>();
+            listaCargos.Add(new Cargo() { NomeCargo = "Usuario" });
+            listaCargos.Add(new Cargo() { NomeCargo = "Gestor" });
+            listaCargos.Add(new Cargo() { NomeCargo = "Administrador" });
+            foreach (Cargo c in listaCargos)
+            {
+                context.Cargos.AddOrUpdate(x => x.IdCargo, c);
+            }
+            context.SaveChanges();
+
+            List<Setor> listaSetores = new List<Setor>();
+            listaSetores.Add(new Setor() { NomeSetor = "Financeiro" });
+            listaSetores.Add(new Setor() { NomeSetor = "Compras" });
+            foreach (Setor s in listaSetores)
+            {
+                context.Setores.AddOrUpdate(x => x.IdSetor, s);
+            }
+            context.SaveChanges();
+
+            var cargo = context.Cargos.FirstOrDefault(c => c.NomeCargo.Equals("Administrador"));
+            context.Agentes.AddOrUpdate(new Agente() { NomeAgente = "Administrador", Cargo =  cargo, Login = "admin", Senha = "admin"});
+            context.SaveChanges();
         }
     }
 }

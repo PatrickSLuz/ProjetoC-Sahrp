@@ -71,16 +71,34 @@ namespace ProjetoControleCompras.Views
                 Close();
                 telaAdmin.Show();
             }
-            if (ag.Cargo.NomeCargo.Equals("Usuário"))
+            if (ag.Cargo.NomeCargo.Equals("Usuario"))
             {
                 Console.WriteLine("Logar como Usuário.");
                 Console.WriteLine("Seu Setor é: " + ag.Setor.NomeSetor);
+
+                VerificarPrimeiraSenha(ag);
             }
             if (ag.Cargo.NomeCargo.Equals("Gestor"))
             {
                 Console.WriteLine("Logar como Gestor.");
                 Console.WriteLine("Seu Setor é: "+ag.Setor.NomeSetor);
+
+                VerificarPrimeiraSenha(ag);
             }
         }
+
+        private void VerificarPrimeiraSenha(Agente ag)
+        {
+            string nome_sem_espaco = ag.NomeAgente.Replace(" ", "");
+            nome_sem_espaco = char.ToUpper(nome_sem_espaco[0]) + nome_sem_espaco.Substring(1).ToLower();
+            string SenhaPadrao = nome_sem_espaco + "@" + ag.Cargo;
+
+            if (ag.Senha.Equals(SenhaPadrao) )
+            {
+                frmCadastroDeSenha TelaCadastroDeSenha = new frmCadastroDeSenha(ag);
+                TelaCadastroDeSenha.ShowDialog();
+            }
+        }
+
     }
 }

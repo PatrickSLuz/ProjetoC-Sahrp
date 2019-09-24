@@ -70,7 +70,7 @@ namespace ProjetoControleCompras.Views
 
                 if (AgenteDAO.CadastrarAgente(agente))
                 {
-                    MessageBox.Show("Agente Cadastrado com Sucesso!", "Cadastro de Agente", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Agente Cadastrado com Sucesso! \nSua primeira senha será: Nome+@+Cargo \nPrimeira letra do nome e cargo maiuscula \nExemplo: Nomeexemplo@Cargoexemplo", "Cadastro de Agente", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {

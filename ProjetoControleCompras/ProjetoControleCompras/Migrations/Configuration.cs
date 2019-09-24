@@ -1,6 +1,5 @@
-namespace ProjetoControleCompras.Migrations
+﻿namespace ProjetoControleCompras.Migrations
 {
-    using ProjetoControleCompras.DAL;
     using ProjetoControleCompras.Models;
     using System;
     using System.Collections.Generic;
@@ -19,7 +18,7 @@ namespace ProjetoControleCompras.Migrations
         {
             //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
 
             List<Cargo> listaCargos = new List<Cargo>();
@@ -42,7 +41,7 @@ namespace ProjetoControleCompras.Migrations
             context.SaveChanges();
 
             var cargo = context.Cargos.FirstOrDefault(c => c.NomeCargo.Equals("Administrador"));
-            context.Agentes.AddOrUpdate(new Agente() { NomeAgente = "Administrador", Cargo =  cargo, Login = "admin", Senha = "admin"});
+            context.Agentes.AddOrUpdate(new Agente() { NomeAgente = "Administrador", Cargo = cargo, Login = "admin", Senha = "admin" });
             context.SaveChanges();
         }
     }

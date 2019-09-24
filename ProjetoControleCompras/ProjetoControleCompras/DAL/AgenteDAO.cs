@@ -31,5 +31,14 @@ namespace ProjetoControleCompras.DAL
         {
             return ctx.Agentes.Include("Cargo").Include("Setor").FirstOrDefault(x => x.Login.Equals(agente.Login));
         }
+
+        public static void MudarSenha(Agente agente, string nova_senha)
+        {
+            agente.Senha = nova_senha;
+            ctx.Entry(agente).CurrentValues.SetValues(agente);
+           //agente = ctx.Agentes.Find(agente.IdAgente);
+           ctx.SaveChanges();
+        }
+
     }
 }

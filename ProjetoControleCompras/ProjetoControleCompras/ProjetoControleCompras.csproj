@@ -74,6 +74,9 @@
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Setor.cs" />
+    <Compile Include="Views\frmCadastroPedido.xaml.cs">
+      <DependentUpon>frmCadastroPedido.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmAdmin.xaml.cs">
       <DependentUpon>frmAdmin.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,9 @@
     </Compile>
     <Compile Include="Views\frmCadastroDeSenha.xaml.cs">
       <DependentUpon>frmCadastroDeSenha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmGerenciarAgente.xaml.cs">
+      <DependentUpon>frmGerenciarAgente.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\frmLogin.xaml.cs">
       <DependentUpon>frmLogin.xaml</DependentUpon>
@@ -117,6 +123,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\frmCadastroPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\frmAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmCadastroDeSenha.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmGerenciarAgente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

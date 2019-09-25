@@ -21,19 +21,27 @@ namespace ProjetoControleCompras.Views
     /// </summary>
     public partial class frmCadastroAgente : Window
     {
-
         List<Setor> listaDeSetores = CargoSetorDAO.ListarSetores();
         List<Cargo> listaDeCargos = CargoSetorDAO.ListarCargos();
+
+        Agente agente = new Agente();
 
         public frmCadastroAgente()
         {
             InitializeComponent();
+        }
 
-            // Atribuir dados cadastrados do BD em um ComboBox    
-            this.comboBoxCargo.ItemsSource = listaDeCargos;
+        public frmCadastroAgente(Object agente)
+        {
+            InitializeComponent();
 
-            // Atribuir dados cadastrados do BD em um ComboBox
-            this.comboBoxSetor.ItemsSource = listaDeSetores;
+            this.agente = (Agente) agente;
+
+            txtNomeAgente.Text = this.agente.NomeAgente;
+            comboBoxCargo.Text = this.agente.Cargo.ToString();
+            comboBoxSetor.Text = this.agente.Setor.ToString();
+            txtLogin.Text = this.agente.Login;
+            btnCadAgente.Content = "Salvar";
         }
 
         private void BtnCadAgente_Click(object sender, RoutedEventArgs e)
@@ -41,7 +49,6 @@ namespace ProjetoControleCompras.Views
             if (!string.IsNullOrEmpty(txtNomeAgente.Text) && !string.IsNullOrEmpty(comboBoxCargo.Text) 
                 && !string.IsNullOrEmpty(comboBoxSetor.Text) && !string.IsNullOrEmpty(txtLogin.Text))
             {
-                Agente agente = new Agente();
                 Cargo cargo = new Cargo();
                 Setor setor = new Setor();
 
@@ -71,6 +78,7 @@ namespace ProjetoControleCompras.Views
                 if (AgenteDAO.CadastrarAgente(agente))
                 {
                     MessageBox.Show("Agente Cadastrado com Sucesso! \nSua primeira senha será: Nome+@+Cargo \nPrimeira letra do nome e cargo maiuscula \nExemplo: Nomeexemplo@Cargoexemplo", "Cadastro de Agente", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
                 }
                 else
                 {
@@ -81,6 +89,14 @@ namespace ProjetoControleCompras.Views
             {
                 MessageBox.Show("Por Favor, Preencha Todos os Campos!", "Cadastro de Agente", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Atribuir dados cadastrados do BD em um ComboBox    
+            this.comboBoxCargo.ItemsSource = listaDeCargos;
+            // Atribuir dados cadastrados do BD em um ComboBox
+            this.comboBoxSetor.ItemsSource = listaDeSetores;
         }
     }
 }

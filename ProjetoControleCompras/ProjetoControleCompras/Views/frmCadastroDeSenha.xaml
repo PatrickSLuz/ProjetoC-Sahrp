@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetoControleCompras.Views"
         mc:Ignorable="d"
-        Title="frmCadastroDeSenha" Height="363.722" Width="223.12">
+        Title="Alteração de Senha" Height="231.722" Width="210.453" ResizeMode="NoResize">
     <Grid>
-        <Label x:Name="Senha" Content="Nova Senha" HorizontalAlignment="Left" Margin="43,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.511,0.586"/>
-        <Label x:Name="label" Content="Confirme a nova senha" HorizontalAlignment="Left" Margin="43,155,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnSalvarSenha" Content="Salvar" HorizontalAlignment="Left" Margin="43,256,0,0" VerticalAlignment="Top" Width="75" Click="BtnSalvarSenha_Click"/>
-        <PasswordBox x:Name="textNovaSenha" HorizontalAlignment="Left" Margin="43,85,0,0" VerticalAlignment="Top" Width="74"/>
-        <PasswordBox x:Name="textConfirmaSenha" HorizontalAlignment="Left" Margin="43,198,0,0" VerticalAlignment="Top" Width="73"/>
+        <Label x:Name="Senha" Content="Nova Senha" HorizontalAlignment="Left" Margin="28,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.511,0.586"/>
+        <Label x:Name="label" Content="Confirme a nova senha" HorizontalAlignment="Left" Margin="28,92,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnSalvarSenha" Content="Salvar" HorizontalAlignment="Left" Margin="99,165,0,0" VerticalAlignment="Top" Width="75" Click="BtnSalvarSenha_Click" TabIndex="3"/>
+        <PasswordBox x:Name="textNovaSenha" HorizontalAlignment="Left" Margin="28,51,0,0" VerticalAlignment="Top" Width="146" TabIndex="1"/>
+        <PasswordBox x:Name="textConfirmaSenha" HorizontalAlignment="Left" Margin="28,118,0,0" VerticalAlignment="Top" Width="146" TabIndex="2"/>
 
     </Grid>
 </Window>

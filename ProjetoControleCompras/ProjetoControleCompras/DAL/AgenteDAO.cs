@@ -15,15 +15,25 @@ namespace ProjetoControleCompras.DAL
 
         public static bool CadastrarAgente(Agente agente)
         {
-            if (BuscarAgentePorLogin(agente) == null)
+            if (BuscarAgentePorID(agente.IdAgente) != null)
             {
-                ctx.Agentes.Add(agente);
+                ctx.Entry(agente).CurrentValues.SetValues(agente);
                 ctx.SaveChanges();
                 return true;
             }
             else
             {
-                return false;
+                // Cadastrar Agente
+                if (BuscarAgentePorLogin(agente) == null)
+                {
+                    ctx.Agentes.Add(agente);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -32,13 +42,18 @@ namespace ProjetoControleCompras.DAL
             return ctx.Agentes.Include("Cargo").Include("Setor").FirstOrDefault(x => x.Login.Equals(agente.Login));
         }
 
+        public static Agente BuscarAgentePorID(int id)
+        {
+            return ctx.Agentes.Find(id); // Buscar diretamente pela Chave Primaria (PK) da Table
+        }
+
         public static void MudarSenha(Agente agente, string nova_senha)
         {
             agente.Senha = nova_senha;
             ctx.Entry(agente).CurrentValues.SetValues(agente);
-           //agente = ctx.Agentes.Find(agente.IdAgente);
-           ctx.SaveChanges();
+            ctx.SaveChanges();
         }
 
+        public static List<Agente> ListarAgentes() => ctx.Agentes.Include("Cargo").Include("Setor").ToList();
     }
 }

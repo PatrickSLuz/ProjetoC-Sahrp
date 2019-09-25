@@ -24,37 +24,40 @@ namespace ProjetoControleCompras.Views
             InitializeComponent();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_Agente_Click(object sender, RoutedEventArgs e)
+        {
+            frmGerenciarAgente telaGerenciarAgente = new frmGerenciarAgente();
+            telaGerenciarAgente.ShowDialog();
+        }
+
+        private void MenuItem_Setor_Click(object sender, RoutedEventArgs e)
         {
             frmCadastroCargoSetor telaCadCargoSetor = new frmCadastroCargoSetor();
-            frmCadastroAgente telaCadAgente = new frmCadastroAgente();
+            telaCadCargoSetor.btnCadCargo.Visibility = Visibility.Hidden;
+            telaCadCargoSetor.btnCadSetor.Visibility = Visibility.Visible;
+            telaCadCargoSetor.ShowDialog();
+        }
 
-            MenuItem itemMenu= (MenuItem) sender;
+        private void MenuItem_Cargo_Click(object sender, RoutedEventArgs e)
+        {
+            frmCadastroCargoSetor telaCadCargoSetor = new frmCadastroCargoSetor();
+            telaCadCargoSetor.btnCadCargo.Visibility = Visibility.Visible;
+            telaCadCargoSetor.btnCadSetor.Visibility = Visibility.Hidden;
+            telaCadCargoSetor.ShowDialog();
+        }
 
-            if (itemMenu.Header.Equals("Usuário"))
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // Envento de Fechamneto de uma Tela
+            if ((MessageBox.Show("Deseja realmente Fechar?", "Tela Principal", MessageBoxButton.YesNo, MessageBoxImage.Question)) == MessageBoxResult.No)
             {
-                Console.WriteLine("Clicou no MenuItem Aba Usuario");
-                telaCadAgente.ShowDialog();
-            }
-
-            if (itemMenu.Header.Equals("Setor"))
-            {
-                Console.WriteLine("Clicou no MenuItem Aba Setor");
-                telaCadCargoSetor.Title = "Cadastro de Setor";
-                telaCadCargoSetor.btnCadCargo.Visibility = Visibility.Hidden;
-                telaCadCargoSetor.btnCadSetor.Visibility = Visibility.Visible;
-                telaCadCargoSetor.ShowDialog();
-            }
-
-            if (itemMenu.Header.Equals("Cargo"))
-            {
-                Console.WriteLine("Clicou no MenuItem Aba Cargo");
-                telaCadCargoSetor.Title = "Cadastro de Cargo";
-                telaCadCargoSetor.btnCadCargo.Visibility = Visibility.Visible;
-                telaCadCargoSetor.btnCadSetor.Visibility = Visibility.Hidden;
-                telaCadCargoSetor.ShowDialog();
+                e.Cancel = true; // Cancelar o Evento
             }
         }
-        
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

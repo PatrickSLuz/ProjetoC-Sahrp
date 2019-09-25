@@ -38,6 +38,7 @@ namespace ProjetoControleCompras.Views
                 if (CargoSetorDAO.CadastrarSetor(setor))
                 {
                     MessageBox.Show("Setor Cadastrado com Sucesso!", "Cadastro de Setor", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
                 }
                 else
                 {

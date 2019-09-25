@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetoControleCompras.Views"
         mc:Ignorable="d"
-        Title="Tela Principal" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Tela Principal" Height="450" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <Menu x:Name="menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="792">
-            <MenuItem Header="Cadastros">
-                <MenuItem Header="Usuário" Click="MenuItem_Click"/>
-                <MenuItem Header="Setor" Click="MenuItem_Click"/>
-                <MenuItem Header="Cargo" Click="MenuItem_Click"/>
+            <MenuItem Header="_Cadastros" Width="70">
+                <MenuItem Header="_Usuário" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Agente_Click"/>
+                <MenuItem Header="_Setor" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Setor_Click"/>
+                <MenuItem Header="_Cargo" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Cargo_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Outros" Height="20" Width="52">
+                <MenuItem Header="_Sair" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Click_1"/>
             </MenuItem>
         </Menu>
 

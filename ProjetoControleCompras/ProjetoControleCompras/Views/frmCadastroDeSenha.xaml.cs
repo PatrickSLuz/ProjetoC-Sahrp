@@ -40,6 +40,7 @@ namespace ProjetoControleCompras.Views
             {
                 AgenteDAO.MudarSenha(agente, textNovaSenha.Password);
                 MessageBox.Show("Senha alterada com sucesso!");
+                Close();
             }
             else
             {

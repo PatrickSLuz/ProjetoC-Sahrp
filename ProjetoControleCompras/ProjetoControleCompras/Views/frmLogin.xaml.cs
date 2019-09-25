@@ -39,7 +39,6 @@ namespace ProjetoControleCompras.Views
                 {
                     if (ag.Login.Equals(txtLogin.Text) && ag.Senha.Equals(txtSenha.Password))
                     {
-                        MessageBox.Show(ag.NomeAgente+" Logado com Sucesso!", "Login", MessageBoxButton.OK, MessageBoxImage.Information);
                         VerificarCargoESetor(ag);
                     }
                     else
@@ -66,23 +65,21 @@ namespace ProjetoControleCompras.Views
         {
             if (ag.Cargo.NomeCargo.Equals("Administrador"))
             {
-                Console.WriteLine("Logar como Administrador.");
+                // Logar como Admin
                 frmAdmin telaAdmin = new frmAdmin();
                 Close();
                 telaAdmin.Show();
             }
             if (ag.Cargo.NomeCargo.Equals("Usuario"))
             {
-                Console.WriteLine("Logar como Usuário.");
+                // Logar como Usuario
                 Console.WriteLine("Seu Setor é: " + ag.Setor.NomeSetor);
-
                 VerificarPrimeiraSenha(ag);
             }
             if (ag.Cargo.NomeCargo.Equals("Gestor"))
             {
-                Console.WriteLine("Logar como Gestor.");
+                // Logar como Gestor
                 Console.WriteLine("Seu Setor é: "+ag.Setor.NomeSetor);
-
                 VerificarPrimeiraSenha(ag);
             }
         }

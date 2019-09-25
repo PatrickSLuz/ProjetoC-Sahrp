@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetoControleCompras.Views"
         mc:Ignorable="d"
-        Title="Login" Height="290" Width="277" WindowStartupLocation="CenterScreen" MinHeight="290" MaxHeight="290" MaxWidth="270" MinWidth="270">
+        Title="Login" Height="290" Width="277" WindowStartupLocation="CenterScreen" MinHeight="290" MaxHeight="290" MaxWidth="270" MinWidth="270" ResizeMode="NoResize">
     <Grid>
         <TextBox x:Name="txtLogin" HorizontalAlignment="Left" Height="22" Margin="54,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" TabIndex="1"/>
         <Button x:Name="button" Content="Entrar" HorizontalAlignment="Left" Margin="140,198,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" TabIndex="3"/>

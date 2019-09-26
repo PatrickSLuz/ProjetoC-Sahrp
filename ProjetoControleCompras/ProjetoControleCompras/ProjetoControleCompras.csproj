@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="DAL\AgenteDAO.cs" />
     <Compile Include="DAL\CargoSetorDAO.cs" />
+    <Compile Include="DAL\ProdutoDAO.cs" />
     <Compile Include="DAL\SingletonContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agente.cs" />
@@ -74,8 +75,8 @@
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Setor.cs" />
-    <Compile Include="Views\frmCadastroPedido.xaml.cs">
-      <DependentUpon>frmCadastroPedido.xaml</DependentUpon>
+    <Compile Include="Views\frmCadastrarProduto.xaml.cs">
+      <DependentUpon>frmCadastrarProduto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\frmAdmin.xaml.cs">
       <DependentUpon>frmAdmin.xaml</DependentUpon>
@@ -88,6 +89,9 @@
     </Compile>
     <Compile Include="Views\frmCadastroDeSenha.xaml.cs">
       <DependentUpon>frmCadastroDeSenha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmCadastroPedido.xaml.cs">
+      <DependentUpon>frmCadastroPedido.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\frmGerenciarAgente.xaml.cs">
       <DependentUpon>frmGerenciarAgente.xaml</DependentUpon>
@@ -123,7 +127,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\frmCadastroPedido.xaml">
+    <Page Include="Views\frmCadastrarProduto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmCadastroDeSenha.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmCadastroPedido.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

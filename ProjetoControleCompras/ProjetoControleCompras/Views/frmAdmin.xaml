@@ -9,9 +9,11 @@
     <Grid>
         <Menu x:Name="menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="792">
             <MenuItem Header="_Cadastros" Width="70">
-                <MenuItem Header="_Usuário" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Agente_Click"/>
+                <MenuItem Header="_Agente" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Agente_Click"/>
                 <MenuItem Header="_Setor" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Setor_Click"/>
                 <MenuItem Header="_Cargo" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Cargo_Click"/>
+                <MenuItem Header="_Produto" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Produto_Click"/>
+                <MenuItem Header="P_edido" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Pedido_Click"/>
             </MenuItem>
             <MenuItem Header="_Outros" Height="20" Width="52">
                 <MenuItem Header="_Sair" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Click_1"/>

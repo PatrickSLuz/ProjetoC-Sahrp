@@ -47,6 +47,18 @@ namespace ProjetoControleCompras.Views
             telaCadCargoSetor.ShowDialog();
         }
 
+        private void MenuItem_Produto_Click(object sender, RoutedEventArgs e)
+        {
+            frmCadastrarProduto telaCadProduto = new frmCadastrarProduto();
+            telaCadProduto.ShowDialog();
+        }
+
+        private void MenuItem_Pedido_Click(object sender, RoutedEventArgs e)
+        {
+            frmCadastroPedido telaCadPedido = new frmCadastroPedido();
+            telaCadPedido.ShowDialog();
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             // Envento de Fechamneto de uma Tela

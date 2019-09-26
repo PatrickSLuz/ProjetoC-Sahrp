@@ -97,5 +97,12 @@ namespace ProjetoControleCompras.Views
             }
         }
 
+        private void TxtSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                // Quando apertar o Enter no TextBox da Senha
+            }
+        }
     }
 }

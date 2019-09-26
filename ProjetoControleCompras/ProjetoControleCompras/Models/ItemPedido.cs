@@ -15,6 +15,7 @@ namespace ProjetoControleCompras.Models
 
         public int IdItemPedido { get; set; }
         public Produto Produtos { get; set; }
+        public int Quantidade { get; set; }
         public DateTime DtCriacao { get; set; }
     }
 }

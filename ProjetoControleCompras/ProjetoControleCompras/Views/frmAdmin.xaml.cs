@@ -19,6 +19,7 @@ namespace ProjetoControleCompras.Views
     /// </summary>
     public partial class frmAdmin : Window
     {
+        private bool fazerLogoff = false;
         public frmAdmin()
         {
             InitializeComponent();
@@ -49,15 +50,22 @@ namespace ProjetoControleCompras.Views
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             // Envento de Fechamneto de uma Tela
-            if ((MessageBox.Show("Deseja realmente Fechar?", "Tela Principal", MessageBoxButton.YesNo, MessageBoxImage.Question)) == MessageBoxResult.No)
+            string action = fazerLogoff ? "Sair" : "Fechar";
+            if ((MessageBox.Show("Deseja realmente " + action + "?", "Tela Principal", MessageBoxButton.YesNo, MessageBoxImage.Question)) == MessageBoxResult.No)
             {
                 e.Cancel = true; // Cancelar o Evento
+            }else if (fazerLogoff)
+            {
+                frmLogin telaLogin = new frmLogin();
+                telaLogin.Show();
             }
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
+            fazerLogoff = true;
             Close();
+            fazerLogoff = false;
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetoControleCompras.Views"
         mc:Ignorable="d"
-        Title="Alteração de Senha" Height="231.722" Width="210.453" ResizeMode="NoResize">
+        Title="Alteração de Senha" Height="231.722" Width="210.453" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="Senha" Content="Nova Senha" HorizontalAlignment="Left" Margin="28,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.511,0.586"/>
         <Label x:Name="label" Content="Confirme a nova senha" HorizontalAlignment="Left" Margin="28,92,0,0" VerticalAlignment="Top"/>

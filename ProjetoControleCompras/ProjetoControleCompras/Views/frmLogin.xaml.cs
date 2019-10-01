@@ -73,14 +73,18 @@ namespace ProjetoControleCompras.Views
             if (ag.Cargo.NomeCargo.Equals("Usuario"))
             {
                 // Logar como Usuario
-                Console.WriteLine("Seu Setor é: " + ag.Setor.NomeSetor);
                 VerificarPrimeiraSenha(ag);
+                frmUsuario telaUsuario = new frmUsuario(ag);
+                Close();
+                telaUsuario.ShowDialog();
             }
             if (ag.Cargo.NomeCargo.Equals("Gestor"))
             {
                 // Logar como Gestor
-                Console.WriteLine("Seu Setor é: "+ag.Setor.NomeSetor);
                 VerificarPrimeiraSenha(ag);
+                frmGestor telaGestor = new frmGestor();
+                Close();
+                telaGestor.ShowDialog();
             }
         }
 

@@ -70,7 +70,11 @@ namespace ProjetoControleCompras.Views
                     Pedido pedido = new Pedido();
                     pedido.Solicitante = AgenteLogado;
                     pedido.ItensPedido = itensPedido;
-                    pedido.Status = "Aguardando Confirmação do Gestor.";
+                    pedido.DescMot = txtDescricao.Text;
+
+                    Status st = new Status();
+                    st = PedidoDAO.BuscarStatusPorId(1);
+                    pedido.Status = st;
 
                     if (PedidoDAO.CadastrarPedido(pedido))
                     {

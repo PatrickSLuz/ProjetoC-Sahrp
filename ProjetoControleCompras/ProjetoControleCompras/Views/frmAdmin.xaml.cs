@@ -1,4 +1,5 @@
-﻿using ProjetoControleCompras.Models;
+﻿using ProjetoControleCompras.DAL;
+using ProjetoControleCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ namespace ProjetoControleCompras.Views
         {
             InitializeComponent();
             AgenteLogado = (Agente)agenteLogado;
+            dtaTodosPedidos.ItemsSource = PedidoDAO.ListarPedidos();
+            dtaTodosPedidos.Items.Refresh();
         }
 
         private void MenuItem_Agente_Click(object sender, RoutedEventArgs e)

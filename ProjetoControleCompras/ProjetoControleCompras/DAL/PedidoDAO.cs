@@ -19,5 +19,21 @@ namespace ProjetoControleCompras.DAL
             ctx.SaveChanges();
             return true;
         }
+
+        public static List<Pedido> BuscarPedidoPorAgente(Agente solicitante)
+        {
+            return ctx.Pedidos.Include("ItensPedido").Include("Status").
+                Where(x => x.Solicitante.IdAgente.Equals(solicitante.IdAgente) && x.Status.IdStatus == 5 /*Pedido Finalizado*/).ToList();
+        }
+
+        public static List<Pedido> ListarPedidos()
+        {
+            return ctx.Pedidos.Include("Solicitante").Include("ItensPedido").Include("Status").ToList();
+        }
+
+        public static Status BuscarStatusPorId(int id)
+        {
+            return ctx.Status.Find(id);
+        }
     }
 }

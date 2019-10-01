@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="Tela Gestor" Height="490.5" Width="873.5" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <DataGrid x:Name="dtaPedidosValidados" HorizontalAlignment="Left" Height="201" Margin="10,250,0,0" VerticalAlignment="Top" Width="848"/>
+        <DataGrid x:Name="dtaPedidosValidados" HorizontalAlignment="Left" Height="201" Margin="10,250,0,0" VerticalAlignment="Top" Width="848" IsReadOnly="True"/>
         <Label x:Name="label" Content="Histórico de Pedidos do Seu Setor" HorizontalAlignment="Left" Margin="10,219,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnGerenciarAgentes" Content="Gerenciar Agentes" HorizontalAlignment="Left" Margin="36,18,0,0" VerticalAlignment="Top" Width="116" Click="BtnGerenciarAgentes_Click"/>
         <Button x:Name="btnValidarPedido" Content="Validar Pedido" HorizontalAlignment="Left" Margin="622,18,0,0" VerticalAlignment="Top" Width="96"/>
         <Button x:Name="btnRejeitarPedido" Content="Rejeitar Pedido" HorizontalAlignment="Left" Margin="750,18,0,0" VerticalAlignment="Top" Width="106"/>
         <Label x:Name="label1" Content="Pedidos para Validar" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="dtaPedidoParaValidar" HorizontalAlignment="Left" Height="110" Margin="10,90,0,0" VerticalAlignment="Top" Width="846"/>
+        <DataGrid x:Name="dtaPedidoParaValidar" HorizontalAlignment="Left" Height="110" Margin="10,90,0,0" VerticalAlignment="Top" Width="846" IsReadOnly="True"/>
 
     </Grid>
 </Window>

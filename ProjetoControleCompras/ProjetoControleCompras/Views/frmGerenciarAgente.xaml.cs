@@ -64,7 +64,23 @@ namespace ProjetoControleCompras.Views
 
         private void BtnExcluir_Click(object sender, RoutedEventArgs e)
         {
-            
+
+            dynamic ag = dtaAgentes.SelectedItem;
+            if (ag == null)
+            {
+                
+                MessageBox.Show("Por Favor, Selecione um Usuário para Excluir.", "Gerenciar Agentes", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {                
+                if ((MessageBox.Show("Deseja realmente excluir esse usuário?", "Gerenciar Agente", MessageBoxButton.YesNo, MessageBoxImage.Question)) == MessageBoxResult.Yes)
+                {                
+                    AgenteDAO.excluir(ag);
+                    atualizarGridAgente();
+                }
+                
+
+            }
         }
 
         private void BtnResetarSenha_Click(object sender, RoutedEventArgs e)
@@ -91,6 +107,8 @@ namespace ProjetoControleCompras.Views
                 telaAlterarAgente.ShowDialog();
                 dtaAgentes.Items.Refresh();
             }
+
+
         }
     }
 }

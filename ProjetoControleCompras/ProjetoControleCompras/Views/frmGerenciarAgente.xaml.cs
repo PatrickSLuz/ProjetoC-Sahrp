@@ -1,4 +1,5 @@
 ﻿using ProjetoControleCompras.DAL;
+using ProjetoControleCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,25 @@ namespace ProjetoControleCompras.Views
         public frmGerenciarAgente()
         {
             InitializeComponent();
-
-            dtaAgentes.ItemsSource = AgenteDAO.ListarAgentes();// Inserindo os Agentes no DataGrid
+            AtualizarDataGridAdmin();
             dtaAgentes.Items.Refresh(); // Atualizar o DataGrid
+        }
+
+        public frmGerenciarAgente(Object agenteLogado)
+        {
+            InitializeComponent();
+            AtualizarDataGridGestor((Agente)agenteLogado);
+            dtaAgentes.Items.Refresh(); // Atualizar o DataGrid
+        }
+
+        private void AtualizarDataGridAdmin()
+        {
+            dtaAgentes.ItemsSource = AgenteDAO.ListarAgentes();// Inserindo os Agentes no DataGrid
+        }
+
+        private void AtualizarDataGridGestor(Agente agente)
+        {
+            dtaAgentes.ItemsSource = AgenteDAO.ListarAgentesPorSetor(agente);// Inserindo os Agentes no DataGrid
         }
 
         private void BtnNovoAgente_Click(object sender, RoutedEventArgs e)

@@ -51,7 +51,11 @@
             listaStatus.Add(new Status() { NomeStatus = "Aguardando Compra do Pedido." });
             listaStatus.Add(new Status() { NomeStatus = "Pedido Cancelado." });
             listaStatus.Add(new Status() { NomeStatus = "Pedido Finalizado." });
-            foreach (Status st in listaStatus);
+            foreach (Status st in listaStatus)
+            {
+                context.Status.AddOrUpdate(x => x.IdStatus, st);
+            }
+            context.SaveChanges();
         }
     }
 }

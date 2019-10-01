@@ -27,21 +27,17 @@ namespace ProjetoControleCompras.Views
             AtualizarDataGridAdmin();
             dtaAgentes.Items.Refresh(); // Atualizar o DataGrid
         }
-
-<<<<<<< HEAD
-            atualizarGridAgente();
+        public frmGerenciarAgente(Object agenteLogado)
+        {
+            InitializeComponent();
+            AtualizarDataGridGestor((Agente)agenteLogado);
+            dtaAgentes.Items.Refresh(); // Atualizar o DataGrid
         }
 
         private void atualizarGridAgente()
         {
             dtaAgentes.ItemsSource = AgenteDAO.ListarAgentes();// Inserindo os Agentes no DataGrid
-=======
-        public frmGerenciarAgente(Object agenteLogado)
-        {
-            InitializeComponent();
-            AtualizarDataGridGestor((Agente)agenteLogado);
->>>>>>> a30f01c14bfcc515be4c9f153673142e7f267afd
-            dtaAgentes.Items.Refresh(); // Atualizar o DataGrid
+            atualizarGridAgente();
         }
 
         private void AtualizarDataGridAdmin()

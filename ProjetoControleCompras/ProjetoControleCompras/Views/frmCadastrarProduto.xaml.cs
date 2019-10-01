@@ -26,6 +26,10 @@ namespace ProjetoControleCompras.Views
         {
             InitializeComponent();
 
+            atulizarDataGrid();
+        }
+
+        private void atulizarDataGrid() {
             dtaProdutos.ItemsSource = ProdutoDAO.ListarProdutos();// Inserindo os Produtos no DataGrid
             dtaProdutos.Items.Refresh(); // Atualizar o DataGrid
         }
@@ -43,7 +47,7 @@ namespace ProjetoControleCompras.Views
                 {
                     MessageBox.Show("Produto Cadastrado com Sucesso!", "Cadastro de Produto", MessageBoxButton.OK, MessageBoxImage.Information);
                     txtNomeProduto.Clear();
-                    dtaProdutos.Items.Refresh();
+                    atulizarDataGrid();
                 }
                 else
                 {
@@ -54,6 +58,11 @@ namespace ProjetoControleCompras.Views
             {
                 MessageBox.Show("Por Favor, Preencha o Nome do Produto!", "Cadastro de Produto", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void DtaProdutos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

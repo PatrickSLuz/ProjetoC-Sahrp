@@ -24,6 +24,11 @@ namespace ProjetoControleCompras.Views
         {
             InitializeComponent();
 
+            atualizarGridAgente();
+        }
+
+        private void atualizarGridAgente()
+        {
             dtaAgentes.ItemsSource = AgenteDAO.ListarAgentes();// Inserindo os Agentes no DataGrid
             dtaAgentes.Items.Refresh(); // Atualizar o DataGrid
         }
@@ -32,7 +37,7 @@ namespace ProjetoControleCompras.Views
         {
             frmCadastroAgente telaCadAgente = new frmCadastroAgente();
             telaCadAgente.ShowDialog();
-            dtaAgentes.Items.Refresh();
+            atualizarGridAgente();            
         }
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
@@ -42,7 +47,7 @@ namespace ProjetoControleCompras.Views
 
         private void BtnExcluir_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void BtnResetarSenha_Click(object sender, RoutedEventArgs e)

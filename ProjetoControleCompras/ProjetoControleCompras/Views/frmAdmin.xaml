@@ -19,7 +19,7 @@
                 <MenuItem Header="_Sair" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Click_1"/>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="dtaTodosPedidos" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="331" Margin="10,78,0,0" VerticalAlignment="Top" Width="912">
+        <DataGrid x:Name="dtaTodosPedidos" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="331" Margin="10,78,0,0" VerticalAlignment="Top" Width="912" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#ID" Width="35" Binding="{Binding IdPedido}"/>
                 <DataGridTextColumn Header="Descrição" Width="150" Binding="{Binding DescMot}"/>

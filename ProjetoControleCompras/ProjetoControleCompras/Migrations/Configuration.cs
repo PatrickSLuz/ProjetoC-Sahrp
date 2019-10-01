@@ -45,17 +45,11 @@
             context.Agentes.AddOrUpdate(new Agente() { NomeAgente = "Administrador", Cargo = cargo, Setor = setor, Login = "admin", Senha = "admin" });
             context.SaveChanges();
 
-            List<Status> listaStatus = new List<Status>();
-            listaStatus.Add(new Status() { NomeStatus = "Aguardando Validação do Gestor." });
-            listaStatus.Add(new Status() { NomeStatus = "Aguardando Cadastro de Orçamentos." });
-            listaStatus.Add(new Status() { NomeStatus = "Aguardando Compra do Pedido." });
-            listaStatus.Add(new Status() { NomeStatus = "Pedido Cancelado." });
-            listaStatus.Add(new Status() { NomeStatus = "Pedido Finalizado." });
-            foreach (Status st in listaStatus)
-            {
-                context.Status.AddOrUpdate(x => x.IdStatus, st);
-            }
-            context.SaveChanges();
+            //listaStatus.Add(new Status() { NomeStatus = "Aguardando Validação do Gestor" });
+            //listaStatus.Add(new Status() { NomeStatus = "Aguardando Cadastro de Orçamentos" });
+            //listaStatus.Add(new Status() { NomeStatus = "Aguardando Compra do Pedido" });
+            //listaStatus.Add(new Status() { NomeStatus = "Pedido Cancelado" });
+            //listaStatus.Add(new Status() { NomeStatus = "Pedido Finalizado" });
         }
     }
 }

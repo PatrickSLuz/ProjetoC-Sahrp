@@ -21,7 +21,7 @@ namespace ProjetoControleCompras.Models
         public List<ItemPedido> ItensPedido { get; set; }
         public List<Orcamento> Orcamentos { get; set; }
         public string DescMot { get; set; }
-        public Status Status { get; set; }
+        public string Status { get; set; }
         public DateTime DtCriacao { get; set; }
     }
 }

@@ -7,13 +7,33 @@
         mc:Ignorable="d"
         Title="Tela Gestor" Height="490.5" Width="873.5" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <DataGrid x:Name="dtaPedidosValidados" HorizontalAlignment="Left" Height="201" Margin="10,250,0,0" VerticalAlignment="Top" Width="848"/>
-        <Label x:Name="label" Content="Histórico de Pedidos do Seu Setor" HorizontalAlignment="Left" Margin="10,219,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dtaPedidosValidados" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="201" Margin="10,250,0,0" VerticalAlignment="Top" Width="848">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#ID" Width="35" Binding="{Binding IdPedido}"/>
+                <DataGridTextColumn Header="Descrição" Width="150" Binding="{Binding DescMot}"/>
+                <DataGridTextColumn Header="Solicitante" Width="150" Binding="{Binding Solicitante.NomeAgente}"/>
+                <DataGridTextColumn Header="Cargo" Width="100" Binding="{Binding Solicitante.Cargo.NomeCargo}"/>
+                <DataGridTextColumn Header="Setor" Width="100" Binding="{Binding Solicitante.Setor.NomeSetor}"/>
+                <DataGridTextColumn Header="Data" Width="130" Binding="{Binding DtCriacao}"/>
+                <DataGridTextColumn Header="Status" Width="235" Binding="{Binding Status}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="label" Content="Histórico de Pedidos Validados do Seu Setor" HorizontalAlignment="Left" Margin="10,219,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnGerenciarAgentes" Content="Gerenciar Agentes" HorizontalAlignment="Left" Margin="36,18,0,0" VerticalAlignment="Top" Width="116" Click="BtnGerenciarAgentes_Click"/>
-        <Button x:Name="btnValidarPedido" Content="Validar Pedido" HorizontalAlignment="Left" Margin="622,18,0,0" VerticalAlignment="Top" Width="96"/>
-        <Button x:Name="btnRejeitarPedido" Content="Rejeitar Pedido" HorizontalAlignment="Left" Margin="750,18,0,0" VerticalAlignment="Top" Width="106"/>
+        <Button x:Name="btnValidarPedido" Content="Validar Pedido" HorizontalAlignment="Left" Margin="612,18,0,0" VerticalAlignment="Top" Width="96" Click="BtnValidarPedido_Click"/>
+        <Button x:Name="btnRejeitarPedido" Content="Rejeitar Pedido" HorizontalAlignment="Left" Margin="740,18,0,0" VerticalAlignment="Top" Width="106"/>
         <Label x:Name="label1" Content="Pedidos para Validar" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="dtaPedidoParaValidar" HorizontalAlignment="Left" Height="110" Margin="10,90,0,0" VerticalAlignment="Top" Width="846"/>
+        <DataGrid x:Name="dtaPedidoParaValidar" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="110" Margin="10,90,0,0" VerticalAlignment="Top" Width="846">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#ID" Width="35" Binding="{Binding IdPedido}"/>
+                <DataGridTextColumn Header="Descrição" Width="150" Binding="{Binding DescMot}"/>
+                <DataGridTextColumn Header="Solicitante" Width="150" Binding="{Binding Solicitante.NomeAgente}"/>
+                <DataGridTextColumn Header="Cargo" Width="100" Binding="{Binding Solicitante.Cargo.NomeCargo}"/>
+                <DataGridTextColumn Header="Setor" Width="100" Binding="{Binding Solicitante.Setor.NomeSetor}"/>
+                <DataGridTextColumn Header="Data" Width="130" Binding="{Binding DtCriacao}"/>
+                <DataGridTextColumn Header="Status" Width="235" Binding="{Binding Status}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

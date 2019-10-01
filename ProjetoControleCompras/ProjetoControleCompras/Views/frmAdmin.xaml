@@ -27,7 +27,7 @@
                 <DataGridTextColumn Header="Cargo" Width="100" Binding="{Binding Solicitante.Cargo.NomeCargo}"/>
                 <DataGridTextColumn Header="Setor" Width="100" Binding="{Binding Solicitante.Setor.NomeSetor}"/>
                 <DataGridTextColumn Header="Data" Width="130" Binding="{Binding DtCriacao}"/>
-                <DataGridTextColumn Header="Status" Width="235" Binding="{Binding Status.NomeStatus}"/>
+                <DataGridTextColumn Header="Status" Width="235" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="label" Content="Pedidos" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>

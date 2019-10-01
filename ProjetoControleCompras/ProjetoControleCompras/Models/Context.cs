@@ -18,7 +18,6 @@ namespace ProjetoControleCompras.Models
         public DbSet<Agente> Agentes { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
-        public DbSet<Status> Status { get; set; }
         public DbSet<Orcamento> Orcamentos { get; set; }
         public DbSet<ItemPedido> ItemPedido { get; set; }
     }

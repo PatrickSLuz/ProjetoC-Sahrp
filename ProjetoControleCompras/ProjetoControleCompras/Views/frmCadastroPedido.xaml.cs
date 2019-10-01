@@ -73,10 +73,7 @@ namespace ProjetoControleCompras.Views
                     pedido.Solicitante = AgenteLogado;
                     pedido.ItensPedido = itensPedido;
                     pedido.DescMot = txtDescricao.Text;
-
-                    Status st = new Status();
-                    st = PedidoDAO.BuscarStatusPorId(1);
-                    pedido.Status = st;
+                    pedido.Status = "Aguardando Validação do Gestor";
 
                     if (PedidoDAO.CadastrarPedido(pedido))
                     {

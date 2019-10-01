@@ -59,7 +59,6 @@ namespace ProjetoControleCompras.Views
         {
             // Alterar Agente
             dynamic ag = dtaAgentes.SelectedItem;
-            MessageBox.Show("ID: "+ag.IdAgente+"\nNomeAgente: "+ag.NomeAgente);
             if (ag == null)
             {
                 MessageBox.Show("Por Favor, Selecione um Usuário para Editar.", "Gerenciar Agentes", MessageBoxButton.OK, MessageBoxImage.Warning);

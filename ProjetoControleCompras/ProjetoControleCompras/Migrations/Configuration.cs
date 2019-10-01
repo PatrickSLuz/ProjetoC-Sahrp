@@ -34,6 +34,7 @@
             List<Setor> listaSetores = new List<Setor>();
             listaSetores.Add(new Setor() { NomeSetor = "Financeiro" });
             listaSetores.Add(new Setor() { NomeSetor = "Compras" });
+            listaSetores.Add(new Setor() { NomeSetor = "Diretoria" });
             foreach (Setor s in listaSetores)
             {
                 context.Setores.AddOrUpdate(x => x.IdSetor, s);
@@ -41,7 +42,20 @@
             context.SaveChanges();
 
             var cargo = context.Cargos.FirstOrDefault(c => c.NomeCargo.Equals("Administrador"));
-            context.Agentes.AddOrUpdate(new Agente() { NomeAgente = "Administrador", Cargo = cargo, Login = "admin", Senha = "admin" });
+            var setor = context.Setores.FirstOrDefault(c => c.NomeSetor.Equals("Diretoria"));
+            context.Agentes.AddOrUpdate(new Agente() { NomeAgente = "Administrador", Cargo = cargo, Setor = setor, Login = "admin", Senha = "admin" });
+            context.SaveChanges();
+
+            List<Status> listaStatus = new List<Status>();
+            listaStatus.Add(new Status() { NomeStatus = "Aguardando Validação do Gestor."});
+            listaStatus.Add(new Status() { NomeStatus = "Aguardando Cadastro de Orçamentos." });
+            listaStatus.Add(new Status() { NomeStatus = "Aguardando Compra do Pedido." });
+            listaStatus.Add(new Status() { NomeStatus = "Pedido Cancelado." });
+            listaStatus.Add(new Status() { NomeStatus = "Pedido Finalizado." });
+            foreach (Status st in listaStatus)
+            {
+                context.Status.AddOrUpdate(x => x.IdStatus, st);
+            }
             context.SaveChanges();
         }
     }

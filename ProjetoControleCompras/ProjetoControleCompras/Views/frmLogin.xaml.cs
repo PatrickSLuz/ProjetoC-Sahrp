@@ -66,7 +66,7 @@ namespace ProjetoControleCompras.Views
             if (ag.Cargo.NomeCargo.Equals("Administrador"))
             {
                 // Logar como Admin
-                frmAdmin telaAdmin = new frmAdmin();
+                frmAdmin telaAdmin = new frmAdmin(ag);
                 Close();
                 telaAdmin.Show();
             }

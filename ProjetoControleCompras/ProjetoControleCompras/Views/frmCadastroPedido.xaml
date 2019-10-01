@@ -8,10 +8,10 @@
         Title="Cadastro de Pedido" Height="375" Width="503" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <ComboBox x:Name="cboProdutos" HorizontalAlignment="Left" Margin="35,60,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label" Content="Produto" HorizontalAlignment="Left" Margin="35,34,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="Item" HorizontalAlignment="Left" Margin="35,34,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtQuantidade" HorizontalAlignment="Left" Height="24" Margin="201,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72"/>
         <Label x:Name="label1" Content="Quantidade" HorizontalAlignment="Left" Margin="201,34,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnAddProduto" Content="Adicionar Produto" HorizontalAlignment="Left" Margin="319,60,0,0" VerticalAlignment="Top" Width="142" Click="BtnAddProduto_Click"/>
+        <Button x:Name="btnAddProduto" Content="Adicionar Item" HorizontalAlignment="Left" Margin="319,60,0,0" VerticalAlignment="Top" Width="142" Click="BtnAddProduto_Click"/>
         <DataGrid x:Name="dtaProdutos" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="86" Margin="35,116,0,0" VerticalAlignment="Top" Width="426">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nome Produto" Binding="{Binding Produtos.NomeProduto}"/>
@@ -19,8 +19,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="label2" Content="Descição/Motivo" HorizontalAlignment="Left" Margin="35,210,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="22" Margin="35,242,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="426"/>
-        <Button x:Name="btnRegPedido" Content="Registrar Pedido" HorizontalAlignment="Left" Margin="360,298,0,0" VerticalAlignment="Top" Width="101"/>
+        <TextBox x:Name="txtDescricao" HorizontalAlignment="Left" Height="22" Margin="35,242,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="426"/>
+        <Button x:Name="btnRegPedido" Content="Registrar Pedido" HorizontalAlignment="Left" Margin="360,298,0,0" VerticalAlignment="Top" Width="101" Click="BtnRegPedido_Click"/>
 
     </Grid>
 </Window>

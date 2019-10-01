@@ -22,9 +22,13 @@ namespace ProjetoControleCompras.Views
     public partial class frmCadastroPedido : Window
     {
         private List<ItemPedido> itensPedido = new List<ItemPedido>(); // Lista para alimentar o DataGrid
-        public frmCadastroPedido()
+        private Agente AgenteLogado;
+
+        public frmCadastroPedido(Object agenteLogado)
         {
             InitializeComponent();
+
+            AgenteLogado = (Agente) agenteLogado;
 
             cboProdutos.ItemsSource = ProdutoDAO.ListarProdutos();
             cboProdutos.DisplayMemberPath = "NomeProduto"; // Propriedade do Objeto para ser exibido dentro do ComboBox
@@ -54,6 +58,37 @@ namespace ProjetoControleCompras.Views
             else
             {
                 MessageBox.Show("Por Favor, Insira a Quantidade para este Produto!", "Adicionar Produto", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void BtnRegPedido_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDescricao.Text))
+            {
+                if (itensPedido.Count > 0)
+                {
+                    Pedido pedido = new Pedido();
+                    pedido.Solicitante = AgenteLogado;
+                    pedido.ItensPedido = itensPedido;
+                    pedido.Status = "Aguardando Confirmação do Gestor.";
+
+                    if (PedidoDAO.CadastrarPedido(pedido))
+                    {
+                        MessageBox.Show("Seu Pedido foi Cadastrado com Sucesso!", "Cadastrar Pedido", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao Cadastrar o Pedido! Tente Novamente", "Cadastrar Pedido", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por Favor, Informe o(s) Produto(s) para o Pedido!", "Cadastrar Pedido", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por Favor, Preencha a Descrição/Motivo deste Pedido!", "Cadastrar Pedido", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

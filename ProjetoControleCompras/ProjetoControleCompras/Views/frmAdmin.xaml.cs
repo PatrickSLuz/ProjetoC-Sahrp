@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoControleCompras.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace ProjetoControleCompras.Views
     public partial class frmAdmin : Window
     {
         private bool fazerLogoff = false;
-        public frmAdmin()
+        private Agente AgenteLogado;
+
+        public frmAdmin(Object agenteLogado)
         {
             InitializeComponent();
+            AgenteLogado = (Agente)agenteLogado;
         }
 
         private void MenuItem_Agente_Click(object sender, RoutedEventArgs e)
@@ -55,7 +59,7 @@ namespace ProjetoControleCompras.Views
 
         private void MenuItem_Pedido_Click(object sender, RoutedEventArgs e)
         {
-            frmCadastroPedido telaCadPedido = new frmCadastroPedido();
+            frmCadastroPedido telaCadPedido = new frmCadastroPedido(AgenteLogado);
             telaCadPedido.ShowDialog();
         }
 

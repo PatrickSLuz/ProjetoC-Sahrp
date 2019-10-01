@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoControleCompras.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,17 @@ namespace ProjetoControleCompras.Views
     /// </summary>
     public partial class frmGestor : Window
     {
-        public frmGestor()
+        private Agente AgenteLogado;
+        public frmGestor(Object agenteLogado)
         {
             InitializeComponent();
+            AgenteLogado = (Agente)agenteLogado;
+        }
+
+        private void BtnGerenciarAgentes_Click(object sender, RoutedEventArgs e)
+        {
+            frmGerenciarAgente telaGerenciarAgente = new frmGerenciarAgente(AgenteLogado);
+            telaGerenciarAgente.ShowDialog();
         }
     }
 }

@@ -82,7 +82,7 @@ namespace ProjetoControleCompras.Views
             {
                 // Logar como Gestor
                 VerificarPrimeiraSenha(ag);
-                frmGestor telaGestor = new frmGestor();
+                frmGestor telaGestor = new frmGestor(ag);
                 Close();
                 telaGestor.ShowDialog();
             }

@@ -55,5 +55,10 @@ namespace ProjetoControleCompras.DAL
         }
 
         public static List<Agente> ListarAgentes() => ctx.Agentes.Include("Cargo").Include("Setor").ToList();
+
+        public static List<Agente> ListarAgentesPorSetor(Agente agente)
+        {
+            return ctx.Agentes.Include("Cargo").Include("Setor").Where(x => x.Setor.IdSetor.Equals(agente.Setor.IdSetor)).ToList();
+        }
     }
 }

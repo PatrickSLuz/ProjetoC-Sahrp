@@ -28,6 +28,11 @@ namespace ProjetoControleCompras.Views
         {
             InitializeComponent();
             AgenteLogado = (Agente)agenteLogado;
+            atualiarTabelaPedidos();
+        }
+
+        private void atualiarTabelaPedidos()
+        {
             dtaTodosPedidos.ItemsSource = PedidoDAO.ListarPedidos();
             dtaTodosPedidos.Items.Refresh();
         }
@@ -64,6 +69,8 @@ namespace ProjetoControleCompras.Views
         {
             frmCadastroPedido telaCadPedido = new frmCadastroPedido(AgenteLogado);
             telaCadPedido.ShowDialog();
+            atualiarTabelaPedidos();
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

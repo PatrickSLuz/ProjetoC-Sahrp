@@ -30,10 +30,12 @@ namespace ProjetoControleCompras.Views
 
             AgenteLogado = (Agente) agenteLogado;
 
-            cboProdutos.ItemsSource = ProdutoDAO.ListarProdutos();
+            cboProdutos.ItemsSource = ProdutoDAO.ListarProdutos();                   
             cboProdutos.DisplayMemberPath = "NomeProduto"; // Propriedade do Objeto para ser exibido dentro do ComboBox
             cboProdutos.SelectedValuePath = "IdProduto"; // Capturar o item que foi selecionado
         }
+
+
 
         private void BtnAddProduto_Click(object sender, RoutedEventArgs e)
         {
@@ -79,6 +81,7 @@ namespace ProjetoControleCompras.Views
                     if (PedidoDAO.CadastrarPedido(pedido))
                     {
                         MessageBox.Show("Seu Pedido foi Cadastrado com Sucesso!", "Cadastrar Pedido", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Close();
                     }
                     else
                     {

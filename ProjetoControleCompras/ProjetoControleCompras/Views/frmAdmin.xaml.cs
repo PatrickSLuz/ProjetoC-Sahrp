@@ -41,6 +41,7 @@ namespace ProjetoControleCompras.Views
         private void MenuItem_Setor_Click(object sender, RoutedEventArgs e)
         {
             frmCadastroCargoSetor telaCadCargoSetor = new frmCadastroCargoSetor();
+            telaCadCargoSetor.Title = "Cadastro de Setor";
             telaCadCargoSetor.btnCadCargo.Visibility = Visibility.Hidden;
             telaCadCargoSetor.btnCadSetor.Visibility = Visibility.Visible;
             telaCadCargoSetor.ShowDialog();
@@ -49,6 +50,7 @@ namespace ProjetoControleCompras.Views
         private void MenuItem_Cargo_Click(object sender, RoutedEventArgs e)
         {
             frmCadastroCargoSetor telaCadCargoSetor = new frmCadastroCargoSetor();
+            telaCadCargoSetor.Title = "Cadastro de Cargo";
             telaCadCargoSetor.btnCadCargo.Visibility = Visibility.Visible;
             telaCadCargoSetor.btnCadSetor.Visibility = Visibility.Hidden;
             telaCadCargoSetor.ShowDialog();

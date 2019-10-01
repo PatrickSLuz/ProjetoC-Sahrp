@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetoControleCompras.Views"
         mc:Ignorable="d"
-        Title="Tela Principal" Height="450" Width="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="Tela Principal" Height="450" Width="939.5" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="792">
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="932">
             <MenuItem Header="_Cadastros" Width="70">
                 <MenuItem Header="_Agente" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Agente_Click"/>
                 <MenuItem Header="_Setor" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Setor_Click"/>
@@ -19,15 +19,15 @@
                 <MenuItem Header="_Sair" HorizontalAlignment="Left" Height="20" Width="140" Click="MenuItem_Click_1"/>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="dtaTodosPedidos" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="331" Margin="10,78,0,0" VerticalAlignment="Top" Width="772">
+        <DataGrid x:Name="dtaTodosPedidos" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="331" Margin="10,78,0,0" VerticalAlignment="Top" Width="912">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="#ID" Width="120" Binding="{Binding IdPedido}"/>
-                <DataGridTextColumn Header="Descrição" Width="120" Binding="{Binding DescMot}"/>
-                <DataGridTextColumn Header="Solicitante" Width="120" Binding="{Binding Solicitante.NomeAgente}"/>
-                <DataGridTextColumn Header="Cargo" Width="120" Binding="{Binding Solicitante.Cargo.NomeCargo}"/>
-                <DataGridTextColumn Header="Setor" Width="120" Binding="{Binding Solicitante.Setor.NomeSetor}"/>
-                <DataGridTextColumn Header="Data" Width="120" Binding="{Binding DtCriacao}"/>
-                <DataGridTextColumn Header="Status" Width="120" Binding="{Binding Status.NomeStatus}"/>
+                <DataGridTextColumn Header="#ID" Width="35" Binding="{Binding IdPedido}"/>
+                <DataGridTextColumn Header="Descrição" Width="150" Binding="{Binding DescMot}"/>
+                <DataGridTextColumn Header="Solicitante" Width="150" Binding="{Binding Solicitante.NomeAgente}"/>
+                <DataGridTextColumn Header="Cargo" Width="100" Binding="{Binding Solicitante.Cargo.NomeCargo}"/>
+                <DataGridTextColumn Header="Setor" Width="100" Binding="{Binding Solicitante.Setor.NomeSetor}"/>
+                <DataGridTextColumn Header="Data" Width="130" Binding="{Binding DtCriacao}"/>
+                <DataGridTextColumn Header="Status" Width="235" Binding="{Binding Status.NomeStatus}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="label" Content="Pedidos" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>

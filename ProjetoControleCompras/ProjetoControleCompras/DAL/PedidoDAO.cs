@@ -28,7 +28,7 @@ namespace ProjetoControleCompras.DAL
 
         public static List<Pedido> ListarPedidos()
         {
-            return ctx.Pedidos.Include("Solicitante").Include("ItensPedido").Include("Status").ToList();
+            return ctx.Pedidos.Include("Solicitante.Cargo").Include("Solicitante.Setor").Include("ItensPedido").Include("Status").ToList();
         }
 
         public static Status BuscarStatusPorId(int id)

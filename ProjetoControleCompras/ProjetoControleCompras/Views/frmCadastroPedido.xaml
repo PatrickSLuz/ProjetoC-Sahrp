@@ -12,7 +12,7 @@
         <TextBox x:Name="txtQuantidade" HorizontalAlignment="Left" Height="24" Margin="201,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="72"/>
         <Label x:Name="label1" Content="Quantidade" HorizontalAlignment="Left" Margin="201,34,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnAddProduto" Content="Adicionar Item" HorizontalAlignment="Left" Margin="319,60,0,0" VerticalAlignment="Top" Width="142" Click="BtnAddProduto_Click"/>
-        <DataGrid x:Name="dtaProdutos" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="86" Margin="35,116,0,0" VerticalAlignment="Top" Width="426">
+        <DataGrid x:Name="dtaProdutos" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="86" Margin="35,116,0,0" VerticalAlignment="Top" Width="426" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nome Produto" Binding="{Binding Produtos.NomeProduto}"/>
                 <DataGridTextColumn Header="Quantidade" Binding="{Binding Quantidade}"/>

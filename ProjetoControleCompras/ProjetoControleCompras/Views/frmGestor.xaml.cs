@@ -26,13 +26,31 @@ namespace ProjetoControleCompras.Views
         {
             InitializeComponent();
             AgenteLogado = (Agente)agenteLogado;
-            AtualizarDataGrid();
+            Atualizar_dtaPedidosValidados_PorSetorEStatus(4);
+            Atualizar_dtaPedidoParaValidar_PorSetorEStatus(0);
+            if (AgenteLogado.Setor.NomeSetor.Equals("Financeiro"))
+            {
+                MessageBox.Show("GESTOR DO SETOR FINANCEIRO");
+                
+            }
+            else if (AgenteLogado.Setor.NomeSetor.Equals("Compras"))
+            {
+                MessageBox.Show("GESTOR DO SETOR COMPRAS");
+            }
+            else
+            {
+                MessageBox.Show("GESTOR NÃO DO SETOR FINANCEIRO E COMPRAS");
+               
+            }   
         }
 
-        private void AtualizarDataGrid()
+        private void Atualizar_dtaPedidosValidados_PorSetorEStatus(int index)
         {
-            dtaPedidoParaValidar.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusIgual(AgenteLogado.Setor.IdSetor, Status.GetStatus(0));
-            dtaPedidosValidados.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusDiff(AgenteLogado.Setor.IdSetor, Status.GetStatus(0));
+            dtaPedidosValidados.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusDiff(AgenteLogado.Setor.IdSetor, Status.GetStatus(index));
+        }
+        private void Atualizar_dtaPedidoParaValidar_PorSetorEStatus(int index)
+        {
+            dtaPedidoParaValidar.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusIgual(AgenteLogado.Setor.IdSetor, Status.GetStatus(index));
         }
 
         private void BtnGerenciarAgentes_Click(object sender, RoutedEventArgs e)
@@ -54,7 +72,7 @@ namespace ProjetoControleCompras.Views
                 if (PedidoDAO.AtualizarStatusPedido(d))
                 {
                     MessageBox.Show("Pedido Validado com Sucesso.", "Tela Gestor", MessageBoxButton.OK, MessageBoxImage.Information);
-                    AtualizarDataGrid();
+                    Atualizar_dtaPedidosValidados_PorSetorEStatus(0);
                 }
                 else
                     MessageBox.Show("Houve um Erro ao Validar o Pedido!", "Tela Gestor", MessageBoxButton.OK, MessageBoxImage.Error);

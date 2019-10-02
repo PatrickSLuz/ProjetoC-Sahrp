@@ -18,7 +18,7 @@
                 <DataGridTextColumn Header="Status" Width="235" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="label" Content="Histórico de Pedidos do Seu Setor" HorizontalAlignment="Left" Margin="10,219,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="Histórico de Pedidos Finalizados do Seu Setor" HorizontalAlignment="Left" Margin="10,219,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnGerenciarAgentes" Content="Gerenciar Agentes" HorizontalAlignment="Left" Margin="36,18,0,0" VerticalAlignment="Top" Width="116" Click="BtnGerenciarAgentes_Click"/>
         <Button x:Name="btnValidarPedido" Content="Validar Pedido" HorizontalAlignment="Left" Margin="612,18,0,0" VerticalAlignment="Top" Width="96" Click="BtnValidarPedido_Click"/>
         <Button x:Name="btnRejeitarPedido" Content="Rejeitar Pedido" HorizontalAlignment="Left" Margin="740,18,0,0" VerticalAlignment="Top" Width="106"/>

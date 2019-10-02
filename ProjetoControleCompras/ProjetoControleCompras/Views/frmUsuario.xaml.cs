@@ -28,7 +28,7 @@ namespace ProjetoControleCompras.Views
             InitializeComponent();
 
             AgenteLogado = (Agente)agenteLogado;
-            dtaHistPedido.ItemsSource = PedidoDAO.BuscarPedidoPorAgente(AgenteLogado);
+            dtaHistPedido.ItemsSource = PedidoDAO.BuscarPedidoPorAgenteEStatus(AgenteLogado,Status.GetStatus(4));
             dtaHistPedido.Items.Refresh();
         }
 

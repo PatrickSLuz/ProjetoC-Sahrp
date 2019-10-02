@@ -136,12 +136,14 @@ namespace ProjetoControleCompras.Views
                 if (EhGestor)
                 {
                     telaAlterarAgente = new frmCadastroAgente(ag, 1);
+                    telaAlterarAgente.Title = "Editar Agente";
                     telaAlterarAgente.ShowDialog();
                     AtualizarDataGridGestor(AgenteLogado);
                 }
                 else
                 {
                     telaAlterarAgente = new frmCadastroAgente(ag);
+                    telaAlterarAgente.Title = "Editar Agente";
                     telaAlterarAgente.ShowDialog();
                     AtualizarDataGridAdmin();
                 }

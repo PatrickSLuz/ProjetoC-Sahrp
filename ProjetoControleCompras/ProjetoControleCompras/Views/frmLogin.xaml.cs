@@ -86,6 +86,15 @@ namespace ProjetoControleCompras.Views
                 frmGestor telaGestor = new frmGestor(ag);
                 Close();
                 telaGestor.ShowDialog();
+
+                if (ag.Setor.NomeSetor.Equals("Financeiro"))
+                {
+                    
+                }
+                else if (ag.Setor.NomeSetor.Equals("Compras"))
+                {
+
+                }
             }
         }
 

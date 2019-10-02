@@ -26,10 +26,10 @@ namespace ProjetoControleCompras.Views
         {
             InitializeComponent();
 
-            atulizarDataGrid();
+            atualizarDataGrid();
         }
 
-        private void atulizarDataGrid() {
+        private void atualizarDataGrid() {
             dtaProdutos.ItemsSource = ProdutoDAO.ListarProdutos();// Inserindo os Produtos no DataGrid
             dtaProdutos.Items.Refresh(); // Atualizar o DataGrid
         }
@@ -39,15 +39,22 @@ namespace ProjetoControleCompras.Views
             if (!string.IsNullOrEmpty(txtNomeProduto.Text))
             {
                 if (produto == null)
-                {
                     produto = new Produto();
-                }
+
+                string action;
+                if (btnCadastrar.Content == "Salvar")
+                    action = "Editado";
+                else
+                    action = "Cadastrado";
+
                 produto.NomeProduto = txtNomeProduto.Text;
+                
                 if (ProdutoDAO.CadastrarProduto(produto))
                 {
-                    MessageBox.Show("Produto Cadastrado com Sucesso!", "Cadastro de Produto", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Produto "+ action +" com Sucesso!", "Cadastro de Produto", MessageBoxButton.OK, MessageBoxImage.Information);
                     txtNomeProduto.Clear();
-                    atulizarDataGrid();
+                    btnCadastrar.Content = "Cadastrar";
+                    atualizarDataGrid();
                 }
                 else
                 {
@@ -59,10 +66,41 @@ namespace ProjetoControleCompras.Views
                 MessageBox.Show("Por Favor, Preencha o Nome do Produto!", "Cadastro de Produto", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
-        private void DtaProdutos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
+            dynamic d = dtaProdutos.SelectedItem;
+            if (d == null)
+            {
 
+                MessageBox.Show("Por Favor, Selecione um Produto para Editar.", "Gerenciar Produtos", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                produto = d;
+                btnCadastrar.Content = "Salvar";
+                txtNomeProduto.Text = d.NomeProduto;
+            }
+        }
+
+        private void BtnExcluir_Click(object sender, RoutedEventArgs e)
+        {
+            dynamic d = dtaProdutos.SelectedItem;
+            if (d == null)
+            {
+                MessageBox.Show("Por Favor, Selecione um Produto para Excluir.", "Gerenciar Produtos", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                if ((MessageBox.Show("Deseja realmente excluir " + d.NomeProduto + "?", "Gerenciar Agente", MessageBoxButton.YesNo, MessageBoxImage.Question)) == MessageBoxResult.Yes)
+                {
+                    if (ProdutoDAO.ExcluirProduto(d))
+                        MessageBox.Show("Produto Excluido com Sucesso!", "Gerenciar Produtos", MessageBoxButton.OK, MessageBoxImage.Information);
+                    else
+                        MessageBox.Show("Erro ao Excluir Produto! Tente Novamente.", "Gerenciar Produtos", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    atualizarDataGrid();
+                }
+            }
         }
     }
 }

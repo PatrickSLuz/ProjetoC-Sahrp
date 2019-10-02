@@ -13,17 +13,33 @@ namespace ProjetoControleCompras.DAL
 
         private static Context ctx = SingletonContext.GetInstance();
 
-        public static bool CadastrarProduto(Produto produto){
-            if (BuscarProdutoPorNome(produto) == null)
+        public static bool CadastrarProduto(Produto produto)
+        {
+            // Editar Produto
+            if (BuscarProdutoPorID(produto.IdProduto) != null)
             {
-                ctx.Produtos.Add(produto);
+                ctx.Entry(produto).CurrentValues.SetValues(produto);
                 ctx.SaveChanges();
                 return true;
             }
             else
             {
-                return false;
+                // Cadastrar Produto
+                if (BuscarProdutoPorNome(produto) == null)
+                {
+                    ctx.Produtos.Add(produto);
+                    ctx.SaveChanges();
+                    return true;
+                }
             }
+            return false;
+        }
+
+        public static bool ExcluirProduto(Produto produto)
+        {
+            ctx.Produtos.Remove(produto);
+            ctx.SaveChanges();
+            return true;
         }
 
         public static Produto BuscarProdutoPorNome(Produto produto)

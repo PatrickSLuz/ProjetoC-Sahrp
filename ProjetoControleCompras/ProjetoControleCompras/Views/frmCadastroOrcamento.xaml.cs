@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoControleCompras.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,33 @@ namespace ProjetoControleCompras.Views
         public frmCadastroOrcamento()
         {
             InitializeComponent();
+
+            atualizarDataGridOrcamento();
+        }
+
+        private void atualizarDataGridOrcamento()
+        {
+            dtaOrcamento.ItemsSource = OrcamentoDAO.ListarOrcamento();            
+            dtaOrcamento.Items.Refresh(); 
+        }
+
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtCNPJ.Text != "" && txtEmpresa.Text != "" && txtValor.Text != "")
+            {
+                MessageBox.Show("Orçamento cadastrado com Sucesso!", "Cadastro de Orçamento", MessageBoxButton.OK, MessageBoxImage.Information);
+                txtCNPJ.Clear();
+                txtEmpresa.Clear();
+                txtValor.Clear();
+                btnCadastrar.Content = "Cadastrar";
+                atualizarDataGridOrcamento();
+            }
+            else
+            {
+                MessageBox.Show("FAVOR PREENCHER TODOS OS CAMPOS!!!");
+            }
         }
     }
 }

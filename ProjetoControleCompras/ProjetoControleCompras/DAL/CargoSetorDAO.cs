@@ -27,6 +27,11 @@ namespace ProjetoControleCompras.DAL
             }
         }
 
+        public static Setor BuscarSetorDoAgente(Agente agente)
+        {
+            return ctx.Setores.FirstOrDefault(x => x.IdSetor == agente.Setor.IdSetor);
+        }
+
         public static Setor BuscarSetorPorNome(Setor setor)
         {
             return ctx.Setores.FirstOrDefault(x => x.NomeSetor.Equals(setor.NomeSetor));

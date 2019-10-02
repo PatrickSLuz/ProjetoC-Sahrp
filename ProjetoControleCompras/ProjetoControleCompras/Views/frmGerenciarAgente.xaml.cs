@@ -1,5 +1,6 @@
 ﻿using ProjetoControleCompras.DAL;
 using ProjetoControleCompras.Models;
+using ProjetoControleCompras.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,25 +22,25 @@ namespace ProjetoControleCompras.Views
     /// </summary>
     public partial class frmGerenciarAgente : Window
     {
+        private Agente AgenteLogado;
+        private bool EhGestor = false;
+
         public frmGerenciarAgente()
         {
             InitializeComponent();
             AtualizarDataGridAdmin();
+            EhGestor = false;
             dtaAgentes.Items.Refresh(); // Atualizar o DataGrid
         }
         public frmGerenciarAgente(Object agenteLogado)
         {
             InitializeComponent();
-            AtualizarDataGridGestor((Agente)agenteLogado);
+            AgenteLogado = (Agente)agenteLogado;
+            AtualizarDataGridGestor(AgenteLogado);
+            EhGestor = true;
             dtaAgentes.Items.Refresh(); // Atualizar o DataGrid
         }
-
-        private void atualizarGridAgente()
-        {
-            dtaAgentes.ItemsSource = AgenteDAO.ListarAgentes();// Inserindo os Agentes no DataGrid
-            atualizarGridAgente();
-        }
-
+        
         private void AtualizarDataGridAdmin()
         {
             dtaAgentes.ItemsSource = AgenteDAO.ListarAgentes();// Inserindo os Agentes no DataGrid
@@ -52,9 +53,19 @@ namespace ProjetoControleCompras.Views
 
         private void BtnNovoAgente_Click(object sender, RoutedEventArgs e)
         {
-            frmCadastroAgente telaCadAgente = new frmCadastroAgente();
-            telaCadAgente.ShowDialog();
-            atualizarGridAgente();            
+            frmCadastroAgente telaCadAgente; 
+            if (EhGestor)
+            {
+                telaCadAgente = new frmCadastroAgente(AgenteLogado, 0); /* Novo Agente - Gestor */
+                telaCadAgente.ShowDialog();
+                AtualizarDataGridGestor(AgenteLogado);
+            }
+            else
+            {
+                telaCadAgente = new frmCadastroAgente();
+                telaCadAgente.ShowDialog();
+                AtualizarDataGridAdmin();
+            }
         }
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
@@ -64,7 +75,6 @@ namespace ProjetoControleCompras.Views
 
         private void BtnExcluir_Click(object sender, RoutedEventArgs e)
         {
-
             dynamic ag = dtaAgentes.SelectedItem;
             if (ag == null)
             {
@@ -73,19 +83,37 @@ namespace ProjetoControleCompras.Views
             }
             else
             {                
-                if ((MessageBox.Show("Deseja realmente excluir esse usuário?", "Gerenciar Agente", MessageBoxButton.YesNo, MessageBoxImage.Question)) == MessageBoxResult.Yes)
+                if ((MessageBox.Show("Deseja realmente excluir " + ag.NomeAgente + "?", "Gerenciar Agente", MessageBoxButton.YesNo, MessageBoxImage.Question)) == MessageBoxResult.Yes)
                 {                
                     AgenteDAO.excluir(ag);
-                    atualizarGridAgente();
+                    if (EhGestor)
+                        AtualizarDataGridGestor(AgenteLogado);
+                    else
+                        AtualizarDataGridAdmin();
                 }
-                
-
             }
         }
 
         private void BtnResetarSenha_Click(object sender, RoutedEventArgs e)
         {
-
+            dynamic ag = dtaAgentes.SelectedItem;
+            if (ag == null)
+            {
+                MessageBox.Show("Por Favor, Selecione um Usuário para Resetar a Senha.", "Gerenciar Agentes", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                if ((MessageBox.Show("Deseja realmente Resetar a Senha do(a) " + ag.NomeAgente + "?", "Gerenciar Agente", MessageBoxButton.YesNo, MessageBoxImage.Question)) == MessageBoxResult.Yes)
+                {
+                    string senhaPadrao = SetarSenhaPadrao.CriarSenhaPadrao(ag);
+                    AgenteDAO.MudarSenha(ag, senhaPadrao);
+                    if (EhGestor)
+                        AtualizarDataGridGestor(AgenteLogado);
+                    else
+                        AtualizarDataGridAdmin();
+                    MessageBox.Show("Senha Resetada com Sucesso.\n\nSua nova senha será:\nPrimeira Letra do Nome Maiuscula + @ + Cargo \nExemplo: N@Cargoexemplo", "Gerenciar Agentes", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
         }
 
         private void DtaAgentes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -103,9 +131,20 @@ namespace ProjetoControleCompras.Views
             }
             else
             {
-                frmCadastroAgente telaAlterarAgente = new frmCadastroAgente(ag);
-                telaAlterarAgente.ShowDialog();
-                dtaAgentes.Items.Refresh();
+                frmCadastroAgente telaAlterarAgente;
+                
+                if (EhGestor)
+                {
+                    telaAlterarAgente = new frmCadastroAgente(ag, 1);
+                    telaAlterarAgente.ShowDialog();
+                    AtualizarDataGridGestor(AgenteLogado);
+                }
+                else
+                {
+                    telaAlterarAgente = new frmCadastroAgente(ag);
+                    telaAlterarAgente.ShowDialog();
+                    AtualizarDataGridAdmin();
+                }
             }
 
 

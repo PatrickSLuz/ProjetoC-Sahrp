@@ -1,5 +1,6 @@
 ﻿using ProjetoControleCompras.DAL;
 using ProjetoControleCompras.Models;
+using ProjetoControleCompras.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,9 +91,7 @@ namespace ProjetoControleCompras.Views
 
         private void VerificarPrimeiraSenha(Agente ag)
         {
-            string nome_sem_espaco = ag.NomeAgente.Replace(" ", "");
-            nome_sem_espaco = char.ToUpper(nome_sem_espaco[0]) + nome_sem_espaco.Substring(1).ToLower();
-            string SenhaPadrao = nome_sem_espaco + "@" + ag.Cargo;
+            string SenhaPadrao = SetarSenhaPadrao.CriarSenhaPadrao(ag);
 
             if (ag.Senha.Equals(SenhaPadrao) )
             {

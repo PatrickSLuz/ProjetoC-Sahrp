@@ -76,6 +76,8 @@
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Setor.cs" />
+    <Compile Include="Utils\SetarSenhaPadrao.cs" />
+    <Compile Include="Utils\Validacao.cs" />
     <Compile Include="Views\frmCadastrarProduto.xaml.cs">
       <DependentUpon>frmCadastrarProduto.xaml</DependentUpon>
     </Compile>

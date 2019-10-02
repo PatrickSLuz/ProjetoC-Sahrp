@@ -1,5 +1,6 @@
 ﻿using ProjetoControleCompras.DAL;
 using ProjetoControleCompras.Models;
+using ProjetoControleCompras.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,27 +22,47 @@ namespace ProjetoControleCompras.Views
     /// </summary>
     public partial class frmCadastroAgente : Window
     {
-        List<Setor> listaDeSetores = CargoSetorDAO.ListarSetores();
+        List<Setor> listaDeSetores;
         List<Cargo> listaDeCargos = CargoSetorDAO.ListarCargos();
 
-        Agente agente = new Agente();
+        Agente agente;
 
+        // Novo Agente - Admin
         public frmCadastroAgente()
         {
             InitializeComponent();
-        }
+            listaDeSetores = new List<Setor>();
+            listaDeSetores = CargoSetorDAO.ListarSetores();
 
+            AtualizarComboBox();
+        }
+        // Editar Agente - Admin
         public frmCadastroAgente(Object agente)
         {
             InitializeComponent();
 
             this.agente = (Agente) agente;
 
-            txtNomeAgente.Text = this.agente.NomeAgente;
-            comboBoxCargo.Text = this.agente.Cargo.ToString();
-            comboBoxSetor.Text = this.agente.Setor.ToString();
-            txtLogin.Text = this.agente.Login;
-            btnCadAgente.Content = "Salvar";
+            listaDeSetores = new List<Setor>();
+            listaDeSetores = CargoSetorDAO.ListarSetores();
+
+            PreencherDadosEditar();
+
+            AtualizarComboBox();
+        }
+
+        // Gestor
+        public frmCadastroAgente(Object agente, int i)/* 0: NOVO | 1: EDITAR*/
+        {
+            InitializeComponent();
+            this.agente = (Agente)agente;
+            listaDeSetores = new List<Setor>();
+            listaDeSetores.Add(CargoSetorDAO.BuscarSetorDoAgente(this.agente));
+            if (i == 1)
+            {
+                PreencherDadosEditar();
+            }
+            AtualizarComboBox();
         }
 
         private void BtnCadAgente_Click(object sender, RoutedEventArgs e)
@@ -51,6 +72,9 @@ namespace ProjetoControleCompras.Views
             {
                 Cargo cargo = new Cargo();
                 Setor setor = new Setor();
+
+                if (agente == null)
+                    agente = new Agente();
 
                 agente.NomeAgente = txtNomeAgente.Text;
 
@@ -70,14 +94,11 @@ namespace ProjetoControleCompras.Views
 
                 agente.Login = txtLogin.Text;
 
-                string nome_sem_espaco = txtNomeAgente.Text.Replace(" ", "");
-                nome_sem_espaco = char.ToUpper(nome_sem_espaco[0]) + nome_sem_espaco.Substring(1).ToLower();
-
-                agente.Senha = nome_sem_espaco + "@" + agente.Cargo;
+                agente.Senha = SetarSenhaPadrao.CriarSenhaPadrao(agente);
 
                 if (AgenteDAO.CadastrarAgente(agente))
                 {
-                    MessageBox.Show("Agente Cadastrado com Sucesso! \nSua primeira senha será: Nome+@+Cargo \nPrimeira letra do nome e cargo maiuscula \nExemplo: Nomeexemplo@Cargoexemplo", "Cadastro de Agente", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Agente Cadastrado com Sucesso! \n\nSua primeira senha será:\nPrimeira Letra do Nome Maiuscula + @ + Cargo \nExemplo: N@Cargoexemplo", "Cadastro de Agente", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }
                 else
@@ -91,7 +112,16 @@ namespace ProjetoControleCompras.Views
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void PreencherDadosEditar()
+        {
+            txtNomeAgente.Text = this.agente.NomeAgente;
+            comboBoxCargo.SelectedValue = this.agente.Cargo.NomeCargo.ToString();
+            comboBoxSetor.SelectedValue = this.agente.Setor.NomeSetor.ToString();
+            txtLogin.Text = this.agente.Login;
+            btnCadAgente.Content = "Salvar";
+        }
+
+        private void AtualizarComboBox()
         {
             // Atribuir dados cadastrados do BD em um ComboBox    
             this.comboBoxCargo.ItemsSource = listaDeCargos;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetoControleCompras.Views"
         mc:Ignorable="d"
-        Title="Cadastro de Agente" Height="410" Width="288" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Cadastro de Agente" Height="410" Width="288" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Button x:Name="btnCadAgente" Content="Cadastrar" HorizontalAlignment="Left" Margin="135,322,0,0" VerticalAlignment="Top" Width="75" Click="BtnCadAgente_Click"/>
         <TextBox x:Name="txtNomeAgente" HorizontalAlignment="Left" Height="22" Margin="69,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>

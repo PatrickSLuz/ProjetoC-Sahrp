@@ -37,7 +37,7 @@ namespace ProjetoControleCompras.DAL
         public static List<Pedido> BuscarPedidoPorAgente(Agente solicitante)
         {
             return ctx.Pedidos.Include("ItensPedido").
-                Where(x => x.Solicitante.IdAgente.Equals(solicitante.IdAgente) && x.Status.Equals("Pedido Finalizado")).ToList();
+                Where(x => x.Solicitante.IdAgente.Equals(solicitante.IdAgente) && x.Status.Equals(Status.GetStatus(4))).ToList();
         }
 
         public static List<Pedido> ListarPedidos()
@@ -51,7 +51,7 @@ namespace ProjetoControleCompras.DAL
                 Where(x => x.Status.Equals(status)).ToList();
         }
 
-        // Metodo para Listar os Pedidos de um Setor que não estão com Status 1 (Ag Validacao Gestor)
+        // Metodo para Listar os Pedidos de um Setor que não estão com Status 0 (Ag Validacao Gestor)
         public static List<Pedido> ListarPedidosPorSetorEStatusDiff(int idSetor, string status)
         {
             return ctx.Pedidos.Include("Solicitante.Cargo").Include("Solicitante.Setor").Include("ItensPedido").

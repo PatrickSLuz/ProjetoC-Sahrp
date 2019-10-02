@@ -31,8 +31,8 @@ namespace ProjetoControleCompras.Views
 
         private void AtualizarDataGrid()
         {
-            dtaPedidoParaValidar.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusIgual(AgenteLogado.Setor.IdSetor, "Aguardando Validação do Gestor");
-            dtaPedidosValidados.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusDiff(AgenteLogado.Setor.IdSetor, "Aguardando Validação do Gestor");
+            dtaPedidoParaValidar.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusIgual(AgenteLogado.Setor.IdSetor, Status.GetStatus(0));
+            dtaPedidosValidados.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusDiff(AgenteLogado.Setor.IdSetor, Status.GetStatus(0));
         }
 
         private void BtnGerenciarAgentes_Click(object sender, RoutedEventArgs e)
@@ -50,7 +50,7 @@ namespace ProjetoControleCompras.Views
             }
             else
             {
-                d.Status = "Aguardando Cadastro de Orçamentos";
+                d.Status = Status.GetStatus(1);
                 if (PedidoDAO.AtualizarStatusPedido(d))
                 {
                     MessageBox.Show("Pedido Validado com Sucesso.", "Tela Gestor", MessageBoxButton.OK, MessageBoxImage.Information);

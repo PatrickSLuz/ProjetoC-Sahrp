@@ -44,12 +44,6 @@
             var setor = context.Setores.FirstOrDefault(c => c.NomeSetor.Equals("Diretoria"));
             context.Agentes.AddOrUpdate(new Agente() { NomeAgente = "Administrador", Cargo = cargo, Setor = setor, Login = "admin", Senha = "admin" });
             context.SaveChanges();
-
-            //listaStatus.Add(new Status() { NomeStatus = "Aguardando Validação do Gestor" });
-            //listaStatus.Add(new Status() { NomeStatus = "Aguardando Cadastro de Orçamentos" });
-            //listaStatus.Add(new Status() { NomeStatus = "Aguardando Compra do Pedido" });
-            //listaStatus.Add(new Status() { NomeStatus = "Pedido Cancelado" });
-            //listaStatus.Add(new Status() { NomeStatus = "Pedido Finalizado" });
         }
     }
 }

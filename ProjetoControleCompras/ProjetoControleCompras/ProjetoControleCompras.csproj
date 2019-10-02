@@ -111,6 +111,9 @@
     <Compile Include="Views\frmGerenciarAgente.xaml.cs">
       <DependentUpon>frmGerenciarAgente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmGerenciarOrcamento.xaml.cs">
+      <DependentUpon>frmGerenciarOrcamento.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmGestor.xaml.cs">
       <DependentUpon>frmGestor.xaml</DependentUpon>
     </Compile>
@@ -178,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmGerenciarAgente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmGerenciarOrcamento.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

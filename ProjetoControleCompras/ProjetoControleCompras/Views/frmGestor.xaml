@@ -34,5 +34,6 @@
                 <DataGridTextColumn Header="Status" Width="235" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="btnCadOrcamento" Content="Cadastrar Orçamentos" HorizontalAlignment="Left" Margin="450,18,0,0" VerticalAlignment="Top" Width="129" Click="BtnCadOrcamento_Click"/>
     </Grid>
 </Window>

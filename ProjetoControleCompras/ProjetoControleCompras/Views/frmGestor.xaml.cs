@@ -31,22 +31,23 @@ namespace ProjetoControleCompras.Views
             if (AgenteLogado.Setor.NomeSetor.Equals("Financeiro"))
             {
                 MessageBox.Show("GESTOR DO SETOR FINANCEIRO");
-                
+                btnCadOrcamento.Visibility = Visibility.Visible;
             }
             else if (AgenteLogado.Setor.NomeSetor.Equals("Compras"))
             {
                 MessageBox.Show("GESTOR DO SETOR COMPRAS");
+                btnCadOrcamento.Visibility = Visibility.Hidden;
             }
             else
             {
                 MessageBox.Show("GESTOR NÃO DO SETOR FINANCEIRO E COMPRAS");
-               
+                btnCadOrcamento.Visibility = Visibility.Hidden;
             }   
         }
 
         private void Atualizar_dtaPedidosValidados_PorSetorEStatus(int index)
         {
-            dtaPedidosValidados.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusDiff(AgenteLogado.Setor.IdSetor, Status.GetStatus(index));
+            dtaPedidosValidados.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusIgual(AgenteLogado.Setor.IdSetor, Status.GetStatus(index));
         }
         private void Atualizar_dtaPedidoParaValidar_PorSetorEStatus(int index)
         {
@@ -78,6 +79,12 @@ namespace ProjetoControleCompras.Views
                     MessageBox.Show("Houve um Erro ao Validar o Pedido!", "Tela Gestor", MessageBoxButton.OK, MessageBoxImage.Error);
                 
             }
+        }
+
+        private void BtnCadOrcamento_Click(object sender, RoutedEventArgs e)
+        {
+            frmGerenciarOrcamento telaGerenciarOrcamento = new frmGerenciarOrcamento();
+            telaGerenciarOrcamento.ShowDialog();
         }
     }
 }

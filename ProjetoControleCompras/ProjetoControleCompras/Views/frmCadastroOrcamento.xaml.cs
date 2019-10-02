@@ -1,4 +1,5 @@
 ﻿using ProjetoControleCompras.DAL;
+using ProjetoControleCompras.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,11 @@ namespace ProjetoControleCompras.Views
     /// </summary>
     public partial class frmCadastroOrcamento : Window
     {
-        public frmCadastroOrcamento()
+        Pedido Pedido = new Pedido();
+        public frmCadastroOrcamento(Object pedido)
         {
             InitializeComponent();
-
+            Pedido = (Pedido)pedido;
             atualizarDataGridOrcamento();
         }
 
@@ -32,8 +34,6 @@ namespace ProjetoControleCompras.Views
             dtaOrcamento.ItemsSource = OrcamentoDAO.ListarOrcamento();            
             dtaOrcamento.Items.Refresh(); 
         }
-
-
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

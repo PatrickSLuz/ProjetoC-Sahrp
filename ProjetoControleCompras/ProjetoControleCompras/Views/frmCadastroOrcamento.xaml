@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Cadastro de Orçamento" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="dtaOrcamento" HorizontalAlignment="Left" Height="196" Margin="10,213,0,0" VerticalAlignment="Top" Width="772">
+        <DataGrid x:Name="dtaOrcamento" HorizontalAlignment="Left" Height="196" Margin="10,213,0,0" VerticalAlignment="Top" Width="772" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Empresa" Width="100"/>
                 <DataGridTextColumn Header="CNPJ" Width="100"/>
@@ -20,7 +20,7 @@
         <Label x:Name="CNPJEmpresa" Content="CNPJ/CPF" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top" Width="109"/>
         <TextBox x:Name="txtCNPJ" HorizontalAlignment="Left" Height="23" Margin="150,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="109"/>
         <Label x:Name="label" Content="Valor" HorizontalAlignment="Left" Margin="307,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.6,0.385"/>
-        <TextBox x:Name="txtValor" HorizontalAlignment="Left" Height="23" Margin="307,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="txtValor" HorizontalAlignment="Left" Height="23" Margin="307,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="518,126,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Button_Click"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="27" Margin="10,122,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="417"/>
         <Label x:Name="label1" Content="Descrição" HorizontalAlignment="Left" Margin="12,91,0,0" VerticalAlignment="Top"/>

@@ -48,7 +48,7 @@ namespace ProjetoControleCompras.Views
             }
             else
             {
-                MessageBox.Show("FAVOR PREENCHER TODOS OS CAMPOS!!!")
+                MessageBox.Show("FAVOR PREENCHER TODOS OS CAMPOS!!!");
             }
         }
     }

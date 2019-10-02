@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="DAL\AgenteDAO.cs" />
     <Compile Include="DAL\CargoSetorDAO.cs" />
+    <Compile Include="DAL\OrcamentoDAO.cs" />
     <Compile Include="DAL\PedidoDAO.cs" />
     <Compile Include="DAL\ProdutoDAO.cs" />
     <Compile Include="DAL\SingletonContext.cs" />
@@ -104,6 +105,9 @@
     </Compile>
     <Compile Include="Views\frmCadastroDeSenha.xaml.cs">
       <DependentUpon>frmCadastroDeSenha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmCadastroOrcamento.xaml.cs">
+      <DependentUpon>frmCadastroOrcamento.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\frmCadastroPedido.xaml.cs">
       <DependentUpon>frmCadastroPedido.xaml</DependentUpon>
@@ -169,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmCadastroDeSenha.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmCadastroOrcamento.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

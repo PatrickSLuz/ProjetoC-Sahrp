@@ -51,6 +51,7 @@ namespace ProjetoControleCompras.Views
                 
                 if (ProdutoDAO.CadastrarProduto(produto))
                 {
+                    produto = new Produto();
                     MessageBox.Show("Produto "+ action +" com Sucesso!", "Cadastro de Produto", MessageBoxButton.OK, MessageBoxImage.Information);
                     txtNomeProduto.Clear();
                     btnCadastrar.Content = "Cadastrar";

@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetoControleCompras.Views"
         mc:Ignorable="d"
-        Title="CadastroCargoSetor" Height="336" Width="537.5" WindowStartupLocation="CenterScreen">
+        Title="CadastroCargoSetor" Height="219.538" Width="400.958" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="22" Margin="164,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnCadCargo" Content="Cadastrar" HorizontalAlignment="Left" Margin="340,231,0,0" VerticalAlignment="Top" Width="74" Click="BtnCadCargo_Click"/>
-        <Button x:Name="btnCadSetor" Content="Cadastrar" HorizontalAlignment="Left" Margin="340,231,0,0" VerticalAlignment="Top" Width="76" Click="BtnCadSetor_Click"/>
+        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="22" Margin="125,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
+        <Button x:Name="btnCadCargo" Content="Cadastrar" HorizontalAlignment="Left" Margin="305,32,0,0" VerticalAlignment="Top" Width="74" Click="BtnCadCargo_Click"/>
+        <Button x:Name="btnCadSetor" Content="Cadastrar" HorizontalAlignment="Left" Margin="305,32,0,0" VerticalAlignment="Top" Width="76" Click="BtnCadSetor_Click"/>
+        <DataGrid x:Name="dtaCargoSetor" HorizontalAlignment="Left" Height="101" Margin="10,78,0,0" VerticalAlignment="Top" Width="373">
+        </DataGrid>
 
     </Grid>
 </Window>

@@ -21,9 +21,32 @@ namespace ProjetoControleCompras.Views
     /// </summary>
     public partial class frmCadastroCargoSetor : Window
     {
-        public frmCadastroCargoSetor()
+        public frmCadastroCargoSetor(int cargoSetor)
         {
-            InitializeComponent();
+            InitializeComponent();         
+
+            if (cargoSetor == 0)
+            {
+                atualizarDataGridSetor();
+            }
+            else
+            {
+                atualizarDataGridCargo();
+            }
+        }
+
+        private void atualizarDataGridCargo()
+        {
+            dtaCargoSetor.ItemsSource = CargoSetorDAO.ListarCargos();
+            
+            dtaCargoSetor.Items.Refresh(); // Atualizar o DataGrid
+        }
+
+        private void atualizarDataGridSetor()
+        {
+            dtaCargoSetor.ItemsSource = CargoSetorDAO.ListarSetores();
+
+            dtaCargoSetor.Items.Refresh(); // Atualizar o DataGrid
         }
 
         private void BtnCadSetor_Click(object sender, RoutedEventArgs e)
@@ -38,7 +61,7 @@ namespace ProjetoControleCompras.Views
                 if (CargoSetorDAO.CadastrarSetor(setor))
                 {
                     MessageBox.Show("Setor Cadastrado com Sucesso!", "Cadastro de Setor", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Close();
+                    
                 }
                 else
                 {

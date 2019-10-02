@@ -73,8 +73,14 @@ namespace ProjetoControleCompras.Views
                     pedido.Solicitante = AgenteLogado;
                     pedido.ItensPedido = itensPedido;
                     pedido.DescMot = txtDescricao.Text;
-                    pedido.Status = Status.GetStatus(0);
-
+                    if (AgenteLogado.Setor.NomeSetor == "Diretoria")
+                    {
+                        pedido.Status = Status.GetStatus(1);
+                    }
+                    else
+                    {
+                        pedido.Status = Status.GetStatus(0);
+                    }
                     if (PedidoDAO.CadastrarPedido(pedido))
                     {
                         MessageBox.Show("Seu Pedido foi Cadastrado com Sucesso!", "Cadastrar Pedido", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -95,5 +101,7 @@ namespace ProjetoControleCompras.Views
                 MessageBox.Show("Por Favor, Preencha a Descrição/Motivo deste Pedido!", "Cadastrar Pedido", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+ 
     }
 }

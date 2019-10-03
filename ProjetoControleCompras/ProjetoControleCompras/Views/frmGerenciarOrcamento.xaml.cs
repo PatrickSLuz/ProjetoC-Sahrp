@@ -1,5 +1,6 @@
 ﻿using ProjetoControleCompras.DAL;
 using ProjetoControleCompras.Models;
+using ProjetoControleCompras.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +82,18 @@ namespace ProjetoControleCompras.Views
             {
                 MessageBox.Show("Por Favor, Selecione um Pedido para Finalizar.", "Gerenciar Orçamentos", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            // Ver Itens
+            AbrirTelaVisualizacao.AbrirTelaVerItens(dtaPedidosParaCadOrcamento.SelectedItem);
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            // Ver Orçamentos
+            AbrirTelaVisualizacao.AbrirTelaVerOrcamentos(dtaPedidosParaCadOrcamento.SelectedItem);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ProjetoControleCompras.DAL;
 using ProjetoControleCompras.Models;
+using ProjetoControleCompras.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,6 +126,30 @@ namespace ProjetoControleCompras.Views
         {
             frmGerenciarCompras telaGerenciarCompras = new frmGerenciarCompras();
             telaGerenciarCompras.ShowDialog();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            // Ver Itens
+            AbrirTelaVisualizacao.AbrirTelaVerItens(dtaPedidoParaValidar.SelectedItem);
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            // Ver Orçamentos
+            AbrirTelaVisualizacao.AbrirTelaVerOrcamentos(dtaPedidosValidados.SelectedItem);
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            // Ver Itens
+            AbrirTelaVisualizacao.AbrirTelaVerItens(dtaPedidoParaValidar.SelectedItem);
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            // Ver Orçamentos
+            AbrirTelaVisualizacao.AbrirTelaVerOrcamentos(dtaPedidosValidados.SelectedItem);
         }
     }
 }

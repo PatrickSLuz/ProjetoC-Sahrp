@@ -1,5 +1,6 @@
 ﻿using ProjetoControleCompras.DAL;
 using ProjetoControleCompras.Models;
+using ProjetoControleCompras.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,6 +108,18 @@ namespace ProjetoControleCompras.Views
         private void DtaProdutos_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
 
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            // Ver Itens
+            AbrirTelaVisualizacao.AbrirTelaVerItens(dtaProdutos.SelectedItem);
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            // Ver Orçamentos
+            AbrirTelaVisualizacao.AbrirTelaVerOrcamentos(dtaProdutos.SelectedItem);
         }
     }
 }

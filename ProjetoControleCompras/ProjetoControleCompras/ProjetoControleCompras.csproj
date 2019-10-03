@@ -75,10 +75,6 @@
     <Compile Include="DAL\PedidoDAO.cs" />
     <Compile Include="DAL\ProdutoDAO.cs" />
     <Compile Include="DAL\SingletonContext.cs" />
-    <Compile Include="Migrations\201910031147246_criacaoBanco.cs" />
-    <Compile Include="Migrations\201910031147246_criacaoBanco.designer.cs">
-      <DependentUpon>201910031147246_criacaoBanco.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agente.cs" />
     <Compile Include="Models\Cargo.cs" />
@@ -149,9 +145,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201910031147246_criacaoBanco.resx">
-      <DependentUpon>201910031147246_criacaoBanco.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

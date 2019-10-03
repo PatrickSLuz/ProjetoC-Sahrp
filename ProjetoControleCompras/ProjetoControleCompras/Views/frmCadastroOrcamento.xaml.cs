@@ -36,6 +36,7 @@ namespace ProjetoControleCompras.Views
         {
             dtaOrcamento.ItemsSource = OrcamentoDAO.ListarOrcamento();            
             dtaOrcamento.Items.Refresh(); 
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,6 +60,7 @@ namespace ProjetoControleCompras.Views
                         txtValor.Clear();
                         txtDescricao.Clear();
                         atualizarDataGridOrcamento();
+                        
                     }
                     else
                     {

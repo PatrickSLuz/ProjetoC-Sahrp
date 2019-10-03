@@ -8,7 +8,7 @@
         Title="Ver Itens do Pedido" Height="202" Width="288" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Label x:Name="lblIdPedido" Content="Itens do Pedido: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="dtaItensPedido" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="120" Margin="10,41,0,0" VerticalAlignment="Top" Width="260">
+        <DataGrid x:Name="dtaItensPedido" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="120" Margin="10,41,0,0" VerticalAlignment="Top" Width="260" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nome Item" Width="150" Binding="{Binding Produtos.NomeProduto}"/>
                 <DataGridTextColumn Header="Quantidade" Width="100" Binding="{Binding Quantidade}"/>

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Gerenciar Compras" Height="323.438" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <DataGrid x:Name="dtaComprasAFazer" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="227" Margin="10,57,0,0" VerticalAlignment="Top" Width="763">
+        <DataGrid x:Name="dtaComprasAFazer" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="227" Margin="10,57,0,0" VerticalAlignment="Top" Width="763" IsReadOnly="True">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Ver Itens" Click="MenuItem_Click"/>

@@ -1,5 +1,6 @@
 ﻿using ProjetoControleCompras.DAL;
 using ProjetoControleCompras.Models;
+using ProjetoControleCompras.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,6 +102,31 @@ namespace ProjetoControleCompras.Views
                     MessageBox.Show("Houve um Erro ao Cancelar o Pedido!", "Tela Usuario", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            // Ver Itens
+            AbrirTelaVisualizacao.AbrirTelaVerItens(dtaHistPedido.SelectedItem);
+
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            // Ver Orçamentos
+            AbrirTelaVisualizacao.AbrirTelaVerOrcamentos(dtaPedidoAtual.SelectedItem);
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            // Ver Itens
+            AbrirTelaVisualizacao.AbrirTelaVerItens(dtaHistPedido.SelectedItem);
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            // Ver Orçamentos
+            AbrirTelaVisualizacao.AbrirTelaVerOrcamentos(dtaPedidoAtual.SelectedItem);
         }
     }
 }

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Gerenciar Orçamentos" Height="290.661" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-            <DataGrid x:Name="dtaPedidosParaCadOrcamento" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="193" Margin="10,59,0,0" VerticalAlignment="Top" Width="774">
+            <DataGrid x:Name="dtaPedidosParaCadOrcamento" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="193" Margin="10,59,0,0" VerticalAlignment="Top" Width="774" IsReadOnly="True">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Ver Itens" Click="MenuItem_Click"/>

@@ -130,6 +130,9 @@
     <Compile Include="Views\frmVerItensPedido.xaml.cs">
       <DependentUpon>frmVerItensPedido.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmVerOrcamentosPedido.xaml.cs">
+      <DependentUpon>frmVerOrcamentosPedido.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -212,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmVerItensPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmVerOrcamentosPedido.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

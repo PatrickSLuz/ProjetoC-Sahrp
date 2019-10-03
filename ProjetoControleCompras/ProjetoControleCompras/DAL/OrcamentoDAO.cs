@@ -20,7 +20,11 @@ namespace ProjetoControleCompras.DAL
             return true;
         }
 
-        public static List<Orcamento> ListarOrcamento() => ctx.Orcamentos.ToList(); 
-        
+        public static List<Orcamento> ListarOrcamento() => ctx.Orcamentos.ToList();
+
+        public static List<Orcamento> ListarOrcamentoPorPedido(int idPedido)
+        {
+            return ctx.Orcamentos.Include("Pedido").Where(x => x.Pedido.IdPedido == idPedido).ToList();
+        }
     }
 }

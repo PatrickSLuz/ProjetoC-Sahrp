@@ -22,7 +22,8 @@ namespace ProjetoControleCompras.Utils
         {
             if (d != null)
             {
-                
+                frmVerOrcamentosPedido telaVerOrcamentosPedido = new frmVerOrcamentosPedido(d);
+                telaVerOrcamentosPedido.ShowDialog();
             }
         }
     }

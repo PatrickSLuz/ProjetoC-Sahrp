@@ -87,6 +87,7 @@ namespace ProjetoControleCompras.Views
                 if (PedidoDAO.AtualizarStatusPedido(d))
                 {
                     MessageBox.Show("Pedido Validado com Sucesso.", "Tela Gestor", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Atualizar_dtaPedidoParaValidar_PorSetorEStatus(0);
                     Atualizar_dtaPedidosValidados_PorSetorEStatus();
                 }
                 else

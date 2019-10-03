@@ -7,14 +7,25 @@
         mc:Ignorable="d"
         Title="Gerenciar Compras" Height="323.438" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="227" Margin="10,57,0,0" VerticalAlignment="Top" Width="763" ContextMenuOpening="DataGrid_ContextMenuOpening">
+        <DataGrid x:Name="dtaComprasAFazer" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="227" Margin="10,57,0,0" VerticalAlignment="Top" Width="763">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Ver Itens" Click="MenuItem_Click"/>
+                    <MenuItem Header="Ver Orçamentos" Click="MenuItem_Click_1"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
-                <DataGridTextColumn>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="#ID" Width="35" Binding="{Binding IdPedido}"/>
+                <DataGridTextColumn Header="Descrição" Width="150" Binding="{Binding DescMot}"/>
+                <DataGridTextColumn Header="Solicitante" Width="150" Binding="{Binding Solicitante.NomeAgente}"/>
+                <DataGridTextColumn Header="Cargo" Width="100" Binding="{Binding Solicitante.Cargo.NomeCargo}"/>
+                <DataGridTextColumn Header="Setor" Width="100" Binding="{Binding Solicitante.Setor.NomeSetor}"/>
+                <DataGridTextColumn Header="Data" Width="130" Binding="{Binding DtCriacao}"/>
+                <DataGridTextColumn Header="Status" Width="235" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="label" Content="Compras a serem Realizadas" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Compra Realizada - Encerrar Pedido" HorizontalAlignment="Left" Margin="540,18,0,0" VerticalAlignment="Top" Width="233"/>
+        <Button x:Name="btnEncerrarPedido" Content="Compra Realizada - Encerrar Pedido" HorizontalAlignment="Left" Margin="540,18,0,0" VerticalAlignment="Top" Width="233" Click="BtnEncerrarPedido_Click"/>
 
     </Grid>
 </Window>

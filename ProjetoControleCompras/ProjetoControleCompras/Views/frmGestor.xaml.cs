@@ -26,7 +26,7 @@ namespace ProjetoControleCompras.Views
         {
             InitializeComponent();
             AgenteLogado = (Agente)agenteLogado;
-            Atualizar_dtaPedidosValidados_PorSetorEStatus(4);
+            Atualizar_dtaPedidosValidados_PorSetorEStatus();
             Atualizar_dtaPedidoParaValidar_PorSetorEStatus(0);
             if (AgenteLogado.Setor.NomeSetor.Equals("Financeiro"))
             {
@@ -45,10 +45,20 @@ namespace ProjetoControleCompras.Views
             }   
         }
 
-        private void Atualizar_dtaPedidosValidados_PorSetorEStatus(int index)
+        private void Atualizar_dtaPedidosValidados_PorSetorEStatus()
         {
-            dtaPedidosValidados.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusIgual(AgenteLogado.Setor.IdSetor, Status.GetStatus(index));
+            List<Pedido> listP = new List<Pedido>();
+            foreach (Pedido p in PedidoDAO.ListarPedidosPorSetor(AgenteLogado.Setor.IdSetor))
+            {
+                if (p.Status.Equals(Status.GetStatus(3))/*Pedido Cancelado*/
+                 || p.Status.Equals(Status.GetStatus(4))/*Pedido Finalizado*/)
+                {
+                    listP.Add(p);
+                }
+            }
+            dtaPedidosValidados.ItemsSource = listP;
         }
+
         private void Atualizar_dtaPedidoParaValidar_PorSetorEStatus(int index)
         {
             dtaPedidoParaValidar.ItemsSource = PedidoDAO.ListarPedidosPorSetorEStatusIgual(AgenteLogado.Setor.IdSetor, Status.GetStatus(index));
@@ -73,7 +83,7 @@ namespace ProjetoControleCompras.Views
                 if (PedidoDAO.AtualizarStatusPedido(d))
                 {
                     MessageBox.Show("Pedido Validado com Sucesso.", "Tela Gestor", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Atualizar_dtaPedidosValidados_PorSetorEStatus(0);
+                    Atualizar_dtaPedidosValidados_PorSetorEStatus();
                 }
                 else
                     MessageBox.Show("Houve um Erro ao Validar o Pedido!", "Tela Gestor", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -85,6 +95,27 @@ namespace ProjetoControleCompras.Views
         {
             frmGerenciarOrcamento telaGerenciarOrcamento = new frmGerenciarOrcamento();
             telaGerenciarOrcamento.ShowDialog();
+        }
+
+        private void BtnRejeitarPedido_Click(object sender, RoutedEventArgs e)
+        {
+            dynamic d = dtaPedidoParaValidar.SelectedItem;
+            if (d == null)
+            {
+                MessageBox.Show("Por Favor, Selecione o Pedido que Deseja Rejeitar.", "Tela Gestor", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                d.Status = Status.GetStatus(3);
+                if (PedidoDAO.AtualizarStatusPedido(d))
+                {
+                    MessageBox.Show("Pedido Rejeitado com Sucesso.", "Tela Gestor", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Atualizar_dtaPedidosValidados_PorSetorEStatus();
+                }
+                else
+                    MessageBox.Show("Houve um Erro ao Rejeitar o Pedido!", "Tela Gestor", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
         }
     }
 }

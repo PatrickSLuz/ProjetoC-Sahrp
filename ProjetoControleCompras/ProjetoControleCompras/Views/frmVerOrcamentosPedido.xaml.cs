@@ -17,23 +17,17 @@ using System.Windows.Shapes;
 namespace ProjetoControleCompras.Views
 {
     /// <summary>
-    /// Interaction logic for frmVerItensPedido.xaml
+    /// Interaction logic for frmVerOrcamentosPedido.xaml
     /// </summary>
-    public partial class frmVerItensPedido : Window
+    public partial class frmVerOrcamentosPedido : Window
     {
-        private Pedido Pedido;
-
-        public frmVerItensPedido(Object pedido)
+        public frmVerOrcamentosPedido(Object pedido)
         {
             InitializeComponent();
-
-            Pedido = (Pedido)pedido;
-
-            lblIdPedido.Content = "Itens do Pedido ID: " + Pedido.IdPedido;
-
-            dtaItensPedido.ItemsSource = Pedido.ItensPedido;
-
-            Pedido = null;
+            Pedido p = (Pedido)pedido;
+            lblOrcamentos.Content = "Orçamentos do Pedido ID: " + p.IdPedido;
+            dtaOrcamentos.ItemsSource = OrcamentoDAO.ListarOrcamentoPorPedido(p.IdPedido);
+            p = null;
         }
     }
 }

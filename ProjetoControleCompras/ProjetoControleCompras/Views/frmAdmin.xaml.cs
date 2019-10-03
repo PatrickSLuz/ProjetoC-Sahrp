@@ -1,5 +1,6 @@
 ﻿using ProjetoControleCompras.DAL;
 using ProjetoControleCompras.Models;
+using ProjetoControleCompras.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,22 +100,13 @@ namespace ProjetoControleCompras.Views
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             // Ver Itens
-            dynamic d = dtaTodosPedidos.SelectedItem;
-            if (d != null)
-            {
-                frmVerItensPedido telaVerItensPedido = new frmVerItensPedido(d);
-                telaVerItensPedido.ShowDialog();
-            }
+            AbrirTelaVisualizacao.AbrirTelaVerItens(dtaTodosPedidos.SelectedItem);
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
             // Ver Orçamentos
-            dynamic d = dtaTodosPedidos.SelectedItem;
-            if (d != null)
-            {
-                MessageBox.Show("ID do Pedido: " + d.IdPedido);
-            }
+            AbrirTelaVisualizacao.AbrirTelaVerOrcamentos(dtaTodosPedidos.SelectedItem);
         }
     }
 }

@@ -24,6 +24,11 @@ namespace ProjetoControleCompras.Views
         public frmGerenciarOrcamento()
         {
             InitializeComponent();
+            AtualizarDataGrid();
+        }
+
+        private void AtualizarDataGrid()
+        {
             dtaPedidosParaCadOrcamento.ItemsSource = PedidoDAO.ListarPedidosPorStatus(Status.GetStatus(1));
         }
 
@@ -40,6 +45,42 @@ namespace ProjetoControleCompras.Views
                 MessageBox.Show("Por Favor, Selecione um Pedido para Cadastrar os Orçamentos.", "Gerenciar Orçamentos", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             
+        }
+
+        private void BtnFinalizar_Click(object sender, RoutedEventArgs e)
+        {
+            Pedido p = (Pedido)dtaPedidosParaCadOrcamento.SelectedItem;
+            if (p != null)
+            {
+                p = PedidoDAO.BuscarPedidoPorID(p.IdPedido);
+                if (p.Orcamentos != null)
+                {
+                    if (p.Orcamentos.Count >= 2)
+                    {
+                        // Atualizar Status - Passar para o Setor de Compras
+                        p.Status = Status.GetStatus(2); /* Aguardando Compra do Pedido */
+                        if (PedidoDAO.AtualizarStatusPedido(p))
+                        {
+                            MessageBox.Show("Cadastros de Orçamentos Finalizados com Sucesso.", "Gerenciar Orçamentos", MessageBoxButton.OK, MessageBoxImage.Information);
+                            AtualizarDataGrid();
+                        }
+                        else
+                            MessageBox.Show("Houve um Erro ao Validar o Pedido!", "Gerenciar Orçamentos", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("É necessário Cadastrar no Mínimo 2 Orçamentos para um Pedido.", "Gerenciar Orçamentos", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("É necessário Cadastrar no Mínimo 2 Orçamentos para um Pedido.", "Gerenciar Orçamentos", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por Favor, Selecione um Pedido para Finalizar.", "Gerenciar Orçamentos", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

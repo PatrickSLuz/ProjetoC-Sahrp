@@ -103,5 +103,10 @@ namespace ProjetoControleCompras.Views
                 }
             }
         }
+
+        private void DtaProdutos_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+
+        }
     }
 }

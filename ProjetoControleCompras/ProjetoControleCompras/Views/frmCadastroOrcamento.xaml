@@ -5,25 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetoControleCompras.Views"
         mc:Ignorable="d"
-        Title="Cadastro de Orçamento" Height="450" Width="800">
+        Title="Cadastro de Orçamento" Height="450" Width="736">
     <Grid>
-        <DataGrid x:Name="dtaOrcamento" HorizontalAlignment="Left" Height="196" Margin="10,213,0,0" VerticalAlignment="Top" Width="772" IsReadOnly="True">
+        <DataGrid x:Name="dtaOrcamento" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="219" Margin="10,190,0,0" VerticalAlignment="Top" Width="697" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Empresa" Width="100" Binding="{Binding }"/>
-                <DataGridTextColumn Header="CNPJ" Width="100" Binding="{Binding }"/>
-                <DataGridTextColumn Header="Preço" Width="100" Binding="{Binding }"/>
-                <DataGridTextColumn Header="Descrição" Width="470" Binding="{Binding }"/>
+                <DataGridTextColumn Header="Empresa" Width="180" Binding="{Binding NomeEmpresa}"/>
+                <DataGridTextColumn Header="CNPJ" Width="130" Binding="{Binding CpfCnpjFornecedor}"/>
+                <DataGridTextColumn Header="Valor" Width="110" Binding="{Binding Valor}"/>
+                <DataGridTextColumn Header="Descrição" Width="180" Binding="{Binding Descricao}"/>
+                <DataGridTextColumn Header="Pedido" Width="80" Binding="{Binding Pedido.IdPedido}"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBox x:Name="txtEmpresa" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="108"/>
         <Label x:Name="NomedaEmpresa" Content="Empresa" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="76"/>
         <Label x:Name="CNPJEmpresa" Content="CNPJ/CPF" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top" Width="109"/>
-        <TextBox x:Name="txtCNPJ" HorizontalAlignment="Left" Height="23" Margin="150,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="109"/>
-        <Label x:Name="label" Content="Valor" HorizontalAlignment="Left" Margin="307,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.6,0.385"/>
-        <TextBox x:Name="txtValor" HorizontalAlignment="Left" Height="23" Margin="307,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnCadastrar" Content="Cadastrar" HorizontalAlignment="Left" Margin="518,126,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Button_Click"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="27" Margin="10,122,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="417"/>
-        <Label x:Name="label1" Content="Descrição" HorizontalAlignment="Left" Margin="12,91,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCNPJ" HorizontalAlignment="Left" Height="23" Margin="150,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="125"/>
+        <Label x:Name="label" Content="Valor" HorizontalAlignment="Left" Margin="311,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.6,0.385"/>
+        <TextBox x:Name="txtValor" HorizontalAlignment="Left" Height="23" Margin="311,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnCadastrar" Content="Cadastrar Orçamento" HorizontalAlignment="Left" Margin="521,112,0,0" VerticalAlignment="Top" Width="121" Height="23" Click="Button_Click"/>
+        <TextBox x:Name="txtDescricao" HorizontalAlignment="Left" Height="27" Margin="10,108,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="421"/>
+        <Label x:Name="label1" Content="Descrição" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtIdPedido" HorizontalAlignment="Left" Height="23" Margin="473,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" IsReadOnly="True"/>
+        <Label x:Name="label2" Content="ID Pedido" HorizontalAlignment="Left" Margin="473,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label3" Content="Solicitante" HorizontalAlignment="Left" Margin="577,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtSolicitante" HorizontalAlignment="Left" Height="23" Margin="577,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsReadOnly="True"/>
 
     </Grid>
 </Window>

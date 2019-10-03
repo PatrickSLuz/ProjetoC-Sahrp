@@ -95,5 +95,26 @@ namespace ProjetoControleCompras.Views
             Close();
             fazerLogoff = false;
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            // Ver Itens
+            dynamic d = dtaTodosPedidos.SelectedItem;
+            if (d != null)
+            {
+                frmVerItensPedido telaVerItensPedido = new frmVerItensPedido(d);
+                telaVerItensPedido.ShowDialog();
+            }
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            // Ver Orçamentos
+            dynamic d = dtaTodosPedidos.SelectedItem;
+            if (d != null)
+            {
+                MessageBox.Show("ID do Pedido: " + d.IdPedido);
+            }
+        }
     }
 }

@@ -34,36 +34,41 @@ namespace ProjetoControleCompras.DAL
             
         }
 
+        public static Pedido BuscarPedidoPorID(int id)
+        {
+            return ctx.Pedidos.Include("ItensPedido.Produtos").Include("Orcamentos").Include("Solicitante").FirstOrDefault(x => x.IdPedido == id);
+        }
+
         public static List<Pedido> BuscarPedidoPorAgenteEStatus(Agente solicitante, string status)
         {
-            return ctx.Pedidos.Include("ItensPedido").
+            return ctx.Pedidos.Include("ItensPedido.Produtos").
                 Where(x => x.Solicitante.IdAgente.Equals(solicitante.IdAgente) && x.Status.Equals(status)).ToList();
         }
 
         public static Pedido BuscarPedidoPorAgente(Agente solicitante)
         {
-            return ctx.Pedidos.Include("ItensPedido").FirstOrDefault(x => x.Solicitante.IdAgente.Equals(solicitante.IdAgente));
+            return ctx.Pedidos.Include("ItensPedido.Produtos").FirstOrDefault(x => x.Solicitante.IdAgente.Equals(solicitante.IdAgente));
         }
 
         public static List<Pedido> ListarPedidoPorAgente(Agente solicitante)
         {
-            return ctx.Pedidos.Include("ItensPedido").Where(x => x.Solicitante.IdAgente.Equals(solicitante.IdAgente)).ToList();
+            return ctx.Pedidos.Include("ItensPedido.Produtos").Where(x => x.Solicitante.IdAgente.Equals(solicitante.IdAgente)).ToList();
         }
 
         public static List<Pedido> ListarPedidos()
         {
-            return ctx.Pedidos.Include("Solicitante.Cargo").Include("Solicitante.Setor").Include("ItensPedido").ToList();
+            return ctx.Pedidos.Include("Solicitante.Cargo").Include("Solicitante.Setor").Include("ItensPedido.Produtos").ToList();
         }
 
         public static List<Pedido> ListarPedidosPorStatus(string status)
         {
-            return ctx.Pedidos.Include("Solicitante.Cargo").Include("Solicitante.Setor").Include("ItensPedido").
+            return ctx.Pedidos.Include("Solicitante.Cargo").Include("Solicitante.Setor").Include("ItensPedido.Produtos").
                 Where(x => x.Status.Equals(status)).ToList();
         }
 
         public static List<Pedido> ListarPedidosPorSetor(int idSetor)
         {
-            return ctx.Pedidos.Include("Solicitante.Cargo").Include("Solicitante.Setor").Include("ItensPedido").
+            return ctx.Pedidos.Include("Solicitante.Cargo").Include("Solicitante.Setor").Include("ItensPedido.Produtos").
                 Where(x => x.Solicitante.Setor.IdSetor.Equals(idSetor)).ToList();
         }
 

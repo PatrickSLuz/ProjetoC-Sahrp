@@ -10,7 +10,7 @@ namespace ProjetoControleCompras.Utils
     {
         public static bool ValidarCPF_CNPJ(string cpf_cnpj)
         {
-            cpf_cnpj.Replace(".", "").Replace("-","");
+            cpf_cnpj = cpf_cnpj.Replace(".", "").Replace("-", "").Replace("/","");
 
             if (cpf_cnpj.Length == 11)
             {
@@ -97,7 +97,7 @@ namespace ProjetoControleCompras.Utils
             return false;
         }
 
-        public static int CalculoResto(int soma)
+        private static int CalculoResto(int soma)
         {
             int Resto = soma % 11;
             Resto = 11 - Resto;
@@ -109,7 +109,7 @@ namespace ProjetoControleCompras.Utils
             return Resto;
         }
 
-        public static int CalculoSoma(string cpf, int peso, int cont)
+        private static int CalculoSoma(string cpf, int peso, int cont)
         {
             int Soma = 0;
             for (int i = 0; i < cont; i++)

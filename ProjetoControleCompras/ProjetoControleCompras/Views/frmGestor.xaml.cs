@@ -30,18 +30,21 @@ namespace ProjetoControleCompras.Views
             Atualizar_dtaPedidoParaValidar_PorSetorEStatus(0);
             if (AgenteLogado.Setor.NomeSetor.Equals("Financeiro"))
             {
-                MessageBox.Show("GESTOR DO SETOR FINANCEIRO");
+                // Gestor do Setor Financeiro
                 btnCadOrcamento.Visibility = Visibility.Visible;
+                btnVerificarCompras.Visibility = Visibility.Hidden;
             }
             else if (AgenteLogado.Setor.NomeSetor.Equals("Compras"))
             {
-                MessageBox.Show("GESTOR DO SETOR COMPRAS");
+                // Gestor do Setor Compras
                 btnCadOrcamento.Visibility = Visibility.Hidden;
+                btnVerificarCompras.Visibility = Visibility.Visible;
             }
             else
             {
-                MessageBox.Show("GESTOR NÃO DO SETOR FINANCEIRO E COMPRAS");
+                // Outro Gestor
                 btnCadOrcamento.Visibility = Visibility.Hidden;
+                btnVerificarCompras.Visibility = Visibility.Hidden;
             }   
         }
 
@@ -116,6 +119,12 @@ namespace ProjetoControleCompras.Views
                     MessageBox.Show("Houve um Erro ao Rejeitar o Pedido!", "Tela Gestor", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
+        }
+
+        private void BtnVerificarCompras_Click(object sender, RoutedEventArgs e)
+        {
+            frmGerenciarCompras telaGerenciarCompras = new frmGerenciarCompras();
+            telaGerenciarCompras.ShowDialog();
         }
     }
 }

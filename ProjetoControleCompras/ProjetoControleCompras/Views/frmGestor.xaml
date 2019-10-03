@@ -35,5 +35,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnCadOrcamento" Content="Cadastrar Orçamentos" HorizontalAlignment="Left" Margin="450,18,0,0" VerticalAlignment="Top" Width="129" Click="BtnCadOrcamento_Click"/>
+        <Button x:Name="btnVerificarCompras" Content="Verificar Compras" HorizontalAlignment="Left" Margin="450,18,0,0" VerticalAlignment="Top" Width="129" Click="BtnVerificarCompras_Click"/>
     </Grid>
 </Window>

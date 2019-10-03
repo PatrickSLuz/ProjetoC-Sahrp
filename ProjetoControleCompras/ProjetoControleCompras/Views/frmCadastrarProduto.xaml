@@ -5,9 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetoControleCompras.Views"
         mc:Ignorable="d"
-        Title="Cadastro de Produto" Height="450" Width="603.759" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Cadastro de Produto" Height="297.071" Width="603.759" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <DataGrid x:Name="dtaProdutos" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="150" Margin="10,148,0,0" VerticalAlignment="Top" IsReadOnly="True" Width="578">
+        <DataGrid x:Name="dtaProdutos" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="173" Margin="10,86,0,0" VerticalAlignment="Top" IsReadOnly="True" Width="578">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Menu item 1" />
+                    <MenuItem Header="Menu item 2" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nome"  Binding="{Binding NomeProduto}" Width="278" />
                 <DataGridTextColumn Header="Data Cadastro" Binding="{Binding DtCriacao}" Width="290"/>

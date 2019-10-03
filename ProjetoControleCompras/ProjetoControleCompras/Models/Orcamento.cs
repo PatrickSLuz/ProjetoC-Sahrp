@@ -18,8 +18,10 @@ namespace ProjetoControleCompras.Models
         [Key]
         public int IdOrcamento { get; set; }
         public Pedido Pedido { get; set; }
+        public string NomeEmpresa { get; set; }
         public string CpfCnpjFornecedor { get; set; }
         public double Valor { get; set; }
+        public string Descricao { get; set; }
         public DateTime DtCriacao { get; set; }
     }
 }

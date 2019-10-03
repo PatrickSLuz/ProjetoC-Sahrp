@@ -22,6 +22,8 @@ namespace ProjetoControleCompras.Views
     /// </summary>
     public partial class frmCadastroAgente : Window
     {
+        private bool editar = false;
+
         List<Setor> listaDeSetores;
         List<Cargo> listaDeCargos = CargoSetorDAO.ListarCargos();
 
@@ -31,6 +33,9 @@ namespace ProjetoControleCompras.Views
         public frmCadastroAgente()
         {
             InitializeComponent();
+
+            editar = false;
+
             listaDeSetores = new List<Setor>();
             listaDeSetores = CargoSetorDAO.ListarSetores();
 
@@ -42,6 +47,8 @@ namespace ProjetoControleCompras.Views
             InitializeComponent();
 
             this.agente = (Agente) agente;
+
+            editar = true;
 
             listaDeSetores = new List<Setor>();
             listaDeSetores = CargoSetorDAO.ListarSetores();
@@ -60,7 +67,12 @@ namespace ProjetoControleCompras.Views
             listaDeSetores.Add(CargoSetorDAO.BuscarSetorDoAgente(this.agente));
             if (i == 1)
             {
+                editar = true;
                 PreencherDadosEditar();
+            }
+            else
+            {
+                editar = false;
             }
             AtualizarComboBox();
         }
@@ -94,11 +106,22 @@ namespace ProjetoControleCompras.Views
 
                 agente.Login = txtLogin.Text;
 
-                agente.Senha = SetarSenhaPadrao.CriarSenhaPadrao(agente);
+                if (!editar)
+                {
+                    agente.Senha = SetarSenhaPadrao.CriarSenhaPadrao(agente);
+                }
 
                 if (AgenteDAO.CadastrarAgente(agente))
                 {
-                    MessageBox.Show("Agente Cadastrado com Sucesso! \n\nSua primeira senha será:\nPrimeira Letra do Nome Maiuscula + @ + Cargo \nExemplo: N@Cargoexemplo", "Cadastro de Agente", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (editar)
+                    {
+                        MessageBox.Show("Agente editado com sucesso", "Cadastro de Agente", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Agente Cadastrado com Sucesso! \n\nSua primeira senha será:\nPrimeira Letra do Nome Maiuscula + @ + Cargo \nExemplo: N@Cargoexemplo", "Cadastro de Agente", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    
                     Close();
                 }
                 else
@@ -114,6 +137,7 @@ namespace ProjetoControleCompras.Views
 
         private void PreencherDadosEditar()
         {
+
             txtNomeAgente.Text = this.agente.NomeAgente;
             comboBoxCargo.SelectedValue = this.agente.Cargo.NomeCargo.ToString();
             comboBoxSetor.SelectedValue = this.agente.Setor.NomeSetor.ToString();

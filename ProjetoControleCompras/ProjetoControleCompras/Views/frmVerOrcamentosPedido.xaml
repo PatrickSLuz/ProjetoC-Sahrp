@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Ver Orcamentos de Pedido" Height="178.5" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <DataGrid x:Name="dtaOrcamentos"  HorizontalAlignment="Left" Height="100" Margin="10,40,0,0" VerticalAlignment="Top" Width="774">
+        <DataGrid x:Name="dtaOrcamentos" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="100" Margin="10,40,0,0" VerticalAlignment="Top" Width="774" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Empresa" Width="180" Binding="{Binding NomeEmpresa}"/>
                 <DataGridTextColumn Header="CNPJ" Width="130" Binding="{Binding CpfCnpjFornecedor}"/>

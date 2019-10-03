@@ -34,7 +34,7 @@ namespace ProjetoControleCompras.Views
 
         private void atualizarDataGridOrcamento()
         {
-            dtaOrcamento.ItemsSource = OrcamentoDAO.ListarOrcamento();            
+            dtaOrcamento.ItemsSource = OrcamentoDAO.ListarOrcamentoPorPedido(Pedido.IdPedido);            
             dtaOrcamento.Items.Refresh(); 
 
         }

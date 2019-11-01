@@ -45,10 +45,30 @@ namespace ProjetoControleCompras.Views
                 if (p != null)
                 {
                     ItemPedido it = new ItemPedido();
-                    it.Produtos = p;
-                    it.Quantidade = Convert.ToInt32(txtQuantidade.Text);
-                    
-                    itensPedido.Add(it);
+                    if (itensPedido.Count <= 0)
+                    {
+                        it.Produtos = p;
+                        it.Quantidade = Convert.ToInt32(txtQuantidade.Text);
+                        itensPedido.Add(it);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < itensPedido.Count; i++) // Verificar se ja existe o item que foi selecionado ja existe na lista
+                        {
+                            if (p.NomeProduto.Equals(itensPedido[i].Produtos.NomeProduto))
+                            {
+                                itensPedido[i].Quantidade += Convert.ToInt32(txtQuantidade.Text);
+                                i = itensPedido.Count + 1; // Parar de Verificar
+                            }
+                            else
+                            {
+                                it.Produtos = p;
+                                it.Quantidade = Convert.ToInt32(txtQuantidade.Text);
+                                itensPedido.Add(it);
+                                i = itensPedido.Count + 1; // Parar de Verificar
+                            }
+                        }
+                    }
                     dtaProdutos.ItemsSource = itensPedido; // Inserindo os Produtos no DataGrid
                     dtaProdutos.Items.Refresh(); // Atualizar o DataGrid
                 }

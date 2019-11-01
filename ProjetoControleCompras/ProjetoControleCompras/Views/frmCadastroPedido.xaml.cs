@@ -57,7 +57,16 @@ namespace ProjetoControleCompras.Views
                         {
                             if (p.NomeProduto.Equals(itensPedido[i].Produtos.NomeProduto))
                             {
-                                itensPedido[i].Quantidade += Convert.ToInt32(txtQuantidade.Text);
+                                int qunt_atualizada = itensPedido[i].Quantidade + Convert.ToInt32(txtQuantidade.Text);
+                                if (qunt_atualizada < 0)
+                                {
+                                    MessageBox.Show("Não é possivel Registar um Item com Quantidade Menor ou Igual a 0 (Zero)!", "Adicionar Produto", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+                                else
+                                {
+                                    itensPedido[i].Quantidade += Convert.ToInt32(txtQuantidade.Text);
+                                }
+                                
                                 i = itensPedido.Count + 1; // Parar de Verificar
                             }
                             else

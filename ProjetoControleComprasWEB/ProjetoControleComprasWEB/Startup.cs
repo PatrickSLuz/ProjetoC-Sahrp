@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProjetoControleComprasWEB.Data;
 using Repository;
 
 namespace ProjetoControleComprasWEB
@@ -42,7 +43,7 @@ namespace ProjetoControleComprasWEB
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Context context)
         {
             if (env.IsDevelopment())
             {
@@ -62,6 +63,7 @@ namespace ProjetoControleComprasWEB
                     name: "default",
                     template: "{controller=Login}/{action=Index}/{id?}");
             });
+            DbInitializer.Initialize(context); // Metodo para inserir dados Default no BD.
         }
     }
 }

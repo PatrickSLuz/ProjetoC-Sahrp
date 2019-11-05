@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Repository;
 
 namespace ProjetoControleComprasWEB
 {
@@ -30,6 +32,11 @@ namespace ProjetoControleComprasWEB
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Criar Injeção de Dependencia das DAOs
+            //services.AddScoped<ProdutoDAO>();
+
+            // Configurando/Criando a injeção de dependencia (ID, ou em Inglês, DI) do Contexto
+            services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("ControleComprasConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

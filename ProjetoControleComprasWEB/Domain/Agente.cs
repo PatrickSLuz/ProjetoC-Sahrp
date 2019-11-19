@@ -17,6 +17,7 @@ namespace Domain
         [Key]
         public int AgenteId { get; set; }
         public string NomeAgente { get; set; }
+        public string Cpf { get; set; }
         public Setor Setor { get; set; }
         public Cargo Cargo { get; set; }
         public string Login { get; set; }

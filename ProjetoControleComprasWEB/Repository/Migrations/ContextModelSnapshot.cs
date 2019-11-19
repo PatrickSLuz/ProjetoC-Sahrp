@@ -27,6 +27,8 @@ namespace Repository.Migrations
 
                     b.Property<int?>("CargoId");
 
+                    b.Property<string>("Cpf");
+
                     b.Property<DateTime>("DtCriacao");
 
                     b.Property<string>("Login");

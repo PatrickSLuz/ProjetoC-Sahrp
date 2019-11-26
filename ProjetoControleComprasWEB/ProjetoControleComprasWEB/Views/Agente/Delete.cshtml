@@ -24,10 +24,10 @@
             @Html.DisplayFor(model => model.Cpf)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Login)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Login)
+            @Html.DisplayFor(model => model.Email)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Senha)
@@ -35,17 +35,10 @@
         <dd>
             @Html.DisplayFor(model => model.Senha)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DtCriacao)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DtCriacao)
-        </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="AgenteId" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-default" />
     </form>
 </div>

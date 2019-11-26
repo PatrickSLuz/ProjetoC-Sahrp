@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -40,6 +42,14 @@ namespace ProjetoControleComprasWEB
             // Configurando/Criando a injeção de dependencia (ID, ou em Inglês, DI) do Contexto
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("ControleComprasConnection")));
 
+            // Configurar o Identity - Auteticação
+            services.AddIdentity<AgenteLogado, IdentityRole>().AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/login/Logar";
+                options.AccessDeniedPath = "/Login/AcessoNegado";
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -57,6 +67,7 @@ namespace ProjetoControleComprasWEB
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

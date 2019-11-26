@@ -20,7 +20,7 @@ namespace Domain
         public string Cpf { get; set; }
         public Setor Setor { get; set; }
         public Cargo Cargo { get; set; }
-        public string Login { get; set; }
+        public string Email { get; set; }
         public string Senha { get; set; }
         public DateTime DtCriacao { get; set; }
     }

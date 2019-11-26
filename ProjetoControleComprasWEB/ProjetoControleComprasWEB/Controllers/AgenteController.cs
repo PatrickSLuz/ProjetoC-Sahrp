@@ -7,22 +7,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Domain;
 using Repository;
+using Microsoft.AspNetCore.Identity;
 
 namespace ProjetoControleComprasWEB.Controllers
 {
     public class AgenteController : Controller
     {
         private readonly AgenteDAO _agenteDAO;
+        private readonly UserManager<AgenteLogado> _userManager;
+        private readonly SignInManager<AgenteLogado> _signInManager;
 
-        public AgenteController(AgenteDAO agenteDAO)
+        public AgenteController(AgenteDAO agenteDAO, UserManager<AgenteLogado> userManager, SignInManager<AgenteLogado> signInManager)
         {
             _agenteDAO = agenteDAO;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         // GET: Agente
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Agentes.ToListAsync());
+            return View(_agenteDAO.ListarTodos());
         }
 
         // GET: Agente/Create
@@ -32,61 +37,49 @@ namespace ProjetoControleComprasWEB.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Agente agente)
         {
-            if (ModelState.IsValid)
+            // Preencher obrigatoriamente o UserName e o Email
+            AgenteLogado aLogado = new AgenteLogado
             {
-                _context.Add(agente);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                UserName = agente.Email,
+                Email = agente.Email
+            };
+            IdentityResult result = await _userManager.CreateAsync(aLogado, agente.Senha);
+            if (result.Succeeded)
+            {
+                if (_agenteDAO.Cadastrar(agente))
+                {
+                    return RedirectToAction("Index");
+                }
             }
-            return View(agente);
+            AdicionarErros(result);
+            return View();
+        }
+
+        private void AdicionarErros(IdentityResult result)
+        {
+            foreach (var erro in result.Errors)
+            {
+                ModelState.AddModelError("", erro.Description);
+            }
         }
 
         // GET: Agente/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var agente = await _context.Agentes.FindAsync(id);
-            if (agente == null)
-            {
-                return NotFound();
-            }
-            return View(agente);
+            return View(_agenteDAO.BuscarPorId(id));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Agente agente)
+        public IActionResult Edit(Agente agente)
         {
-            if (id != agente.AgenteId)
+            if (_agenteDAO.Cadastrar(agente))
             {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(agente);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AgenteExists(agente.AgenteId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             return View(agente);
         }
@@ -94,28 +87,13 @@ namespace ProjetoControleComprasWEB.Controllers
         // GET: Agente/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var agente = await _context.Agentes
-                .FirstOrDefaultAsync(m => m.AgenteId == id);
-            if (agente == null)
-            {
-                return NotFound();
-            }
-
-            return View(agente);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Agente/Delete/5
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var agente = await _context.Agentes.FindAsync(id);
-            _context.Agentes.Remove(agente);
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
     }

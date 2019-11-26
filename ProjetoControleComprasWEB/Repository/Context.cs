@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace Repository
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext<AgenteLogado>
     {
         // Herdando o Contrutor da Classe Pai/DbContext
         public Context(DbContextOptions<Context> options) : base(options) { }

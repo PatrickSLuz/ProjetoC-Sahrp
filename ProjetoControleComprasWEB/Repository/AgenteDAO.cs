@@ -18,22 +18,41 @@ namespace Repository
 
         public bool Cadastrar(Agente objeto)
         {
-            throw new NotImplementedException();
+            if (BuscarPorId(objeto.AgenteId) != null)
+            {
+                _context.Entry(objeto).CurrentValues.SetValues(objeto);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                // Cadastrar Agente
+                if (BuscarAgentePorEmail(objeto) == null)
+                {
+                    _context.Agentes.Add(objeto);
+                    _context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
 
         public Agente BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            return _context.Agentes.Find(id); // Buscar diretamente pela Chave Primaria (PK) da Table
         }
 
-        public Agente BuscarAgentePorLogin(Agente agente)
+        public Agente BuscarAgentePorEmail(Agente agente)
         {
-            return _context.Agentes.Include("Cargo").Include("Setor").FirstOrDefault(x => x.Login.Equals(agente.Login));
+            return _context.Agentes.Include("Cargo").Include("Setor").FirstOrDefault(x => x.Email.Equals(agente.Email));
         }
 
         public List<Agente> ListarTodos()
         {
-            throw new NotImplementedException();
+            return _context.Agentes.Include("Cargo").Include("Setor").ToList();
         }
     }
 }

@@ -36,8 +36,9 @@ namespace ProjetoControleComprasWEB
             });
 
             // Criar Injeção de Dependencia das DAOs
-            //services.AddScoped<ProdutoDAO>();
             services.AddScoped<AgenteDAO>();
+            services.AddScoped<CargoDAO>();
+            services.AddScoped<SetorDAO>();
 
             // Configurando/Criando a injeção de dependencia (ID, ou em Inglês, DI) do Contexto
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("ControleComprasConnection")));
@@ -75,7 +76,7 @@ namespace ProjetoControleComprasWEB
                     name: "default",
                     template: "{controller=Login}/{action=Index}/{id?}");
             });
-            DbInitializer.Initialize(context); // Metodo para inserir dados Default no BD.
+            //DbInitializer.Initialize(context); // Metodo para inserir dados Default no BD.
         }
     }
 }

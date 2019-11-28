@@ -10,7 +10,7 @@ namespace ProjetoControleComprasWEB.Utils
     {
         public static string CriarSenhaPadrao(Agente agente)
         {
-            return char.ToUpper(agente.NomeAgente[0]) + "@" + agente.Cpf;
+            return (char.ToUpper(agente.NomeAgente[0]).ToString()) + (char.ToLower(agente.NomeAgente[1]).ToString()) + "@" + agente.Cpf;
         }
     }
 }

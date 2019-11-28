@@ -18,26 +18,30 @@ namespace Repository
 
         public bool Cadastrar(Agente objeto)
         {
-            if (BuscarPorId(objeto.AgenteId) != null)
+            if (BuscarAgentePorEmail(objeto) == null)
             {
-                _context.Entry(objeto).CurrentValues.SetValues(objeto);
+                _context.Agentes.Add(objeto);
                 _context.SaveChanges();
                 return true;
             }
-            else
+            return false;
+
+        }
+
+        public bool Editar(Agente objeto)
+        {
+            if (BuscarPorId(objeto.AgenteId) != null)
             {
-                // Cadastrar Agente
-                if (BuscarAgentePorEmail(objeto) == null)
+                bool tracking = _context.ChangeTracker.Entries<Agente>().Any(x => x.Entity.AgenteId == objeto.AgenteId);
+                if (!tracking)
                 {
-                    _context.Agentes.Add(objeto);
-                    _context.SaveChanges();
-                    return true;
+                    _context.Agentes.Update(objeto);
                 }
-                else
-                {
-                    return false;
-                }
+                
+                _context.SaveChanges();
+                return true;
             }
+            return false;
         }
 
         public Agente BuscarPorId(int id)

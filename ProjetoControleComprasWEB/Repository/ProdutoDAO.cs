@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Repository
 {
-    class ProdutoDAO : IRepository<Produto>
+     public class ProdutoDAO : IRepository<Produto>
     {
         private readonly Context _context;
 
@@ -42,6 +42,18 @@ namespace Repository
         public Produto BuscarProdutoPorNome(Produto produto)
         {
             return _context.Produtos.FirstOrDefault(x => x.NomeProduto.Equals(produto.NomeProduto));
+        }
+
+        public void Remove(int id)
+        {
+            _context.Produtos.Remove(BuscarPorId(id));
+            _context.SaveChanges();
+        }
+
+        public void Alterar(Produto produto)
+        {
+            _context.Produtos.Update(produto);
+            _context.SaveChanges();
         }
 
         public Produto BuscarPorId(int id)

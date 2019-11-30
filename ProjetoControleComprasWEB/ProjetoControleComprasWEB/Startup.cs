@@ -18,6 +18,23 @@ namespace ProjetoControleComprasWEB
 {
     public class Startup
     {
+
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<AgenteLogado>>();
+            string[] rolesNames = { "Administrador", "Gestor", "Usuario" };
+            IdentityResult result;
+            foreach (var namesRole in rolesNames)
+            {
+                var roleExist = await roleManager.RoleExistsAsync(namesRole);
+                if (!roleExist)
+                {
+                    result = await roleManager.CreateAsync(new IdentityRole(namesRole));
+                }
+            }
+        }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -47,7 +64,7 @@ namespace ProjetoControleComprasWEB
             services.AddIdentity<AgenteLogado, IdentityRole>().AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
             services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = "/login/Logar";
+                options.LoginPath = "/login/Login";
                 options.AccessDeniedPath = "/Login/AcessoNegado";
             });
 
@@ -55,7 +72,7 @@ namespace ProjetoControleComprasWEB
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Context context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Context context, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -76,6 +93,7 @@ namespace ProjetoControleComprasWEB
                     name: "default",
                     template: "{controller=Login}/{action=Index}/{id?}");
             });
+            CreateRoles(serviceProvider).Wait();
             DbInitializer.Initialize(context); // Metodo para inserir dados Default no BD.
         }
     }

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Identity.UserManager<AgenteLogado> UserManager
+@inject Microsoft.AspNetCore.Identity.SignInManager<AgenteLogado> SignInManager
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -14,6 +17,22 @@
         <a class="navbar-brand" asp-action="Index" asp-controller="Agente">Gerenciar Agente</a>
         <a asp-action="Index" asp-controller="Cargo">Gerenciar Cargo</a>
         <a asp-action="Index" asp-controller="Setor">Gerenciar Setor</a>
+        @if (SignInManager.IsSignedIn(User)) // Se usuario estiver autenticado
+        {
+            <h5>
+                Olá, @UserManager.GetUserName(User) -
+                Cargo:
+            </h5>
+            <a class="nav-link" asp-action="Logout" asp-controller="Login">
+                Logout
+            </a>
+        }
+        else // usuario sem Logar
+        {
+            <a class="nav-link" asp-action="Login" asp-controller="Login">
+                <h5>Login</h5>
+            </a>
+        }
     </nav>
     @* Barra de Navegação *@
 

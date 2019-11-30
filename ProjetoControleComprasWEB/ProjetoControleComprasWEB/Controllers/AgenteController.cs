@@ -9,9 +9,11 @@ using Domain;
 using Repository;
 using Microsoft.AspNetCore.Identity;
 using ProjetoControleComprasWEB.Utils;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProjetoControleComprasWEB.Controllers
 {
+    [Authorize(Roles = "Administrador, Gestor")]
     public class AgenteController : Controller
     {
         private readonly AgenteDAO _agenteDAO;
@@ -19,14 +21,18 @@ namespace ProjetoControleComprasWEB.Controllers
         private readonly SetorDAO _setorDAO;
         private readonly UserManager<AgenteLogado> _userManager;
         private readonly SignInManager<AgenteLogado> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AgenteController(AgenteDAO agenteDAO, CargoDAO cargoDAO, SetorDAO setorDAO, UserManager<AgenteLogado> userManager, SignInManager<AgenteLogado> signInManager)
+        public AgenteController(AgenteDAO agenteDAO, CargoDAO cargoDAO, SetorDAO setorDAO, 
+            UserManager<AgenteLogado> userManager, SignInManager<AgenteLogado> signInManager, 
+            RoleManager<IdentityRole> roleManager)
         {
             _agenteDAO = agenteDAO;
             _cargoDAO = cargoDAO;
             _setorDAO = setorDAO;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         // GET: Agente
@@ -56,11 +62,21 @@ namespace ProjetoControleComprasWEB.Controllers
                 UserName = agente.Email,
                 Email = agente.Email
             };
+
             IdentityResult result = await _userManager.CreateAsync(aLogado, agente.Senha);
             if (result.Succeeded)
             {
                 agente.Cargo = _cargoDAO.BuscarPorId(drpCargo);
                 agente.Setor = _setorDAO.BuscarPorId(drpSetor);
+
+                //-------------------atribuir role ao user------------------------------
+                var applicationRole = await _roleManager.FindByNameAsync(agente.Cargo.NomeCargo);
+                if (applicationRole != null)
+                {
+                    IdentityResult roleResult = await _userManager.AddToRoleAsync(aLogado, agente.Cargo.NomeCargo);
+                }
+                //-------------------atribuir role ao user------------------------------
+
                 if (_agenteDAO.Cadastrar(agente))
                 {
                     return RedirectToAction("Index");
@@ -88,12 +104,17 @@ namespace ProjetoControleComprasWEB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Agente agente, int drpCargo, int drpSetor)
+        public async Task<IActionResult> Edit(Agente agente, int drpCargo, int drpSetor)
         {
             ViewBag.Cargos = new SelectList(_cargoDAO.ListarTodos(), "CargoId", "NomeCargo");
             ViewBag.Setores = new SelectList(_setorDAO.ListarTodos(), "SetorId", "NomeSetor");
             agente.Cargo = _cargoDAO.BuscarPorId(drpCargo);
             agente.Setor = _setorDAO.BuscarPorId(drpSetor);
+
+            // Fazer Logout do Agente
+            await _signInManager.SignOutAsync();
+
+            // Fazer update do Agente
             if (_agenteDAO.Editar(agente))
             {
                 return RedirectToAction("Index");

@@ -30,7 +30,7 @@ namespace ProjetoControleComprasWEB.Controllers
         }
 
         // GET: Agente
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View(_agenteDAO.ListarTodos());
         }
@@ -102,15 +102,9 @@ namespace ProjetoControleComprasWEB.Controllers
         }
 
         // GET: Agente/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int id)
         {
-            return RedirectToAction(nameof(Index));
-        }
-
-        // POST: Agente/Delete/5
-        [HttpPost]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
+            _agenteDAO.Deletar(_agenteDAO.BuscarPorId(id));
             return RedirectToAction(nameof(Index));
         }
     }

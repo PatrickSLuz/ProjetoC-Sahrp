@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Domain;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoControleComprasWEB.Utils;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Domain;
 using Repository;
+using System.Net;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Identity;
 
 namespace ProjetoControleComprasWEB.Controllers
 {
@@ -23,20 +26,27 @@ namespace ProjetoControleComprasWEB.Controllers
             _signInManager = signInManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            AgenteLogado agLogado = new AgenteLogado
+            {
+                UserName = "admin@email.com",
+                Email = "admin@email.com"
+            };
+            IdentityResult result = await _userManager.CreateAsync(agLogado, "Admin@123");
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Logar(Agente agente)
         {
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(agente.Email, agente.Senha, true, false);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "ver");
+                return RedirectToAction("teste");
             }
             ModelState.AddModelError("", "Falha no Login!");
-            return View();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -76,7 +76,7 @@ namespace ProjetoControleComprasWEB
                     name: "default",
                     template: "{controller=Login}/{action=Index}/{id?}");
             });
-            //DbInitializer.Initialize(context); // Metodo para inserir dados Default no BD.
+            DbInitializer.Initialize(context); // Metodo para inserir dados Default no BD.
         }
     }
 }

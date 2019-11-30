@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Domain.Setor>
+
+@{
+    ViewData["Title"] = "Setores";
+}
+
+<h2>Gerenciar Setores</h2>
+
+<p>
+    <a asp-action="Create">Novo Setor</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeSetor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DtCriacao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeSetor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DtCriacao)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SetorId">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.SetorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

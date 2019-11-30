@@ -30,6 +30,24 @@ namespace Repository
             return false;
         }
 
+        public bool Editar(Setor objeto)
+        {
+            if (BuscarSetorPorNome(objeto) == null)
+            {
+                _context.Setores.Update(objeto);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool Deletar(Setor setor)
+        {
+            _context.Setores.Remove(setor);
+            _context.SaveChanges();
+            return true;
+        }
+
         public Setor BuscarSetorPorNome(Setor setor)
         {
             return _context.Setores.FirstOrDefault(x => x.NomeSetor.Equals(setor.NomeSetor));

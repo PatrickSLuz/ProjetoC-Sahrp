@@ -44,6 +44,13 @@ namespace Repository
             return false;
         }
 
+        public bool Deletar(Agente objeto)
+        {
+            _context.Agentes.Remove(objeto);
+            _context.SaveChanges();
+            return true;
+        }
+
         public Agente BuscarPorId(int id)
         {
             return _context.Agentes.Find(id); // Buscar diretamente pela Chave Primaria (PK) da Table

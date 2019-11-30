@@ -56,6 +56,7 @@ namespace ProjetoControleComprasWEB
             services.AddScoped<AgenteDAO>();
             services.AddScoped<CargoDAO>();
             services.AddScoped<SetorDAO>();
+            services.AddScoped<ProdutoDAO>();
 
             // Configurando/Criando a injeção de dependencia (ID, ou em Inglês, DI) do Contexto
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("ControleComprasConnection")));

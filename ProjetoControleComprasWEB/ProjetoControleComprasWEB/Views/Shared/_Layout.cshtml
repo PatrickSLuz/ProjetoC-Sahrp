@@ -19,15 +19,16 @@
             // LOGADO Como ADMIN
             @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Administrador"))
             {
-                <a class="navbar-brand" asp-action="Index" asp-controller="Agente">Gerenciar Agente</a>
-                <a class="navbar-brand" asp-action="Index" asp-controller="Cargo">Gerenciar Cargo</a>
-                <a class="navbar-brand" asp-action="Index" asp-controller="Setor">Gerenciar Setor</a>
+                <a class="navbar-brand" asp-action="Index" asp-controller="Agente">Gerenciar Agentes</a>
+                <a class="navbar-brand" asp-action="Index" asp-controller="Cargo">Gerenciar Cargos</a>
+                <a class="navbar-brand" asp-action="Index" asp-controller="Setor">Gerenciar Setores</a>
+                <a class="navbar-brand" asp-action="Index" asp-controller="Produto">Gerenciar Produtos</a>
             }
 
             // LOGADO Como GESTOR
             @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Gestor"))
             {
-                <a class="navbar-brand" asp-action="Index" asp-controller="Agente">Gerenciar Agente</a>
+                <a class="navbar-brand" asp-action="Index" asp-controller="Agente">Gerenciar Agentes</a>
             }
 
             // LOGADO Como USURAIO

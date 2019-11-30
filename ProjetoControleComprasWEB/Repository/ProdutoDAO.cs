@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Repository
 {
-     public class ProdutoDAO : IRepository<Produto>
+    public class ProdutoDAO : IRepository<Produto>
     {
         private readonly Context _context;
 
@@ -18,25 +18,31 @@ namespace Repository
 
         public bool Cadastrar(Produto objeto)
         {
-            if(BuscarPorId(objeto.ProdutoId)!=null)
+            if (BuscarProdutoPorNome(objeto) == null)
             {
-                _context.Entry(objeto).CurrentValues.SetValues(objeto);
+                _context.Produtos.Add(objeto);
                 _context.SaveChanges();
                 return true;
             }
-            else
+            return false;
+        }
+
+        public bool Editar(Produto objeto)
+        {
+            if (BuscarProdutoPorNome(objeto) == null)
             {
-                if(BuscarProdutoPorNome(objeto)!=null)
-                {
-                    _context.Produtos.Add(objeto);
-                    _context.SaveChanges();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                _context.Produtos.Update(objeto);
+                _context.SaveChanges();
+                return true;
             }
+            return false;
+        }
+
+        public bool Deletar(Produto produto)
+        {
+            _context.Produtos.Remove(produto);
+            _context.SaveChanges();
+            return true;
         }
 
         public Produto BuscarProdutoPorNome(Produto produto)
@@ -66,6 +72,6 @@ namespace Repository
             return _context.Produtos.ToList();
         }
 
- 
+
     }
 }

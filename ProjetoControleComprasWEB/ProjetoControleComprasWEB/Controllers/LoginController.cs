@@ -48,6 +48,14 @@ namespace ProjetoControleComprasWEB.Controllers
                 }
                 //-------------------atribuir role ao user------------------------------
             }
+
+            //Verificar se ja esta logado
+            string email = _userManager.GetUserName(HttpContext.User);
+            Agente agente = _agenteDAO.BuscarAgentePorEmail(email);
+            if (agente != null)
+            {
+                return await Login(agente);
+            }
             return View();
         }
 
@@ -59,33 +67,36 @@ namespace ProjetoControleComprasWEB.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(Agente agente)
         {
-            Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(agente.Email, agente.Senha, true, false);
-            if (result.Succeeded)
+            if (agente.Email != null && agente.Senha != null)
             {
-                agente = _agenteDAO.BuscarAgentePorEmail(agente);
-                if (agente != null)
+                Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(agente.Email, agente.Senha, true, false);
+                if (result.Succeeded)
                 {
-                    // LOGADO Como ADMINISTRADOR
-                    if (agente.Cargo.NomeCargo.Equals("Administrador"))
+                    agente = _agenteDAO.BuscarAgentePorEmail(agente);
+                    if (agente != null)
                     {
-                        return RedirectToAction(nameof(Index), "Admin");
-                    }
+                        // LOGADO Como ADMINISTRADOR
+                        if (agente.Cargo.NomeCargo.Equals("Administrador"))
+                        {
+                            return RedirectToAction(nameof(Index), "Admin");
+                        }
 
-                    // LOGADO Como GESTOR
-                    if (agente.Cargo.NomeCargo.Equals("Gestor"))
-                    {
-                        return RedirectToAction(nameof(Index), "Gestor");
-                    }
+                        // LOGADO Como GESTOR
+                        if (agente.Cargo.NomeCargo.Equals("Gestor"))
+                        {
+                            return RedirectToAction(nameof(Index), "Gestor");
+                        }
 
-                    // LOGADO Como USUARIO
-                    if (agente.Cargo.NomeCargo.Equals("Usuario"))
-                    {
-                        return RedirectToAction(nameof(Index), "Usuario");
+                        // LOGADO Como USUARIO
+                        if (agente.Cargo.NomeCargo.Equals("Usuario"))
+                        {
+                            return RedirectToAction(nameof(Index), "Usuario");
+                        }
                     }
                 }
             }
             ModelState.AddModelError("", "Falha no Login!");
-            return RedirectToAction(nameof(Index));
+            return View(new Agente());
         }
 
         public async Task<IActionResult> Logout()

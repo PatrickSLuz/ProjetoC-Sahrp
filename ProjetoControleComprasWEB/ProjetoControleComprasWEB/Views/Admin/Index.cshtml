@@ -1,1 +1,51 @@
-﻿
+﻿@model IEnumerable<Domain.Pedido>
+
+@{
+    ViewData["Title"] = "Home Administrador";
+}
+
+<h3>Lista de Todos os Pedidos</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#ID</th>
+            <th>Solicitante</th>
+            <th>Itens</th>
+            <th>Orçamentos</th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescMot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DtCriacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PedidoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Solicitante.NomeAgente)
+            </td>
+            <td><a href="#">ver itens</a></td>
+            <td><a href="#">ver orcamentos</a></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescMot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DtCriacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -31,7 +31,7 @@ namespace Repository
 
         public List<Pedido> ListarTodos()
         {
-            return _context.Pedidos.Include("ItemPedido").Include("Agente").ToList();
+            return _context.Pedidos.Include("ItensPedido.Produtos").Include("Orcamentos").Include("Solicitante").ToList();
         }
     }
 }

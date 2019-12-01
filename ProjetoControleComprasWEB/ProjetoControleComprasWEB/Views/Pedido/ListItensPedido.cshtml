@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Domain.ItemPedido>
+
+@{
+    ViewData["Title"] = "Itens do Pedido";
+}
+
+<h2>Itens do Pedido #ID @ViewData["PedidoId"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Produtos.NomeProduto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DtCriacao)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produtos.NomeProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DtCriacao)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

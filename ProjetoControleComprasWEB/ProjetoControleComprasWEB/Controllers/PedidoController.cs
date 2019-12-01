@@ -94,6 +94,12 @@ namespace ProjetoControleComprasWEB.Controllers
             return RedirectToAction("Create");
         }
 
+        public IActionResult ListItensPedido(int pedidoId)
+        {
+            ViewData["PedidoId"] = pedidoId;
+            return View(_pedidoDAO.ListarItensPorPedidoId(pedidoId));
+        }
+
         public IActionResult AumentarQntItemPedido(string nomeProduto)
         {
             Pedido_temp.MaisQuantidade(nomeProduto);

@@ -29,6 +29,12 @@ namespace Repository
             return true;
         }
 
+        public List<ItemPedido> ListarItensPorPedidoId(int pedidoId)
+        {
+            Pedido pedido = BuscarPorId(pedidoId);
+            return pedido.ItensPedido;
+        }
+
         public List<Pedido> ListarTodos()
         {
             return _context.Pedidos.Include("ItensPedido.Produtos").Include("Orcamentos").Include("Solicitante").ToList();

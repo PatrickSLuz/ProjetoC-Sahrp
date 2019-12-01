@@ -34,7 +34,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Solicitante.NomeAgente)
             </td>
-            <td><a href="#">ver itens</a></td>
+            <td><a asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
             <td><a href="#">ver orcamentos</a></td>
             <td>
                 @Html.DisplayFor(modelItem => item.DescMot)

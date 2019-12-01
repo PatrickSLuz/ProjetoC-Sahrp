@@ -16,6 +16,9 @@
         <a class="navbar-brand" href="#">Controle Compras</a>
         @if (SignInManager.IsSignedIn(User)) // Se usuario estiver autenticado
         {
+
+            <a class="navbar-brand" asp-action="Create" asp-controller="Pedido">Novo Pedido</a>
+
             // LOGADO Como ADMIN
             @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Administrador"))
             {

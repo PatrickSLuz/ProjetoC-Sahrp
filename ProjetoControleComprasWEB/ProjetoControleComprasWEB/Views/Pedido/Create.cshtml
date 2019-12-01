@@ -1,0 +1,80 @@
+﻿@model Domain.Pedido
+
+@{
+    ViewData["Title"] = "Novo Pedido";
+}
+
+<h2>Novo Pedido</h2>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <form asp-action="AddItemPedido">
+            <div class="form-group">
+                <label>Produto</label>
+                <select class="custom-select" asp-items="@ViewBag.Produtos" name="drpProduto">
+                    <option>Selecione...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Adicionar" class="btn btn-default" />
+            </div>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantiade</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @if (Model.ItensPedido.Count > 0)
+                    {
+                        @foreach (var item in Model.ItensPedido.ToList())
+                        {
+                            <tr>
+                                <td>@item.Produtos.NomeProduto</td>
+                                <td>
+                                    <a asp-action="DiminuirQntItemPedido"
+                                       asp-controller="Pedido"
+                                       asp-route-nomeProduto="@item.Produtos.NomeProduto"
+                                       class="btn btn-primary"> - </a>
+                                    @item.Quantidade
+                                    <a asp-action="AumentarQntItemPedido"
+                                       asp-controller="Pedido"
+                                       asp-route-nomeProduto="@item.Produtos.NomeProduto"
+                                       class="btn btn-primary"> + </a>
+                                </td>
+                                <td>
+                                    <a asp-action="RemoveItemPedido"
+                                       asp-controller="Pedido"
+                                       asp-route-nomeProduto="@item.Produtos.NomeProduto"
+                                       class="btn btn-primary">
+                                        Remover
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+
+            </tbody>
+        </table>
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Descrição</label>
+                <input asp-for="DescMot" class="form-control" />
+                <span asp-validation-for="DescMot" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-default" />
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -31,6 +31,7 @@ namespace ProjetoControleComprasWEB.Controllers
 
         public async Task<IActionResult> Index()
         {
+            // Fazendo o Cadastro do Administrador (Usuario Padão) no Identity
             AgenteLogado agLogado = new AgenteLogado
             {
                 UserName = "admin@email.com",
@@ -61,7 +62,27 @@ namespace ProjetoControleComprasWEB.Controllers
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(agente.Email, agente.Senha, true, false);
             if (result.Succeeded)
             {
-                return RedirectToAction("teste");
+                agente = _agenteDAO.BuscarAgentePorEmail(agente);
+                if (agente != null)
+                {
+                    // LOGADO Como ADMINISTRADOR
+                    if (agente.Cargo.NomeCargo.Equals("Administrador"))
+                    {
+                        return RedirectToAction(nameof(Index), "Admin");
+                    }
+
+                    // LOGADO Como GESTOR
+                    if (agente.Cargo.NomeCargo.Equals("Gestor"))
+                    {
+                        return RedirectToAction(nameof(Index), "Gestor");
+                    }
+
+                    // LOGADO Como USUARIO
+                    if (agente.Cargo.NomeCargo.Equals("Usuario"))
+                    {
+                        return RedirectToAction(nameof(Index), "Usuario");
+                    }
+                }
             }
             ModelState.AddModelError("", "Falha no Login!");
             return RedirectToAction(nameof(Index));

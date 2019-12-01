@@ -61,6 +61,11 @@ namespace Repository
             return _context.Agentes.Include("Cargo").Include("Setor").FirstOrDefault(x => x.Email.Equals(agente.Email));
         }
 
+        public Agente BuscarAgentePorEmail(string email)
+        {
+            return _context.Agentes.Include("Cargo").Include("Setor").FirstOrDefault(x => x.Email.Equals(email));
+        }
+
         public List<Agente> ListarTodos()
         {
             return _context.Agentes.Include("Cargo").Include("Setor").ToList();

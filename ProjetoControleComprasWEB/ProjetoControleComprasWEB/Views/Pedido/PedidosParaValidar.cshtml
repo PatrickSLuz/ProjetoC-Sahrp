@@ -22,6 +22,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
+            <th>Validar</th>
+            <th>Cancelar</th>
         </tr>
     </thead>
     <tbody>
@@ -37,7 +39,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Solicitante.Setor.NomeSetor)
                 </td>
-                <td><a asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
+                <td>
+                    <a asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a>
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DescMot)
                 </td>
@@ -46,6 +50,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="ValidarPedido" asp-controller="Pedido" asp-route-pedidoId="@item.PedidoId">Validar</a>
+                </td>
+                <td>
+                    <a asp-action="CancelarPedido" asp-controller="Pedido" asp-route-pedidoId="@item.PedidoId">Cancelar</a>
                 </td>
             </tr>
         }

@@ -13,113 +13,69 @@ namespace ProjetoControleComprasWEB.Controllers
     public class OrcamentoController : Controller
     {
         private readonly OrcamentoDAO _orcamentoDAO;
+        private readonly PedidoDAO _pedidoDAO;
 
-        public OrcamentoController(OrcamentoDAO orcamentoDAO)
+        public OrcamentoController(OrcamentoDAO orcamentoDAO, PedidoDAO pedidoDAO)
         {
             _orcamentoDAO = orcamentoDAO;
+            _pedidoDAO = pedidoDAO;
         }
 
         // GET: Orcamento
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int pedidoId)
         {
-            return View(await _context.Orcamentos.ToListAsync());
+            ViewData["PedidoId"] = pedidoId;
+            return View(_pedidoDAO.ListarOrcamentosPorPedido(pedidoId));
         }
 
         // GET: Orcamento/Create
-        public IActionResult Create()
+        public IActionResult Create(int pedidoId)
         {
+            ViewData["PedidoId"] = pedidoId;
             return View();
         }
 
         // POST: Orcamento/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrcamentoId,NomeEmpresa,CpfCnpjFornecedor,Valor,Descricao,DtCriacao")] Orcamento orcamento)
+        public IActionResult Create(Orcamento orcamento)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(orcamento);
-                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(orcamento);
         }
 
         // GET: Orcamento/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var orcamento = await _context.Orcamentos.FindAsync(id);
-            if (orcamento == null)
-            {
-                return NotFound();
-            }
-            return View(orcamento);
+            return View();
         }
 
         // POST: Orcamento/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Orcamento orcamento)
+        public IActionResult Edit(Orcamento orcamento)
         {
-            if (id != orcamento.OrcamentoId)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(orcamento);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!OrcamentoExists(orcamento.OrcamentoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
             return View(orcamento);
         }
 
         // GET: Orcamento/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var orcamento = await _context.Orcamentos
-                .FirstOrDefaultAsync(m => m.OrcamentoId == id);
-            if (orcamento == null)
-            {
-                return NotFound();
-            }
-
-            return View(orcamento);
+            return View();
         }
 
         // POST: Orcamento/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var orcamento = await _context.Orcamentos.FindAsync(id);
-            _context.Orcamentos.Remove(orcamento);
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
     }

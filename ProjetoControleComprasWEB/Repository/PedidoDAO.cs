@@ -29,6 +29,25 @@ namespace Repository
             return true;
         }
 
+        public bool AtualizarStatusPedido(int pedidoId, string status)
+        {
+            Pedido pedido = BuscarPorId(pedidoId);
+            if (pedido != null)
+            {
+                pedido.Status = status;
+                _context.Pedidos.Update(pedido);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public List<Orcamento> ListarOrcamentosPorPedido(int pedidoId)
+        {
+            Pedido pedido = BuscarPorId(pedidoId);
+            return pedido.Orcamentos;
+        }
+
         public List<ItemPedido> ListarItensPorPedidoId(int pedidoId)
         {
             Pedido pedido = BuscarPorId(pedidoId);

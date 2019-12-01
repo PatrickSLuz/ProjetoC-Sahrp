@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Domain.Orcamento>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Gerenciar Orçamentos";
 }
 
-<h2>Index</h2>
+<h2>Orçamentos Cadastrados para o Pedido #ID @ViewData["PedidoId"]</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-route-pedidoId="@ViewData["PedidoId"]">Novo Orçamento</a>
 </p>
 <table class="table">
     <thead>
@@ -49,9 +49,8 @@
                 @Html.DisplayFor(modelItem => item.DtCriacao)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.OrcamentoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrcamentoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrcamentoId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.OrcamentoId">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrcamentoId">Deletar</a>
             </td>
         </tr>
 }

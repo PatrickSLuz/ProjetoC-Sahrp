@@ -82,6 +82,12 @@ namespace ProjetoControleComprasWEB.Controllers
             return View(_pedidoDAO.ListarPedidosPorSetorEStatusIgual(setorId, StatusPedido.GetStatus(1)));
         }
 
+        public IActionResult ValidarPedido(int pedidoId)
+        {
+            _pedidoDAO.AtualizarStatusPedido(pedidoId, StatusPedido.GetStatus(1));
+            return RedirectToAction("PedidosParaValidar");
+        }
+
         public IActionResult AddItemPedido(Pedido p, int drpProduto)
         {
             if (drpProduto > 0)

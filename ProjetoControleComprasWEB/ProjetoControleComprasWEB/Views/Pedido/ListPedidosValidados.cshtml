@@ -48,7 +48,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
-            <td><a asp-action="" asp-controller="" asp-route-PedidoId="@item.PedidoId">Gerenciar Orçamentos</a></td>
+            <td><a asp-action="Index" asp-controller="Orcamento" asp-route-PedidoId="@item.PedidoId">Gerenciar Orçamentos</a></td>
         </tr>
         }
     </tbody>

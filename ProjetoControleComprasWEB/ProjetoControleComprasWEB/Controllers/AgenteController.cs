@@ -55,34 +55,37 @@ namespace ProjetoControleComprasWEB.Controllers
         {
             ViewBag.Cargos = new SelectList(_cargoDAO.ListarTodos(), "CargoId", "NomeCargo");
             ViewBag.Setores = new SelectList(_setorDAO.ListarTodos(), "SetorId", "NomeSetor");
-            agente.Senha = SenhaPadrao.CriarSenhaPadrao(agente);
-            // Preencher obrigatoriamente o UserName e o Email
-            AgenteLogado aLogado = new AgenteLogado
-            {
-                UserName = agente.Email,
-                Email = agente.Email
-            };
-
-            IdentityResult result = await _userManager.CreateAsync(aLogado, agente.Senha);
-            if (result.Succeeded)
-            {
-                agente.Cargo = _cargoDAO.BuscarPorId(drpCargo);
-                agente.Setor = _setorDAO.BuscarPorId(drpSetor);
-
-                //-------------------atribuir role ao user------------------------------
-                var applicationRole = await _roleManager.FindByNameAsync(agente.Cargo.NomeCargo);
-                if (applicationRole != null)
+            if (ModelState.IsValid) {
+                agente.Senha = SenhaPadrao.CriarSenhaPadrao(agente);
+                // Preencher obrigatoriamente o UserName e o Email
+                AgenteLogado aLogado = new AgenteLogado
                 {
-                    IdentityResult roleResult = await _userManager.AddToRoleAsync(aLogado, agente.Cargo.NomeCargo);
-                }
-                //-------------------atribuir role ao user------------------------------
+                    UserName = agente.Email,
+                    Email = agente.Email
+                };
 
-                if (_agenteDAO.Cadastrar(agente))
+                IdentityResult result = await _userManager.CreateAsync(aLogado, agente.Senha);
+                if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    agente.Cargo = _cargoDAO.BuscarPorId(drpCargo);
+                    agente.Setor = _setorDAO.BuscarPorId(drpSetor);
+
+                    //-------------------atribuir role ao user------------------------------
+                    var applicationRole = await _roleManager.FindByNameAsync(agente.Cargo.NomeCargo);
+                    if (applicationRole != null)
+                    {
+                        IdentityResult roleResult = await _userManager.AddToRoleAsync(aLogado, agente.Cargo.NomeCargo);
+                    }
+                    //-------------------atribuir role ao user------------------------------
+
+                    if (_agenteDAO.Cadastrar(agente))
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
+                AdicionarErros(result);
             }
-            AdicionarErros(result);
+            ModelState.AddModelError("","Selecione um Cargo e um Setor!");
             return View();
         }
 
@@ -112,7 +115,7 @@ namespace ProjetoControleComprasWEB.Controllers
             agente.Setor = _setorDAO.BuscarPorId(drpSetor);
 
             // Fazer Logout do Agente
-            await _signInManager.SignOutAsync();
+            //await _signInManager.SignOutAsync();
 
             // Fazer update do Agente
             if (_agenteDAO.Editar(agente))

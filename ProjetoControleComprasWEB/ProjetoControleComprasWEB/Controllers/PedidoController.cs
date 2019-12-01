@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Domain;
 using Repository;
 using ProjetoControleComprasWEB.Utils;
+using Microsoft.AspNetCore.Identity;
 
 namespace ProjetoControleComprasWEB.Controllers
 {
@@ -15,30 +16,65 @@ namespace ProjetoControleComprasWEB.Controllers
     {
         private readonly Context _context;
         private readonly ProdutoDAO _produtoDAO;
+        private readonly PedidoDAO _pedidoDAO;
+        private readonly AgenteDAO _agenteDAO;
+        private readonly UserManager<AgenteLogado> _userManager;
+        private readonly SignInManager<AgenteLogado> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public PedidoController(Context context, ProdutoDAO produtoDAO)
+        public PedidoController(Context context, ProdutoDAO produtoDAO, PedidoDAO pedidoDAO, AgenteDAO agenteDAO,
+            UserManager<AgenteLogado> userManager, SignInManager<AgenteLogado> signInManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _produtoDAO = produtoDAO;
+            _pedidoDAO = pedidoDAO;
+            _agenteDAO = agenteDAO;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
         }
         
         // GET: Pedido/Create
         public ActionResult Create()
         {
             ViewBag.Produtos = new SelectList(_produtoDAO.ListarTodos(), "ProdutoId", "NomeProduto");
-            return View(TempPedido.GetPedido());
+            return View(Pedido_temp.GetPedido());
         }
 
         // POST: Pedido/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Pedido pedido, int drpProduto)
+        public async Task<IActionResult> Create(Pedido pedido)
         {
             ViewBag.Produtos = new SelectList(_produtoDAO.ListarTodos(), "ProdutoId", "NomeProduto");
-            if (ModelState.IsValid)
+            if (Pedido_temp.GetListaItens().Count > 0)
             {
-                //return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    pedido.ItensPedido = Pedido_temp.GetListaItens();
+                    string email = _userManager.GetUserName(HttpContext.User); // Pegando E-MAIL de quem esta AUTENTICADO
+                    pedido.Solicitante = _agenteDAO.BuscarAgentePorEmail(email);
+
+                    //Verificar Cargo para cadastrar o STATUS
+                    if (pedido.Solicitante.Cargo.NomeCargo.Equals("Administrador") ||
+                        pedido.Solicitante.Cargo.NomeCargo.Equals("Gestor"))
+                    {
+                        pedido.Status = StatusPedido.GetStatus(1); // Aguardando Cadastro de Orçamentos
+                    }
+                    else
+                    {
+                        pedido.Status = StatusPedido.GetStatus(0); // Aguardando Validação do Gestor
+                    }
+
+                    if (_pedidoDAO.Cadastrar(pedido))
+                    {
+                        Pedido_temp.ClearData();
+                        return RedirectToAction("Index", "Login");
+                    }
+                }
             }
+            ModelState.AddModelError("", "Favor Adicionar no Mínimo 1 Produto!");
             return View(pedido);
         }
 
@@ -51,7 +87,7 @@ namespace ProjetoControleComprasWEB.Controllers
                     Produtos = _produtoDAO.BuscarPorId(drpProduto),
                     Quantidade = 1
                 };
-                if (!TempPedido.AddItem(item)) {
+                if (!Pedido_temp.AddItem(item)) {
                     ModelState.AddModelError("","Produto ja Adicionado!");
                 }
             }
@@ -60,19 +96,19 @@ namespace ProjetoControleComprasWEB.Controllers
 
         public IActionResult AumentarQntItemPedido(string nomeProduto)
         {
-            TempPedido.MaisQuantidade(nomeProduto);
+            Pedido_temp.MaisQuantidade(nomeProduto);
             return RedirectToAction("Create");
         }
 
         public IActionResult DiminuirQntItemPedido(string nomeProduto)
         {
-            TempPedido.MenosQuantidade(nomeProduto);
+            Pedido_temp.MenosQuantidade(nomeProduto);
             return RedirectToAction("Create");
         }
 
         public IActionResult RemoveItemPedido(string nomeProduto)
         {
-            TempPedido.RemoveItem(nomeProduto);
+            Pedido_temp.RemoveItem(nomeProduto);
             return RedirectToAction("Create");
         }
 

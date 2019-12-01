@@ -16,7 +16,12 @@ namespace Domain
 
         [Key]
         public int CargoId { get; set; }
+
+        [Display(Name = "Nome Cargo")]
+        [Required(ErrorMessage = "Campo Nome Obrigatório!")]
         public string NomeCargo { get; set; }
+
+        [Display(Name = "Data Criação")]
         public DateTime DtCriacao { get; set; }
     }
 }

@@ -31,7 +31,7 @@
             <tbody>
                 @if (Model != null)
                 {
-                    @if (Model.ItensPedido.Count > 0)
+                    @if (Model.ItensPedido != null)
                     {
                         @foreach (var item in Model.ItensPedido.ToList())
                         {
@@ -67,7 +67,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label class="control-label">Descrição</label>
+                <label class="control-label" asp-for="DescMot"></label>
                 <input asp-for="DescMot" class="form-control" />
                 <span asp-validation-for="DescMot" class="text-danger"></span>
             </div>

@@ -6,40 +6,40 @@ using System.Threading.Tasks;
 
 namespace ProjetoControleComprasWEB.Utils
 {
-    public class TempPedido
+    public class Pedido_temp
     {
-        private static List<ItemPedido> tempItensPedido = new List<ItemPedido>();
-        private static Pedido tempPedido = null;
+        private static List<ItemPedido> listaItensPedido_temp = new List<ItemPedido>();
+        private static Pedido pedido_temp = null;
 
         public static bool AddItem(ItemPedido item)
         {
-            foreach (var i in tempItensPedido.ToList())
+            foreach (var i in listaItensPedido_temp.ToList())
             {
                 if (i.Produtos.NomeProduto.Equals(item.Produtos.NomeProduto))
                 {
                     return false;
                 }
             }
-            tempItensPedido.Add(item);
-            tempPedido = new Pedido();
-            tempPedido.ItensPedido = tempItensPedido;
+            listaItensPedido_temp.Add(item);
+            pedido_temp = new Pedido();
+            pedido_temp.ItensPedido = listaItensPedido_temp;
             return true;
         }
 
         public static void RemoveItem(string nomeProduto)
         {
-            foreach (var item in tempItensPedido.ToList())
+            foreach (var item in listaItensPedido_temp.ToList())
             {
                 if (item.Produtos.NomeProduto.Equals(nomeProduto))
                 {
-                    tempItensPedido.Remove(item);
+                    listaItensPedido_temp.Remove(item);
                 }
             }
         }
 
         public static void MaisQuantidade(string nomeProduto)
         {
-            foreach (var i in tempItensPedido.ToList())
+            foreach (var i in listaItensPedido_temp.ToList())
             {
                 if (i.Produtos.NomeProduto.Equals(nomeProduto))
                 {
@@ -50,7 +50,7 @@ namespace ProjetoControleComprasWEB.Utils
 
         public static void MenosQuantidade(string nomeProduto)
         {
-            foreach (var i in tempItensPedido.ToList())
+            foreach (var i in listaItensPedido_temp.ToList())
             {
                 if (i.Produtos.NomeProduto.Equals(nomeProduto))
                 {
@@ -62,14 +62,20 @@ namespace ProjetoControleComprasWEB.Utils
             }
         }
 
+        public static void ClearData()
+        {
+            listaItensPedido_temp = new List<ItemPedido>();
+            pedido_temp = null;
+        }
+
         public static List<ItemPedido> GetListaItens()
         {
-            return tempItensPedido;
+            return listaItensPedido_temp;
         }
 
         public static Pedido GetPedido()
         {
-            return tempPedido;
+            return pedido_temp;
         }
     }
 }

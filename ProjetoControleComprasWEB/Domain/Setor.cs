@@ -16,7 +16,12 @@ namespace Domain
 
         [Key]
         public int SetorId { get; set; }
+
+        [Display(Name = "Nome Setor")]
+        [Required(ErrorMessage = "Campo Nome Obrigatório!")]
         public string NomeSetor { get; set; }
+
+        [Display(Name = "Data Criação")]
         public DateTime DtCriacao { get; set; }
     }
 }

@@ -12,12 +12,10 @@ namespace ProjetoControleComprasWEB.Controllers
 {
     public class SetorController : Controller
     {
-        private readonly Context _context;
         private readonly SetorDAO _setorDAO;
 
-        public SetorController(Context context, SetorDAO setorDAO)
+        public SetorController(SetorDAO setorDAO)
         {
-            _context = context;
             _setorDAO = setorDAO;
         }
 

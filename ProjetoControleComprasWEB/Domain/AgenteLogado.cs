@@ -7,5 +7,6 @@ namespace Domain
 {
     public class AgenteLogado : IdentityUser
     {
+        public static Agente Autenticado { get; set; }
     }
 }

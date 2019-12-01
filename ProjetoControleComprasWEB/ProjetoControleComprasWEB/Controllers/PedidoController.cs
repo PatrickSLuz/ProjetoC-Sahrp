@@ -14,25 +14,17 @@ namespace ProjetoControleComprasWEB.Controllers
 {
     public class PedidoController : Controller
     {
-        private readonly Context _context;
         private readonly ProdutoDAO _produtoDAO;
         private readonly PedidoDAO _pedidoDAO;
         private readonly AgenteDAO _agenteDAO;
         private readonly UserManager<AgenteLogado> _userManager;
-        private readonly SignInManager<AgenteLogado> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public PedidoController(Context context, ProdutoDAO produtoDAO, PedidoDAO pedidoDAO, AgenteDAO agenteDAO,
-            UserManager<AgenteLogado> userManager, SignInManager<AgenteLogado> signInManager,
-            RoleManager<IdentityRole> roleManager)
+        public PedidoController(ProdutoDAO produtoDAO, PedidoDAO pedidoDAO, AgenteDAO agenteDAO, UserManager<AgenteLogado> userManager)
         {
-            _context = context;
             _produtoDAO = produtoDAO;
             _pedidoDAO = pedidoDAO;
             _agenteDAO = agenteDAO;
             _userManager = userManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
         }
         
         // GET: Pedido/Create
@@ -76,6 +68,18 @@ namespace ProjetoControleComprasWEB.Controllers
             }
             ModelState.AddModelError("", "Favor Adicionar no Mínimo 1 Produto!");
             return View(pedido);
+        }
+
+        public IActionResult PedidosParaValidar(int setorId, string nomeSetor)
+        {
+            ViewData["NomeSetor"] = nomeSetor;
+            return View(_pedidoDAO.ListarPedidosPorSetorEStatusIgual(setorId, StatusPedido.GetStatus(0)));
+        }
+
+        public IActionResult ListPedidosValidados(int setorId, string nomeSetor)
+        {
+            ViewData["NomeSetor"] = nomeSetor;
+            return View(_pedidoDAO.ListarPedidosPorSetorEStatusIgual(setorId, StatusPedido.GetStatus(1)));
         }
 
         public IActionResult AddItemPedido(Pedido p, int drpProduto)

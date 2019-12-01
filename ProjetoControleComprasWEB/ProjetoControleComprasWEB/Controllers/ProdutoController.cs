@@ -12,12 +12,10 @@ namespace ProjetoControleComprasWEB.Controllers
 {
     public class ProdutoController : Controller
     {
-        private readonly Context _context;
         private readonly ProdutoDAO _produtoDAO;
 
-        public ProdutoController(Context context, ProdutoDAO produtoDAO)
+        public ProdutoController(ProdutoDAO produtoDAO)
         {
-            _context = context;
             _produtoDAO = produtoDAO;
         }
 

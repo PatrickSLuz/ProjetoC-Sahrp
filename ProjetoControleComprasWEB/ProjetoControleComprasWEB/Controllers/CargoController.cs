@@ -12,12 +12,10 @@ namespace ProjetoControleComprasWEB.Controllers
 {
     public class CargoController : Controller
     {
-        private readonly Context _context;
         private readonly CargoDAO _cargoDAO;
 
-        public CargoController(Context context, CargoDAO cargoDAO)
+        public CargoController(CargoDAO cargoDAO)
         {
-            _context = context;
             _cargoDAO = cargoDAO;
         }
 

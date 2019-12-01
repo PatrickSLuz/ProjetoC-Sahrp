@@ -73,6 +73,7 @@ namespace ProjetoControleComprasWEB.Controllers
                 if (result.Succeeded)
                 {
                     agente = _agenteDAO.BuscarAgentePorEmail(agente);
+                    AgenteLogado.Autenticado = agente;
                     if (agente != null)
                     {
                         // LOGADO Como ADMINISTRADOR
@@ -102,6 +103,7 @@ namespace ProjetoControleComprasWEB.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            AgenteLogado.Autenticado = null;
             return RedirectToAction("Index", "Login");
         }
     }

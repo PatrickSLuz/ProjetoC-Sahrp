@@ -1,26 +1,10 @@
 ﻿@model IEnumerable<Domain.Pedido>
 
 @{
-    ViewData["Title"] = "Home Gestor";
-    var nomeSetor = ViewData["NomeSetor"];
+    ViewData["Title"] = "Validar Pedidos";
 }
 
-<a asp-action="PedidosParaValidar" asp-controller="Pedido"
-   asp-route-setorId="@ViewData["SetorId"]" asp-route-nomeSetor="@nomeSetor">Validar Pedidos</a>
-
-@if (nomeSetor.Equals("Financeiro"))
-{
-    <a asp-action="ListPedidosValidados" asp-controller="Pedido"
-       asp-route-setorId="@ViewData["SetorId"]" asp-route-nomeSetor="@nomeSetor">Consultar Pedidos Validados</a>
-}
-
-@if (nomeSetor.Equals("Compras"))
-{
-    <a asp-action="" asp-controller="Pedido"
-       asp-route-setorId="@ViewData["SetorId"]" asp-route-nomeSetor="@nomeSetor">Consultar Pedidos Orçados</a>
-}
-
-<h3>Lista dos Pedidos do Setor @nomeSetor</h3>
+<h3>Pedidos para Validar - Setor @ViewData["NomeSetor"]</h3>
 
 <table class="table">
     <thead>
@@ -29,7 +13,6 @@
             <th>Solicitante</th>
             <th>Setor</th>
             <th>Itens</th>
-            <th>Orçamentos</th>
             <th>
                 @Html.DisplayNameFor(model => model.DescMot)
             </th>
@@ -55,7 +38,6 @@
                     @Html.DisplayFor(modelItem => item.Solicitante.Setor.NomeSetor)
                 </td>
                 <td><a asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
-                <td><a href="#">ver orcamentos</a></td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DescMot)
                 </td>

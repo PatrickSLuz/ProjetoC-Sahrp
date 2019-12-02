@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace ProjetoControleComprasWEB.Utils
 {
-    public class Pedido_temp
+    public class TempPedido
     {
         private static List<ItemPedido> listaItensPedido_temp = new List<ItemPedido>();
         private static Pedido pedido_temp = null;
+        private static Orcamento orcamento_temp = null;
+        public static int pedidoId { get; set; }
 
         public static bool AddItem(ItemPedido item)
         {
@@ -66,6 +68,8 @@ namespace ProjetoControleComprasWEB.Utils
         {
             listaItensPedido_temp = new List<ItemPedido>();
             pedido_temp = null;
+            orcamento_temp = null;
+            pedidoId = -1;
         }
 
         public static List<ItemPedido> GetListaItens()
@@ -76,6 +80,16 @@ namespace ProjetoControleComprasWEB.Utils
         public static Pedido GetPedido()
         {
             return pedido_temp;
+        }
+
+        public static Orcamento GetOrcamento()
+        {
+            return orcamento_temp;
+        }
+
+        public static void SetOrcamento(Orcamento o)
+        {
+            orcamento_temp = o;
         }
     }
 }

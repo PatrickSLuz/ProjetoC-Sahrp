@@ -37,7 +37,7 @@ namespace ProjetoControleComprasWEB.Controllers
                 UserName = "admin@email.com",
                 Email = "admin@email.com"
             };
-            IdentityResult result = await _userManager.CreateAsync(agLogado, "Admin@123");
+            IdentityResult result = await _userManager.CreateAsync(agLogado, "Ad@00000");
             if (result.Succeeded)
             {
                 //-------------------atribuir role ao user------------------------------

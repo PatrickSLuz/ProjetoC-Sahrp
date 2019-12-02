@@ -21,11 +21,18 @@ namespace Domain
 
         [Display(Name = "Razão Social")]
         [Required(ErrorMessage = "Campo Razão Social Obrigatório!")]
-        public string NomeEmpresa { get; set; }
+        public string Nome { get; set; }
 
         [Display(Name = "CNPJ")]
         [Required(ErrorMessage = "Campo CNPJ Obrigatório!")]
-        public string CpfCnpjFornecedor { get; set; }
+        public string Cnpj { get; set; }
+
+        [Display(Name = "CEP")]
+        public string Cep { get; set; }
+
+        [Display(Name = "Email")]
+        [EmailAddress]
+        public string Email { get; set; }
 
         [Display(Name = "Valor")]
         [Required(ErrorMessage = "Campo Valor Obrigatório!")]

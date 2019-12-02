@@ -57,7 +57,7 @@ namespace ProjetoControleComprasWEB.Data
             var setor = context.Setores.FirstOrDefault(x => x.NomeSetor.Equals("Diretoria"));
             var agentes = new Agente[]
             {
-            new Agente{NomeAgente="Administrador", Cargo=cargo, Setor=setor, Email="admin@email.com", Senha="admin"}
+            new Agente{NomeAgente="Administrador", Cpf="00000000000", Cargo=cargo, Setor=setor, Email="admin@email.com", Senha="Ad@00000"}
             };
             foreach (Agente a in agentes)
             {

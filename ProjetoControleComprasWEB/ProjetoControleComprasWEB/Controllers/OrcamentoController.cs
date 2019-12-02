@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Domain;
 using Repository;
+using ProjetoControleComprasWEB.Utils;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace ProjetoControleComprasWEB.Controllers
 {
@@ -28,20 +31,44 @@ namespace ProjetoControleComprasWEB.Controllers
             return View(_pedidoDAO.ListarOrcamentosPorPedido(pedidoId));
         }
 
+        public IActionResult BuscarCNPJ(int pedidoId, Orcamento orcamento)
+        {
+            TempPedido.pedidoId = pedidoId;
+            try
+            {
+                orcamento.Cnpj = orcamento.Cnpj.Replace(".", "").Replace("/", "").Replace("-", "");
+                string url = "https://www.receitaws.com.br/v1/cnpj/"+orcamento.Cnpj;
+                WebClient client = new WebClient();
+                orcamento = JsonConvert.DeserializeObject<Orcamento>(client.DownloadString(url));
+                TempPedido.SetOrcamento(orcamento);
+            }
+            catch (Exception)
+            {
+                
+            }
+            return RedirectToAction("Create", "Orcamento");
+        }
+
         // GET: Orcamento/Create
         public IActionResult Create(int pedidoId)
         {
-            ViewData["PedidoId"] = pedidoId;
-            return View();
+            if (pedidoId <= 0)
+                ViewData["PedidoId"] = TempPedido.pedidoId;
+            else
+                ViewData["PedidoId"] = pedidoId;
+
+            return View(TempPedido.GetOrcamento());
         }
 
         // POST: Orcamento/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Orcamento orcamento)
+        public IActionResult Create(Orcamento orcamento, int pedidoId)
         {
             if (ModelState.IsValid)
             {
+                orcamento.Pedido = _pedidoDAO.BuscarPorId(pedidoId);
+                _orcamentoDAO.Cadastrar(orcamento);
                 return RedirectToAction(nameof(Index));
             }
             return View(orcamento);

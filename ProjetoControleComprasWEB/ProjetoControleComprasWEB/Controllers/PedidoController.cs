@@ -31,7 +31,7 @@ namespace ProjetoControleComprasWEB.Controllers
         public ActionResult Create()
         {
             ViewBag.Produtos = new SelectList(_produtoDAO.ListarTodos(), "ProdutoId", "NomeProduto");
-            return View(Pedido_temp.GetPedido());
+            return View(TempPedido.GetPedido());
         }
 
         // POST: Pedido/Create
@@ -40,11 +40,11 @@ namespace ProjetoControleComprasWEB.Controllers
         public async Task<IActionResult> Create(Pedido pedido)
         {
             ViewBag.Produtos = new SelectList(_produtoDAO.ListarTodos(), "ProdutoId", "NomeProduto");
-            if (Pedido_temp.GetListaItens().Count > 0)
+            if (TempPedido.GetListaItens().Count > 0)
             {
                 if (ModelState.IsValid)
                 {
-                    pedido.ItensPedido = Pedido_temp.GetListaItens();
+                    pedido.ItensPedido = TempPedido.GetListaItens();
                     string email = _userManager.GetUserName(HttpContext.User); // Pegando E-MAIL de quem esta AUTENTICADO
                     pedido.Solicitante = _agenteDAO.BuscarAgentePorEmail(email);
 
@@ -61,7 +61,7 @@ namespace ProjetoControleComprasWEB.Controllers
 
                     if (_pedidoDAO.Cadastrar(pedido))
                     {
-                        Pedido_temp.ClearData();
+                        TempPedido.ClearData();
                         return RedirectToAction("Index", "Login");
                     }
                 }
@@ -79,7 +79,7 @@ namespace ProjetoControleComprasWEB.Controllers
         public IActionResult ListPedidosValidados(int setorId, string nomeSetor)
         {
             ViewData["NomeSetor"] = nomeSetor;
-            return View(_pedidoDAO.ListarPedidosPorSetorEStatusIgual(setorId, StatusPedido.GetStatus(1)));
+            return View(_pedidoDAO.ListarPedidosPorStatus(StatusPedido.GetStatus(1)));
         }
 
         public IActionResult ValidarPedido(int pedidoId)
@@ -97,7 +97,7 @@ namespace ProjetoControleComprasWEB.Controllers
                     Produtos = _produtoDAO.BuscarPorId(drpProduto),
                     Quantidade = 1
                 };
-                if (!Pedido_temp.AddItem(item)) {
+                if (!TempPedido.AddItem(item)) {
                     ModelState.AddModelError("","Produto ja Adicionado!");
                 }
             }
@@ -112,19 +112,19 @@ namespace ProjetoControleComprasWEB.Controllers
 
         public IActionResult AumentarQntItemPedido(string nomeProduto)
         {
-            Pedido_temp.MaisQuantidade(nomeProduto);
+            TempPedido.MaisQuantidade(nomeProduto);
             return RedirectToAction("Create");
         }
 
         public IActionResult DiminuirQntItemPedido(string nomeProduto)
         {
-            Pedido_temp.MenosQuantidade(nomeProduto);
+            TempPedido.MenosQuantidade(nomeProduto);
             return RedirectToAction("Create");
         }
 
         public IActionResult RemoveItemPedido(string nomeProduto)
         {
-            Pedido_temp.RemoveItem(nomeProduto);
+            TempPedido.RemoveItem(nomeProduto);
             return RedirectToAction("Create");
         }
 

@@ -60,6 +60,12 @@ namespace Repository
                 Where(x => x.Solicitante.Setor.SetorId.Equals(idSetor)).ToList();
         }
 
+        public List<Pedido> ListarPedidosPorStatus(string status)
+        {
+            return _context.Pedidos.Include("ItensPedido.Produtos").Include("Orcamentos").Include("Solicitante.Setor").
+                Where(x => x.Status.Equals(status)).ToList();
+        }
+
         public List<Pedido> ListarPedidosPorSetorEStatusIgual(int idSetor, string status)
         {
             return _context.Pedidos.Include("ItensPedido.Produtos").Include("Orcamentos").Include("Solicitante.Setor").

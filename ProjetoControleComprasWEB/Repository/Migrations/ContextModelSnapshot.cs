@@ -27,13 +27,16 @@ namespace Repository.Migrations
 
                     b.Property<int?>("CargoId");
 
-                    b.Property<string>("Cpf");
+                    b.Property<string>("Cpf")
+                        .IsRequired();
 
                     b.Property<DateTime>("DtCriacao");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
-                    b.Property<string>("NomeAgente");
+                    b.Property<string>("NomeAgente")
+                        .IsRequired();
 
                     b.Property<string>("Senha");
 
@@ -107,7 +110,8 @@ namespace Repository.Migrations
 
                     b.Property<DateTime>("DtCriacao");
 
-                    b.Property<string>("NomeCargo");
+                    b.Property<string>("NomeCargo")
+                        .IsRequired();
 
                     b.HasKey("CargoId");
 
@@ -143,13 +147,20 @@ namespace Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CpfCnpjFornecedor");
+                    b.Property<string>("Cep");
 
-                    b.Property<string>("Descricao");
+                    b.Property<string>("Cnpj")
+                        .IsRequired();
+
+                    b.Property<string>("Descricao")
+                        .IsRequired();
 
                     b.Property<DateTime>("DtCriacao");
 
-                    b.Property<string>("NomeEmpresa");
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Nome")
+                        .IsRequired();
 
                     b.Property<int?>("PedidoId");
 
@@ -168,7 +179,8 @@ namespace Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DescMot");
+                    b.Property<string>("DescMot")
+                        .IsRequired();
 
                     b.Property<DateTime>("DtCriacao");
 
@@ -191,7 +203,8 @@ namespace Repository.Migrations
 
                     b.Property<DateTime>("DtCriacao");
 
-                    b.Property<string>("NomeProduto");
+                    b.Property<string>("NomeProduto")
+                        .IsRequired();
 
                     b.HasKey("ProdutoId");
 
@@ -206,7 +219,8 @@ namespace Repository.Migrations
 
                     b.Property<DateTime>("DtCriacao");
 
-                    b.Property<string>("NomeSetor");
+                    b.Property<string>("NomeSetor")
+                        .IsRequired();
 
                     b.HasKey("SetorId");
 

@@ -22,7 +22,9 @@ namespace Repository
 
         public bool Cadastrar(Orcamento objeto)
         {
-            throw new NotImplementedException();
+            _context.Orcamentos.Add(objeto);
+            _context.SaveChanges();
+            return true;
         }
 
         public List<Orcamento> ListarTodos()

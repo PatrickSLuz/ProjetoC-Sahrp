@@ -6,21 +6,21 @@
 
 <h3>Lista de Todos os Pedidos</h3>
 
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
-            <th>#ID</th>
-            <th>Solicitante</th>
-            <th>Setor</th>
-            <th>Itens</th>
-            <th>Orçamentos</th>
-            <th>
+            <th scope="col">#ID</th>
+            <th scope="col">Solicitante</th>
+            <th scope="col">Setor</th>
+            <th scope="col">Itens</th>
+            <th scope="col">Orçamentos</th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.DescMot)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.DtCriacao)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Status)
             </th>
         </tr>
@@ -38,7 +38,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Solicitante.Setor.NomeSetor)
             </td>
-            <td><a asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
+            <td><a class="btn btn-info" asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
             <td><a href="#">ver orcamentos</a></td>
             <td>
                 @Html.DisplayFor(modelItem => item.DescMot)

@@ -14,59 +14,64 @@
     @* Barra de Navegação *@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Controle Compras</a>
-        @if (SignInManager.IsSignedIn(User)) // Se usuario estiver autenticado
-        {
-
-            <a class="navbar-brand" asp-action="Create" asp-controller="Pedido">Novo Pedido</a>
-
-            // LOGADO Como ADMIN
-            @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Administrador"))
-            {
-                <a class="navbar-brand" asp-action="Index" asp-controller="Agente">Gerenciar Agentes</a>
-                <a class="navbar-brand" asp-action="Index" asp-controller="Cargo">Gerenciar Cargos</a>
-                <a class="navbar-brand" asp-action="Index" asp-controller="Setor">Gerenciar Setores</a>
-                <a class="navbar-brand" asp-action="Index" asp-controller="Produto">Gerenciar Produtos</a>
-            }
-
-            // LOGADO Como GESTOR
-            @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Gestor"))
-            {
-                <a class="navbar-brand" asp-action="Index" asp-controller="Agente">Gerenciar Agentes</a>
-            }
-
-            // LOGADO Como USURAIO
-            @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Usuario"))
-            {
-
-            }
-
-            <p>
-                Olá, <b>@UserManager.GetUserName(User)</b> - Cargo:
-                @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Administrador"))
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                @if (SignInManager.IsSignedIn(User)) // Se usuario estiver autenticado
                 {
-                    <b>Admin</b>
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="Create" asp-controller="Pedido">Novo Pedido</a>
+                    </li>
+
+                    // LOGADO Como ADMIN
+                    @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Administrador"))
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-action="Index" asp-controller="Agente">Gerenciar Agentes</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-action="Index" asp-controller="Cargo">Gerenciar Cargos</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-action="Index" asp-controller="Setor">Gerenciar Setores</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-action="Index" asp-controller="Produto">Gerenciar Produtos</a>
+                        </li>
+                    }
+
+                    // LOGADO Como GESTOR
+                    @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Gestor"))
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-action="Index" asp-controller="Agente">Gerenciar Agentes</a>
+                        </li>
+                    }
+
+                    // LOGADO Como USURAIO
+                    @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Usuario"))
+                    {
+                        
+                    }
+                        <a class="nav-link" href="#">
+                            Olá, @UserManager.GetUserName(User)
+                        </a>
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="Logout" asp-controller="Login">Logout</a>
+                    </li>
                 }
-                @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Gestor"))
+                else // usuario sem Logar
                 {
-                    <b>Gestor</b>
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="Login" asp-controller="Login">Login</a>
+                    </li>
                 }
-
-                @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Usuario"))
-                {
-                    <b>Usuario</b>
-                } |
-                <a class="nav-link" asp-action="Logout" asp-controller="Login">Logout</a>
-            </p>
-        }
-        else // usuario sem Logar
-        {
-            <a class="nav-link" asp-action="Login" asp-controller="Login">Login</a>
-        }
+            </ul>
+        </div>
     </nav>
     @* Barra de Navegação *@
 
     @* Conteúdo *@
-    <div class="container" style="margin-top:30px;margin-bottom:30px">
+    <div class="container" style="margin-top:30px;margin-bottom:30px;margin-left:5%;margin-right:5%">
         @RenderBody()
     </div>
     @* Conteúdo *@

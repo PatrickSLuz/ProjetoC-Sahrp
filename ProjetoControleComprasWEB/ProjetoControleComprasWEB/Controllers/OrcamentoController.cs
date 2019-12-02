@@ -27,7 +27,13 @@ namespace ProjetoControleComprasWEB.Controllers
         // GET: Orcamento
         public IActionResult Index(int pedidoId)
         {
-            ViewData["PedidoId"] = pedidoId;
+            if (pedidoId <= 0)
+            {
+                ViewData["PedidoId"] = TempPedido.pedidoId;
+                pedidoId = TempPedido.pedidoId;
+            }
+            else
+                ViewData["PedidoId"] = pedidoId;
             return View(_pedidoDAO.ListarOrcamentosPorPedido(pedidoId));
         }
 
@@ -63,11 +69,11 @@ namespace ProjetoControleComprasWEB.Controllers
         // POST: Orcamento/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Orcamento orcamento, int pedidoId)
+        public IActionResult Create(Orcamento orcamento)
         {
             if (ModelState.IsValid)
             {
-                orcamento.Pedido = _pedidoDAO.BuscarPorId(pedidoId);
+                orcamento.Pedido = _pedidoDAO.BuscarPorId(TempPedido.pedidoId);
                 _orcamentoDAO.Cadastrar(orcamento);
                 return RedirectToAction(nameof(Index));
             }

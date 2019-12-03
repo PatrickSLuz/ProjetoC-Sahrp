@@ -61,8 +61,8 @@
                 @Html.DisplayFor(modelItem => item.DtCriacao)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.OrcamentoId">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrcamentoId">Deletar</a>
+                <a asp-action="Edit" asp-route-id="@item.OrcamentoId" asp-route-pedidoId="@ViewData["PedidoId"]">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrcamentoId" asp-route-pedidoId="@ViewData["PedidoId"]">Deletar</a>
             </td>
         </tr>
 }

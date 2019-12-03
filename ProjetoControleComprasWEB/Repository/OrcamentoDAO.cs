@@ -31,5 +31,28 @@ namespace Repository
         {
             return _context.Orcamentos.ToList();
         }
+
+        public bool Delete(Orcamento objeto)
+        {
+            _context.Orcamentos.Remove(objeto);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool Editar(Orcamento objeto)
+        {
+            if (BuscarPorId(objeto.OrcamentoId) != null)
+            {
+                bool tracking = _context.ChangeTracker.Entries<Orcamento>().Any(x => x.Entity.OrcamentoId == objeto.OrcamentoId);
+                if (!tracking)
+                {
+                    _context.Orcamentos.Update(objeto);
+                }
+
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

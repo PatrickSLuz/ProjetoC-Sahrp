@@ -99,17 +99,11 @@ namespace ProjetoControleComprasWEB.Controllers
         }
 
         // GET: Orcamento/Delete/5
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, int pedidoId)
         {
-            return View();
-        }
-
-        // POST: Orcamento/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
-        {
+            TempPedido.pedidoId = pedidoId;
+            _orcamentoDAO.Delete(_orcamentoDAO.BuscarPorId(id));
             return RedirectToAction(nameof(Index));
-        }
+        }      
     }
 }

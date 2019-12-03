@@ -37,34 +37,41 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeAgente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cpf)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cargo.NomeCargo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Setor.NomeSetor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Senha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DtCriacao)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AgenteId">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.AgenteId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeAgente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cpf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cargo.NomeCargo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Setor.NomeSetor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Senha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DtCriacao)
+                </td>
+                <td>
+                    @if (!item.NomeAgente.Equals("Administrador"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.AgenteId">Edit</a>
+                        @if (!item.AgenteId.Equals(ViewData["AgenteId"]))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.AgenteId"> Delete </a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

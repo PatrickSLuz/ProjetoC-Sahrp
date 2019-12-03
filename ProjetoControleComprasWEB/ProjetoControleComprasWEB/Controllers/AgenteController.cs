@@ -38,6 +38,7 @@ namespace ProjetoControleComprasWEB.Controllers
         // GET: Agente
         public IActionResult Index()
         {
+            ViewData["AgenteId"] = AgenteLogado.Autenticado.AgenteId;
             return View(_agenteDAO.ListarTodos());
         }
 

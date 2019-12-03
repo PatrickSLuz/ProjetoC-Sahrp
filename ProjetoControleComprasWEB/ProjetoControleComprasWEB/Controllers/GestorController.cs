@@ -29,6 +29,10 @@ namespace ProjetoControleComprasWEB.Controllers
             ViewData["SetorId"] = AgenteLogado.Autenticado.Setor.SetorId;
 
             return View(_pedidoDAO.ListarPedidosPorSetor(AgenteLogado.Autenticado.Setor.SetorId));
+
+
         }
+
+
     }
 }

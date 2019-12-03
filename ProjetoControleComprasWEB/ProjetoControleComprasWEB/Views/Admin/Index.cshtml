@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.Solicitante.Setor.NomeSetor)
             </td>
             <td><a class="btn btn-info" asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
-            <td><a href="#">ver orcamentos</a></td>
+            <td><a class="btn btn-info" asp-action="ListOrcamentosPedido" asp-controller="Pedido" asp-route-pedidoId="@item.PedidoId">Ver Orçamentos</a></td>
             <td>
                 @Html.DisplayFor(modelItem => item.DescMot)
             </td>

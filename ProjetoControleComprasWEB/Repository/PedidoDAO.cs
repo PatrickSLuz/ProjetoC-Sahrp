@@ -29,11 +29,15 @@ namespace Repository
             return true;
         }
 
-        public bool AtualizarStatusPedido(int pedidoId, string status)
+        public bool AtualizarStatusPedido(int pedidoId, string status, string motivo)
         {
             Pedido pedido = BuscarPorId(pedidoId);
             if (pedido != null)
             {
+                if (!string.IsNullOrEmpty(motivo))
+                {
+                    pedido.MotivoCanc = motivo;
+                }
                 pedido.Status = status;
                 _context.Pedidos.Update(pedido);
                 _context.SaveChanges();
@@ -58,6 +62,12 @@ namespace Repository
         {
             return _context.Pedidos.Include("ItensPedido.Produtos").Include("Orcamentos").Include("Solicitante.Setor").
                 Where(x => x.Solicitante.Setor.SetorId.Equals(idSetor)).ToList();
+        }
+
+        public List<Pedido> ListarPedidosPorAgente(int agenteId)
+        {
+            return _context.Pedidos.Include("ItensPedido.Produtos").Include("Solicitante.Setor").
+                Where(x => x.Solicitante.AgenteId == agenteId).ToList();
         }
 
         public List<Pedido> ListarPedidosPorStatus(string status)

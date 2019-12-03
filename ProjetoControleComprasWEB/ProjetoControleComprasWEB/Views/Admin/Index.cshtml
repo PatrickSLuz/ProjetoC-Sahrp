@@ -23,6 +23,10 @@
             <th scope="col">
                 @Html.DisplayNameFor(model => model.Status)
             </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.MotivoCanc)
+            </th>
+            <th scope="col">Cancelar</th>
         </tr>
     </thead>
     <tbody>
@@ -48,6 +52,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MotivoCanc)
+            </td>
+            <td>
+                @if (!item.Status.Equals("Pedido Cancelado"))
+                {
+                    <a asp-action="CancelarPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Cancelar</a>
+                }
             </td>
         </tr>
         }

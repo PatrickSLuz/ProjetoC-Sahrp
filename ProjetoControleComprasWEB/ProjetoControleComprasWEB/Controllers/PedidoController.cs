@@ -84,8 +84,38 @@ namespace ProjetoControleComprasWEB.Controllers
 
         public IActionResult ValidarPedido(int pedidoId)
         {
-            _pedidoDAO.AtualizarStatusPedido(pedidoId, StatusPedido.GetStatus(1));
+            _pedidoDAO.AtualizarStatusPedido(pedidoId, StatusPedido.GetStatus(1), null);
             return RedirectToAction("PedidosParaValidar");
+        }
+
+        public IActionResult CancelarPedido(int pedidoId)
+        {
+            ViewData["pedidoId"] = pedidoId;
+            TempPedido.pedidoId = pedidoId;
+            return View(pedidoId);
+        }
+
+        [HttpPost]
+        public IActionResult CancelarPedido(int pedidoId, string motivo)
+        {
+            pedidoId = TempPedido.pedidoId;
+            if (!string.IsNullOrEmpty(motivo))
+            {
+                if(_pedidoDAO.AtualizarStatusPedido(pedidoId, StatusPedido.GetStatus(3), motivo))
+                {
+                    string cargo = AgenteLogado.Autenticado.Cargo.NomeCargo;
+                    if (cargo.Equals("Administrador"))
+                        return RedirectToAction("Index", "Admin");
+                    else if (cargo.Equals("Gestor"))
+                        return RedirectToAction("Index", "Gestor");
+                    else if (cargo.Equals("Usuario"))
+                        return RedirectToAction("Index", "Usuario");
+                }
+                ModelState.AddModelError("", "Houve um Erro ao Cancelar este Pedido!");
+                return View(pedidoId);
+            }
+            ModelState.AddModelError("", "Favor preencher o Motivo do Cancelamento!");
+            return View(pedidoId);
         }
 
         public IActionResult AddItemPedido(Pedido p, int drpProduto)

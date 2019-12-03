@@ -184,6 +184,8 @@ namespace Repository.Migrations
 
                     b.Property<DateTime>("DtCriacao");
 
+                    b.Property<string>("MotivoCanc");
+
                     b.Property<int?>("SolicitanteAgenteId");
 
                     b.Property<string>("Status");

@@ -27,6 +27,9 @@ namespace Domain
         [Required(ErrorMessage = "Campo Descrição Obrigatório!")]
         public string DescMot { get; set; }
 
+        [Display(Name = "Motivo Cancelamento")]
+        public string MotivoCanc { get; set; }
+
         public string Status { get; set; }
 
         [Display(Name = "Data Criação")]

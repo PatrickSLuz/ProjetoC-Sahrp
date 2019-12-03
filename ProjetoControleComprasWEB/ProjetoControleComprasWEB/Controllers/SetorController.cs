@@ -20,7 +20,7 @@ namespace ProjetoControleComprasWEB.Controllers
         }
 
         // GET: Setor
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View(_setorDAO.ListarTodos());
         }

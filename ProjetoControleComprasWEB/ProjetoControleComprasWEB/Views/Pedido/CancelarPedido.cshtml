@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Cancelar Pedido";
+}
+
+<h2>Cancelar Pedido #ID @ViewData["pedidoId"]</h2>
+
+<form asp-action="CancelarPedido">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label class="control-label">Motivo Cancelamento</label>
+        <input type="text" class="form-control" name="motivo"/>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Confirmar" class="btn btn-default" />
+    </div>
+</form>

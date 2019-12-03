@@ -70,6 +70,11 @@ namespace ProjetoControleComprasWEB.Controllers
             return View(pedido);
         }
 
+        public IActionResult ListOrcamentosPedido(int pedidoId)
+        {
+            return View(_pedidoDAO.ListarOrcamentosPorPedido(pedidoId));
+        }
+
         public IActionResult PedidosParaValidar(int setorId, string nomeSetor)
         {
             ViewData["NomeSetor"] = nomeSetor;

@@ -81,9 +81,11 @@ namespace ProjetoControleComprasWEB.Controllers
         }
 
         // GET: Orcamento/Edit/5
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id, int pedidoId)
         {
-            return View();
+            TempPedido.pedidoId = pedidoId;
+            ViewData["PedidoId"] = pedidoId;
+            return View(_orcamentoDAO.BuscarPorId(id));
         }
 
         // POST: Orcamento/Edit/5
@@ -93,7 +95,10 @@ namespace ProjetoControleComprasWEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                if (_orcamentoDAO.Editar(orcamento))
+                {
+                    return RedirectToAction(nameof(Index));
+                }
             }
             return View(orcamento);
         }

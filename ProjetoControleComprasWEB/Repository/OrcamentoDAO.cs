@@ -43,12 +43,7 @@ namespace Repository
         {
             if (BuscarPorId(objeto.OrcamentoId) != null)
             {
-                bool tracking = _context.ChangeTracker.Entries<Orcamento>().Any(x => x.Entity.OrcamentoId == objeto.OrcamentoId);
-                if (!tracking)
-                {
-                    _context.Orcamentos.Update(objeto);
-                }
-
+                _context.Orcamentos.Update(objeto);
                 _context.SaveChanges();
                 return true;
             }

@@ -86,6 +86,28 @@ namespace ProjetoControleComprasWEB.Controllers
             return View(_pedidoDAO.ListarPedidosPorStatus(StatusPedido.GetStatus(1)));
         }
 
+        public IActionResult FinalizarCadOrcamentos(int pedidoId)
+        {
+            TempPedido.pedidoId = pedidoId;
+            Pedido pedido = _pedidoDAO.BuscarPorId(pedidoId);
+            if (pedido != null)
+            {
+                if (pedido.Orcamentos.Count >= 2)
+                {
+                    if (_pedidoDAO.AtualizarStatusPedido(pedidoId, StatusPedido.GetStatus(2), null))
+                    {
+                        return RedirectToAction("ListPedidosValidados", "Pedido");
+                    }
+                    ViewData["Erros"] = "Houve um erro!";
+                    return RedirectToAction("Index", "Orcamento");
+                }
+                ViewData["Erros"] = "É necessario cadastrar no mínimo 2 Orçamentos por Pedido!";
+                return RedirectToAction("Index", "Orcamento");
+            }
+            ViewData["Erros"] = "Houve um erro!";
+            return RedirectToAction("Index", "Orcamento");
+        }
+
         public IActionResult ValidarPedido(int pedidoId)
         {
             _pedidoDAO.AtualizarStatusPedido(pedidoId, StatusPedido.GetStatus(1), null);

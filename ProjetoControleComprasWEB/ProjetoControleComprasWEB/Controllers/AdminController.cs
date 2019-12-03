@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Repository;
 
@@ -18,6 +19,7 @@ namespace ProjetoControleComprasWEB.Controllers
 
         public IActionResult Index()
         {
+            ViewData["NomeSetor"] = AgenteLogado.Autenticado.Cargo.NomeCargo;
             return View(_pedidoDAO.ListarTodos());
         }
     }

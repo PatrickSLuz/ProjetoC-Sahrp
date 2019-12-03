@@ -73,6 +73,10 @@ namespace ProjetoControleComprasWEB.Controllers
         public IActionResult PedidosParaValidar(int setorId, string nomeSetor)
         {
             ViewData["NomeSetor"] = nomeSetor;
+            if (AgenteLogado.Autenticado.Cargo.NomeCargo.Equals("Administrador"))
+            {
+                return View(_pedidoDAO.ListarPedidosPorStatus(StatusPedido.GetStatus(0)));
+            }
             return View(_pedidoDAO.ListarPedidosPorSetorEStatusIgual(setorId, StatusPedido.GetStatus(0)));
         }
 

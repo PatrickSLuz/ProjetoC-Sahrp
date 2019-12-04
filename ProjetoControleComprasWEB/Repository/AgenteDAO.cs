@@ -30,14 +30,10 @@ namespace Repository
 
         public bool Editar(Agente objeto)
         {
-            if (BuscarPorId(objeto.AgenteId) != null)
+            bool tracking = _context.ChangeTracker.Entries<Agente>().Any(x => x.Entity.AgenteId == objeto.AgenteId);
+            if (!tracking)
             {
-                bool tracking = _context.ChangeTracker.Entries<Agente>().Any(x => x.Entity.AgenteId == objeto.AgenteId);
-                if (!tracking)
-                {
-                    _context.Agentes.Update(objeto);
-                }
-                
+                _context.Agentes.Update(objeto);
                 _context.SaveChanges();
                 return true;
             }

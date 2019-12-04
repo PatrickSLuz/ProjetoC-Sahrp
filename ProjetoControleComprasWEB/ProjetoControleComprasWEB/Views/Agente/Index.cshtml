@@ -64,10 +64,10 @@
                 <td>
                     @if (!item.NomeAgente.Equals("Administrador"))
                     {
-                        <a asp-action="Edit" asp-route-id="@item.AgenteId">Edit</a>
+                        <a asp-action="Edit" asp-route-id="@item.AgenteId">Editar</a>
                         @if (!item.AgenteId.Equals(ViewData["AgenteId"]))
                         {
-                            <a asp-action="Delete" asp-route-id="@item.AgenteId"> Delete </a>
+                            <a asp-action="Delete" asp-route-id="@item.AgenteId"> | Deletar</a>
                         }
                     }
                 </td>

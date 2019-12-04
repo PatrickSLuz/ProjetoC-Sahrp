@@ -41,13 +41,9 @@ namespace Repository
 
         public bool Editar(Orcamento objeto)
         {
-            if (BuscarPorId(objeto.OrcamentoId) != null)
-            {
-                _context.Orcamentos.Update(objeto);
-                _context.SaveChanges();
-                return true;
-            }
-            return false;
+            _context.Orcamentos.Update(objeto);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

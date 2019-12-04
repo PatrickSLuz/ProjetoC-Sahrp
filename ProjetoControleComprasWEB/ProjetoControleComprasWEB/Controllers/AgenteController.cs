@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ProjetoControleComprasWEB.Controllers
 {
-    [Authorize(Roles = "Administrador, Gestor")]
+    //[Authorize(Roles = "Administrador, Gestor")]
     public class AgenteController : Controller
     {
         private readonly AgenteDAO _agenteDAO;
@@ -99,10 +99,12 @@ namespace ProjetoControleComprasWEB.Controllers
         }
 
         // GET: Agente/Edit/5
-        public IActionResult Edit(int id)
+        public IActionResult Edit(string usuario, int id)
         {
             ViewBag.Cargos = new SelectList(_cargoDAO.ListarTodos(), "CargoId", "NomeCargo");
             ViewBag.Setores = new SelectList(_setorDAO.ListarTodos(), "SetorId", "NomeSetor");
+            ViewData["usuario"] = usuario;
+            id = AgenteLogado.Autenticado.AgenteId;
             return View(_agenteDAO.BuscarPorId(id));
         }
 
@@ -121,6 +123,10 @@ namespace ProjetoControleComprasWEB.Controllers
             // Fazer update do Agente
             if (_agenteDAO.Editar(agente))
             {
+                if (AgenteLogado.Autenticado.Cargo.NomeCargo.Equals("Usuario"))
+                {
+                    return RedirectToAction("Index", "Usuario");
+                }
                 return RedirectToAction("Index");
             }
             return View(agente);

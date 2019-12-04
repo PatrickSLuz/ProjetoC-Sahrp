@@ -72,6 +72,11 @@ namespace ProjetoControleComprasWEB.Utils
             pedidoId = -1;
         }
 
+        public static void ClearOrcamento()
+        {
+            orcamento_temp = null;
+        }
+
         public static List<ItemPedido> GetListaItens()
         {
             return listaItensPedido_temp;

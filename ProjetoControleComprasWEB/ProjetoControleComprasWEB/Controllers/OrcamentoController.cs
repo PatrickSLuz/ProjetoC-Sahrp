@@ -75,6 +75,7 @@ namespace ProjetoControleComprasWEB.Controllers
             {
                 orcamento.Pedido = _pedidoDAO.BuscarPorId(TempPedido.pedidoId);
                 _orcamentoDAO.Cadastrar(orcamento);
+                TempPedido.ClearOrcamento();
                 return RedirectToAction(nameof(Index));
             }
             return View(orcamento);

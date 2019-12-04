@@ -81,7 +81,11 @@
                         <li class="nav-item active">
                             <a class="nav-link" asp-action="Create" asp-controller="Pedido">Novo Pedido</a>
                         </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-action="Edit" asp-controller="Agente" asp-route-usuario="true" >Editar meus Dados</a>
+                        </li>
                     }
+
                     <a class="nav-link" href="#">
                         Olá, @UserManager.GetUserName(User)
                     </a>

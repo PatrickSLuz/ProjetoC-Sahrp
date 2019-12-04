@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Domain.Pedido>
 
 @{
-    ViewData["Title"] = "Validar Pedidos";
+    ViewData["Title"] = "Pedidos Orçados";
     var nomeSetor = ViewData["NomeSetor"];
 }
 
@@ -24,26 +24,25 @@ else
     }
 }
 
-<h3>Pedidos para Validar - Setor @ViewData["NomeSetor"]</h3>
+<h2>Pedidos Orçados - Aguardando Compra - Setor @ViewData["NomeSetor"]</h2>
 
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
-            <th>#ID</th>
-            <th>Solicitante</th>
-            <th>Setor</th>
-            <th>Itens</th>
-            <th>
+            <th scope="col">#ID</th>
+            <th scope="col">Solicitante</th>
+            <th scope="col">Setor</th>
+            <th scope="col">Itens</th>
+            <th scope="col">Orçamentos</th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.DescMot)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.DtCriacao)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Status)
             </th>
-            <th>Validar</th>
-            <th>Cancelar</th>
         </tr>
     </thead>
     <tbody>
@@ -59,9 +58,8 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.Solicitante.Setor.NomeSetor)
                 </td>
-                <td>
-                    <a asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a>
-                </td>
+                <td><a class="btn btn-info" asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
+                <td><a class="btn btn-info" asp-action="ListOrcamentosPedido" asp-controller="Pedido" asp-route-pedidoId="@item.PedidoId">Ver Orçamentos</a></td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DescMot)
                 </td>
@@ -70,12 +68,6 @@ else
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    <a asp-action="ValidarPedido" asp-controller="Pedido" asp-route-pedidoId="@item.PedidoId">Validar</a>
-                </td>
-                <td>
-                    <a asp-action="CancelarPedido" asp-controller="Pedido" asp-route-pedidoId="@item.PedidoId">Cancelar</a>
                 </td>
             </tr>
         }

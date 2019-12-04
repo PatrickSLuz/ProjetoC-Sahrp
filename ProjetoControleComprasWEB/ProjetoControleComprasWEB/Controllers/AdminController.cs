@@ -19,7 +19,10 @@ namespace ProjetoControleComprasWEB.Controllers
 
         public IActionResult Index()
         {
-            ViewData["NomeSetor"] = AgenteLogado.Autenticado.Cargo.NomeCargo;
+            // Verificar quem esta Autenticado
+            // pera pegar o Setor
+            ViewData["NomeSetor"] = AgenteLogado.Autenticado.Setor.NomeSetor;
+            ViewData["SetorId"] = AgenteLogado.Autenticado.Setor.SetorId;
             return View(_pedidoDAO.ListarTodos());
         }
     }

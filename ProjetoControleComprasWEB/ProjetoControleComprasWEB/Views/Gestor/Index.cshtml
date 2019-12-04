@@ -16,7 +16,7 @@
 
 @if (nomeSetor.Equals("Compras"))
 {
-    <a asp-action="" asp-controller="Pedido"
+    <a asp-action="ListPedidosOrcados" asp-controller="Pedido"
        asp-route-setorId="@ViewData["SetorId"]" asp-route-nomeSetor="@nomeSetor">Consultar Pedidos Orçados</a>
 }
 

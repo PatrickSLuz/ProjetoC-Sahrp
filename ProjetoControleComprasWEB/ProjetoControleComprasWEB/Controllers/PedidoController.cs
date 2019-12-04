@@ -70,8 +70,10 @@ namespace ProjetoControleComprasWEB.Controllers
             return View(pedido);
         }
 
-        public IActionResult ListOrcamentosPedido(int pedidoId)
+        public IActionResult ListOrcamentosPedido(int pedidoId, string nomeSetor)
         {
+            ViewData["NomeSetor"] = nomeSetor;
+            ViewData["PedidoId"] = pedidoId;
             return View(_pedidoDAO.ListarOrcamentosPorPedido(pedidoId));
         }
 
@@ -89,6 +91,12 @@ namespace ProjetoControleComprasWEB.Controllers
         {
             ViewData["NomeSetor"] = nomeSetor;
             return View(_pedidoDAO.ListarPedidosPorStatus(StatusPedido.GetStatus(1)));
+        }
+
+        public IActionResult ListPedidosOrcados(int setorId, string nomeSetor)
+        {
+            ViewData["NomeSetor"] = nomeSetor;
+            return View(_pedidoDAO.ListarPedidosPorStatus(StatusPedido.GetStatus(2)));
         }
 
         public IActionResult FinalizarCadOrcamentos(int pedidoId)

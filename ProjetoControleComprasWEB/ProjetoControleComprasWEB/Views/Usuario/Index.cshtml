@@ -5,6 +5,11 @@
     var nomeSetor = ViewData["NomeSetor"];
 }
 
+@if (ViewData["newPedido"].Equals("true"))
+{
+    <a class="btn btn-info" asp-action="Create" asp-controller="Pedido">Novo Pedido</a>
+}
+
 <h3>Lista dos meus Pedidos</h3>
 
 <table class="table">
@@ -32,38 +37,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PedidoId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Solicitante.NomeAgente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Solicitante.Setor.NomeSetor)
-            </td>
-            <td>
-                <a class="btn btn-info" asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescMot)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DtCriacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MotivoCanc)
-            </td>
-            <td>
-                @if (!item.Status.Equals("Pedido Cancelado"))
-                {
-                    <a class="btn btn-outline-danger" asp-action="CancelarPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Cancelar</a>
-                }
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PedidoId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solicitante.NomeAgente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solicitante.Setor.NomeSetor)
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescMot)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DtCriacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MotivoCanc)
+                </td>
+                <td>
+                    @if (!item.Status.Equals("Pedido Cancelado"))
+                    {
+                        <a class="btn btn-outline-danger" asp-action="CancelarPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Cancelar</a>
+                    }
+                </td>
+            </tr>
         }
     </tbody>
 </table>

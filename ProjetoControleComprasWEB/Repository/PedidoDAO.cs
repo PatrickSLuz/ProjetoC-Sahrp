@@ -71,6 +71,16 @@ namespace Repository
                 Where(x => x.Solicitante.AgenteId == agenteId).ToList();
         }
 
+        public List<Pedido> ListarPedidosDeUsuario(int agenteId)
+        {
+            return _context.Pedidos.Include("ItensPedido.Produtos").Include("Solicitante.Setor").
+                Where(x => x.Solicitante.AgenteId == agenteId).
+                Where(x => x.Status.Equals("Aguardando Validação do Gestor") ||
+                x.Status.Equals("Aguardando Cadastro de Orçamentos") ||
+                x.Status.Equals("Aguardando Compra do Pedido"))
+                .ToList();
+        }
+
         public List<Pedido> ListarPedidosPorStatus(string status)
         {
             return _context.Pedidos.Include("ItensPedido.Produtos").Include("Orcamentos").Include("Solicitante.Setor").

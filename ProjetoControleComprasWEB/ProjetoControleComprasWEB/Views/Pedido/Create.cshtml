@@ -17,7 +17,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Adicionar" class="btn btn-default" />
+                <input type="submit" value="Adicionar" class="btn btn-primary" />
             </div>
         </form>
 
@@ -41,18 +41,18 @@
                                     <a asp-action="DiminuirQntItemPedido"
                                        asp-controller="Pedido"
                                        asp-route-nomeProduto="@item.Produtos.NomeProduto"
-                                       class="btn btn-primary"> - </a>
+                                       class="btn btn-primary btn-sm"> - </a>
                                     @item.Quantidade
                                     <a asp-action="AumentarQntItemPedido"
                                        asp-controller="Pedido"
                                        asp-route-nomeProduto="@item.Produtos.NomeProduto"
-                                       class="btn btn-primary"> + </a>
+                                       class="btn btn-primary btn-sm"> + </a>
                                 </td>
                                 <td>
                                     <a asp-action="RemoveItemPedido"
                                        asp-controller="Pedido"
                                        asp-route-nomeProduto="@item.Produtos.NomeProduto"
-                                       class="btn btn-primary">
+                                       class="btn btn-outline-danger btn-sm">
                                         Remover
                                     </a>
                                 </td>
@@ -72,7 +72,7 @@
                 <span asp-validation-for="DescMot" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Cadastrar" class="btn btn-default" />
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
             </div>
         </form>
 

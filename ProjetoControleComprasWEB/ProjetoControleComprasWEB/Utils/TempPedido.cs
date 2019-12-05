@@ -12,6 +12,7 @@ namespace ProjetoControleComprasWEB.Utils
         private static Pedido pedido_temp = null;
         private static Orcamento orcamento_temp = null;
         public static int pedidoId { get; set; }
+        public static string msg { get; set; }
 
         public static bool AddItem(ItemPedido item)
         {

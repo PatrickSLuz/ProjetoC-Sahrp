@@ -58,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.MotivoCanc)
             </td>
             <td>
-                @if (!item.Status.Equals("Pedido Cancelado"))
+                @if (!item.Status.Equals("Pedido Cancelado") && !item.Status.Equals("Pedido Finalizado"))
                 {
                     <a asp-action="CancelarPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Cancelar</a>
                 }

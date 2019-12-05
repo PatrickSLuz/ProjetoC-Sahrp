@@ -101,6 +101,7 @@ namespace ProjetoControleComprasWEB.Controllers
 
         public IActionResult FinalizarCadOrcamentos(int pedidoId)
         {
+            ViewData["NomeSetor"] = AgenteLogado.Autenticado.Setor.NomeSetor;
             TempPedido.pedidoId = pedidoId;
             Pedido pedido = _pedidoDAO.BuscarPorId(pedidoId);
             if (pedido != null)
@@ -109,20 +110,33 @@ namespace ProjetoControleComprasWEB.Controllers
                 {
                     if (_pedidoDAO.AtualizarStatusPedido(pedidoId, StatusPedido.GetStatus(2), null))
                     {
+                        TempPedido.msg = null;
                         return RedirectToAction("ListPedidosValidados", "Pedido");
                     }
-                    ViewData["Erros"] = "Houve um erro!";
+                    TempPedido.msg = "Houve um erro!";
                     return RedirectToAction("Index", "Orcamento");
                 }
-                ViewData["Erros"] = "É necessario cadastrar no mínimo 2 Orçamentos por Pedido!";
+                TempPedido.msg = "É necessario cadastrar no mínimo 2 Orçamentos por Pedido!";
                 return RedirectToAction("Index", "Orcamento");
             }
-            ViewData["Erros"] = "Houve um erro!";
+            TempPedido.msg = "Houve um erro!";
             return RedirectToAction("Index", "Orcamento");
+        }
+
+        public IActionResult FinalizarPedido(int pedidoId)
+        {
+            ViewData["NomeSetor"] = AgenteLogado.Autenticado.Setor.NomeSetor;
+            if (_pedidoDAO.AtualizarStatusPedido(pedidoId, StatusPedido.GetStatus(4), null))
+            {
+                // Mensagem de Sucesso
+            }
+            // Mensagem de Erro
+            return RedirectToAction("ListPedidosOrcados", "Pedido");
         }
 
         public IActionResult ValidarPedido(int pedidoId)
         {
+            ViewData["NomeSetor"] = AgenteLogado.Autenticado.Setor.NomeSetor;
             _pedidoDAO.AtualizarStatusPedido(pedidoId, StatusPedido.GetStatus(1), null);
             return RedirectToAction("PedidosParaValidar");
         }

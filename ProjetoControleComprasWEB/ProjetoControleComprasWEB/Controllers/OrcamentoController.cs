@@ -27,6 +27,7 @@ namespace ProjetoControleComprasWEB.Controllers
         // GET: Orcamento
         public IActionResult Index(int pedidoId)
         {
+            ViewData["NomeSetor"] = AgenteLogado.Autenticado.Setor.NomeSetor;
             if (pedidoId <= 0)
             {
                 ViewData["PedidoId"] = TempPedido.pedidoId;
@@ -34,6 +35,8 @@ namespace ProjetoControleComprasWEB.Controllers
             }
             else
                 ViewData["PedidoId"] = pedidoId;
+
+            ViewData["Erros"] = TempPedido.msg;
             return View(_pedidoDAO.ListarOrcamentosPorPedido(pedidoId));
         }
 
@@ -58,6 +61,7 @@ namespace ProjetoControleComprasWEB.Controllers
         // GET: Orcamento/Create
         public IActionResult Create(int pedidoId)
         {
+            TempPedido.msg = null;
             if (pedidoId <= 0)
                 ViewData["PedidoId"] = TempPedido.pedidoId;
             else
@@ -84,6 +88,7 @@ namespace ProjetoControleComprasWEB.Controllers
         // GET: Orcamento/Edit/5
         public IActionResult Edit(int id, int pedidoId)
         {
+            TempPedido.msg = null;
             TempPedido.pedidoId = pedidoId;
             ViewData["PedidoId"] = pedidoId;
             return View(_orcamentoDAO.BuscarPorId(id));
@@ -107,6 +112,7 @@ namespace ProjetoControleComprasWEB.Controllers
         // GET: Orcamento/Delete/5
         public IActionResult Delete(int id, int pedidoId)
         {
+            TempPedido.msg = null;
             TempPedido.pedidoId = pedidoId;
             _orcamentoDAO.Delete(_orcamentoDAO.BuscarPorId(id));
             return RedirectToAction(nameof(Index));

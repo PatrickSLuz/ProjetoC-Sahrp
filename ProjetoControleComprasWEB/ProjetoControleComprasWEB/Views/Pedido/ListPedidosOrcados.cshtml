@@ -48,28 +48,29 @@ else
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PedidoId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Solicitante.NomeAgente)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Solicitante.Setor.NomeSetor)
-                </td>
-                <td><a class="btn btn-info" asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
-                <td><a class="btn btn-info" asp-action="ListOrcamentosPedido" asp-controller="Pedido" asp-route-pedidoId="@item.PedidoId">Ver Orçamentos</a></td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DescMot)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DtCriacao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PedidoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Solicitante.NomeAgente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Solicitante.Setor.NomeSetor)
+            </td>
+            <td><a class="btn btn-info" asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
+            <td><a class="btn btn-info" asp-action="ListOrcamentosPedido" asp-controller="Pedido" asp-route-pedidoId="@item.PedidoId">Ver Orçamentos</a></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescMot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DtCriacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td><a class="btn btn-info" asp-action="FinalizarPedido" asp-controller="Pedido" asp-route-pedidoId="@item.PedidoId">Finalizar Pedido</a></td>
+        </tr>
         }
     </tbody>
 </table>

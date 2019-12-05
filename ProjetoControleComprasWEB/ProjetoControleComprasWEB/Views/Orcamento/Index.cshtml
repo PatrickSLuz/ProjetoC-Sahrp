@@ -8,11 +8,11 @@
 <h2>Orçamentos Cadastrados para o Pedido #ID @ViewData["PedidoId"]</h2>
 
 <p>
-    <a asp-action="Create" asp-route-pedidoId="@ViewData["PedidoId"]">Novo Orçamento</a>
+    <a class="btn btn-info" asp-action="Create" asp-route-pedidoId="@ViewData["PedidoId"]">Novo Orçamento</a>
 </p>
 
 <p>
-    <a asp-action="FinalizarCadOrcamentos" asp-controller="Pedido" asp-route-pedidoId="@ViewData["PedidoId"]">Finalizar Cadastro de Orçamentos</a>
+    <a class="btn btn-info" asp-action="FinalizarCadOrcamentos" asp-controller="Pedido" asp-route-pedidoId="@ViewData["PedidoId"]">Finalizar Cadastro de Orçamentos</a>
 </p>
 
 <p>
@@ -44,38 +44,41 @@
                 @Html.DisplayNameFor(model => model.DtCriacao)
             </th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cnpj)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cep)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Valor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descricao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DtCriacao)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.OrcamentoId" asp-route-pedidoId="@ViewData["PedidoId"]">Editar</a> |
-                    <a asp-action="Delete" asp-route-id="@item.OrcamentoId" asp-route-pedidoId="@ViewData["PedidoId"]">Deletar</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cnpj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cep)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DtCriacao)
+            </td>
+            <td>
+                <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.OrcamentoId" asp-route-pedidoId="@ViewData["PedidoId"]">Editar</a>
+            </td>
+            <td>
+            <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.OrcamentoId" asp-route-pedidoId="@ViewData["PedidoId"]">Deletar</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

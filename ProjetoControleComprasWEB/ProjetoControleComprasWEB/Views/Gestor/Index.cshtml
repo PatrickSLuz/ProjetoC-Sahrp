@@ -5,18 +5,18 @@
     var nomeSetor = ViewData["NomeSetor"];
 }
 
-<a asp-action="PedidosParaValidar" asp-controller="Pedido"
+<a class="btn btn-info" asp-action="PedidosParaValidar" asp-controller="Pedido"
    asp-route-setorId="@ViewData["SetorId"]" asp-route-nomeSetor="@nomeSetor">Validar Pedidos</a>
 
 @if (nomeSetor.Equals("Financeiro"))
 {
-    <a asp-action="ListPedidosValidados" asp-controller="Pedido"
+    <a class="btn btn-info" asp-action="ListPedidosValidados" asp-controller="Pedido"
        asp-route-setorId="@ViewData["SetorId"]" asp-route-nomeSetor="@nomeSetor">Consultar Pedidos Validados</a>
 }
 
 @if (nomeSetor.Equals("Compras"))
 {
-    <a asp-action="ListPedidosOrcados" asp-controller="Pedido"
+    <a class="btn btn-info" asp-action="ListPedidosOrcados" asp-controller="Pedido"
        asp-route-setorId="@ViewData["SetorId"]" asp-route-nomeSetor="@nomeSetor">Consultar Pedidos Orçados</a>
 }
 
@@ -57,8 +57,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Solicitante.Setor.NomeSetor)
                 </td>
-                <td><a asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
-                <td><a href="#">ver orcamentos</a></td>
+                <td><a class="btn btn-info btn-sm" asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
+                <td><a class="btn btn-info btn-sm" asp-action="ListOrcamentosPedido" asp-controller="Pedido" asp-route-pedidoId="@item.PedidoId">Ver Orçamentos</a></td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DescMot)
                 </td>

@@ -103,7 +103,19 @@ namespace ProjetoControleComprasWEB.Controllers
         {
             ViewBag.Cargos = new SelectList(_cargoDAO.ListarTodos(), "CargoId", "NomeCargo");
             ViewBag.Setores = new SelectList(_setorDAO.ListarTodos(), "SetorId", "NomeSetor");
-            ViewData["usuario"] = usuario;
+
+            if (string.IsNullOrEmpty(usuario))
+            {
+                if (!AgenteLogado.Autenticado.Cargo.NomeCargo.Equals("Usuario"))
+                {
+                    ViewData["usuario"] = "false";
+                }    
+            }
+            else
+            {
+                ViewData["usuario"] = usuario;
+            }
+
             id = AgenteLogado.Autenticado.AgenteId;
             return View(_agenteDAO.BuscarPorId(id));
         }

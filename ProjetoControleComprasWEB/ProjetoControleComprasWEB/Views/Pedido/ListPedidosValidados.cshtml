@@ -8,18 +8,18 @@
 @if (nomeSetor.Equals("Diretoria")) { }
 else
 {
-    <a asp-action="PedidosParaValidar" asp-controller="Pedido"
+    <a class="btn btn-info" asp-action="PedidosParaValidar" asp-controller="Pedido"
        asp-route-setorId="@ViewData["SetorId"]" asp-route-nomeSetor="@nomeSetor">Validar Pedidos</a>
 
     @if (nomeSetor.Equals("Financeiro"))
     {
-        <a asp-action="ListPedidosValidados" asp-controller="Pedido"
+        <a class="btn btn-info" asp-action="ListPedidosValidados" asp-controller="Pedido"
            asp-route-setorId="@ViewData["SetorId"]" asp-route-nomeSetor="@nomeSetor">Consultar Pedidos Validados</a>
     }
 
     @if (nomeSetor.Equals("Compras"))
     {
-        <a asp-action="ListPedidosOrcados" asp-controller="Pedido"
+        <a class="btn btn-info" asp-action="ListPedidosOrcados" asp-controller="Pedido"
            asp-route-setorId="@ViewData["SetorId"]" asp-route-nomeSetor="@nomeSetor">Consultar Pedidos Orçados</a>
     }
 }
@@ -58,7 +58,7 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.Solicitante.Setor.NomeSetor)
                 </td>
-                <td><a asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
+                <td><a class="btn btn-info btn-sm" asp-action="ListItensPedido" asp-controller="Pedido" asp-route-PedidoId="@item.PedidoId">Ver Itens</a></td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DescMot)
                 </td>
@@ -68,7 +68,7 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
-                <td><a asp-action="Index" asp-controller="Orcamento" asp-route-pedidoId="@item.PedidoId">Gerenciar Orçamentos deste Pedido</a></td>
+                <td><a class="btn btn-info" asp-action="Index" asp-controller="Orcamento" asp-route-pedidoId="@item.PedidoId">Gerenciar Orçamentos deste Pedido</a></td>
             </tr>
         }
     </tbody>

@@ -116,7 +116,10 @@ namespace ProjetoControleComprasWEB.Controllers
                 ViewData["usuario"] = usuario;
             }
 
-            id = AgenteLogado.Autenticado.AgenteId;
+            if (AgenteLogado.Autenticado.Cargo.NomeCargo.Equals("Usuario"))
+            {
+                id = AgenteLogado.Autenticado.AgenteId;
+            }
             return View(_agenteDAO.BuscarPorId(id));
         }
 

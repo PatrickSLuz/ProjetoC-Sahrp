@@ -72,14 +72,28 @@ namespace ProjetoControleComprasWEB.Controllers
 
         public IActionResult ListOrcamentosPedido(int pedidoId, string nomeSetor)
         {
-            ViewData["NomeSetor"] = nomeSetor;
+            if (string.IsNullOrEmpty(nomeSetor))
+            {
+                ViewData["NomeSetor"] = AgenteLogado.Autenticado.Setor.NomeSetor;
+            }
+            else
+            {
+                ViewData["NomeSetor"] = nomeSetor;
+            }
             ViewData["PedidoId"] = pedidoId;
             return View(_pedidoDAO.ListarOrcamentosPorPedido(pedidoId));
         }
 
         public IActionResult PedidosParaValidar(int setorId, string nomeSetor)
         {
-            ViewData["NomeSetor"] = nomeSetor;
+            if (string.IsNullOrEmpty(nomeSetor))
+            {
+                ViewData["NomeSetor"] = AgenteLogado.Autenticado.Setor.NomeSetor;
+            }
+            else
+            {
+                ViewData["NomeSetor"] = nomeSetor;
+            }
             if (AgenteLogado.Autenticado.Cargo.NomeCargo.Equals("Administrador"))
             {
                 return View(_pedidoDAO.ListarPedidosPorStatus(StatusPedido.GetStatus(0)));
@@ -89,13 +103,27 @@ namespace ProjetoControleComprasWEB.Controllers
 
         public IActionResult ListPedidosValidados(int setorId, string nomeSetor)
         {
-            ViewData["NomeSetor"] = nomeSetor;
+            if (string.IsNullOrEmpty(nomeSetor))
+            {
+                ViewData["NomeSetor"] = AgenteLogado.Autenticado.Setor.NomeSetor;
+            }
+            else
+            {
+                ViewData["NomeSetor"] = nomeSetor;
+            }
             return View(_pedidoDAO.ListarPedidosPorStatus(StatusPedido.GetStatus(1)));
         }
 
         public IActionResult ListPedidosOrcados(int setorId, string nomeSetor)
         {
-            ViewData["NomeSetor"] = nomeSetor;
+            if (string.IsNullOrEmpty(nomeSetor))
+            {
+                ViewData["NomeSetor"] = AgenteLogado.Autenticado.Setor.NomeSetor;
+            }
+            else
+            {
+                ViewData["NomeSetor"] = nomeSetor;
+            }
             return View(_pedidoDAO.ListarPedidosPorStatus(StatusPedido.GetStatus(2)));
         }
 

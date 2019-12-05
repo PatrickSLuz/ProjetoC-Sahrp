@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoControleComprasWEB", "ProjetoControleComprasWEB\ProjetoControleComprasWEB.csproj", "{E8A24142-5231-4FA7-B04E-8B76F3BBD10E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoControleComprasWEB", "ProjetoControleComprasWEB\ProjetoControleComprasWEB.csproj", "{E8A24142-5231-4FA7-B04E-8B76F3BBD10E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{93F6AC64-5FCD-4E29-9E3D-C30786C63CFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{93F6AC64-5FCD-4E29-9E3D-C30786C63CFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{0FE11BCC-76C9-4840-9E20-9B4BC6020078}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{0FE11BCC-76C9-4840-9E20-9B4BC6020078}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{5467F6FF-7B31-4BB3-9965-0B75918DCA14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{0FE11BCC-76C9-4840-9E20-9B4BC6020078}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FE11BCC-76C9-4840-9E20-9B4BC6020078}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FE11BCC-76C9-4840-9E20-9B4BC6020078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5467F6FF-7B31-4BB3-9965-0B75918DCA14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5467F6FF-7B31-4BB3-9965-0B75918DCA14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5467F6FF-7B31-4BB3-9965-0B75918DCA14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5467F6FF-7B31-4BB3-9965-0B75918DCA14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

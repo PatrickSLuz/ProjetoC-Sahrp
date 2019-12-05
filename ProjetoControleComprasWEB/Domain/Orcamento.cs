@@ -36,6 +36,7 @@ namespace Domain
 
         [Display(Name = "Valor")]
         [Required(ErrorMessage = "Campo Valor Obrigatório!")]
+        [Range(1, 99999999, ErrorMessage = "Orçamento com o valor não aceito, Favor inserir valor valido!")]
         public double Valor { get; set; }
 
         [Display(Name = "Descrição")]
